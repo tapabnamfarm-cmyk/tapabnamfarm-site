@@ -1,59 +1,493 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ตะพาบน้ำไต้หวัน ฟาร์ม</title>
+  <title>ตะพาบน้ำไต้หวัน ฟาร์ม | Premium</title>
+
+  <!-- Premium Thai font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root{
+      --bg0:#070A0F;
+      --bg1:#0B1020;
+      --card:#0E162A;
+      --card2:#0C1324;
+      --line:rgba(255,255,255,.08);
+      --text:#EAF0FF;
+      --muted:rgba(234,240,255,.72);
+      --muted2:rgba(234,240,255,.55);
+      --accent:#28C76F;
+      --accent2:#12B981;
+      --shadow: 0 22px 70px rgba(0,0,0,.55);
+      --shadow2: 0 12px 35px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: system-ui, "Noto Sans Thai", sans-serif;
-      background:#0b0f14;
-      color:#eef2f7;
+      font-family:"Prompt", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 500px at 20% -10%, rgba(40,199,111,.18), transparent 65%),
+        radial-gradient(900px 520px at 95% 15%, rgba(56,189,248,.10), transparent 60%),
+        radial-gradient(900px 520px at 20% 85%, rgba(129,140,248,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      letter-spacing:.2px;
     }
-    .wrap{max-width:980px;margin:auto;padding:24px}
-    .card{
-      background:#111826;
-      border-radius:20px;
-      padding:20px;
-      margin-bottom:20px;
+
+    a{ color:inherit; text-decoration:none; }
+    .container{
+      width:min(1020px, 100%);
+      margin:0 auto;
+      padding: 28px 18px 120px;
     }
-    img{
-      width:100%;
-      max-width:900px;
-      border-radius:20px;
-      display:block;
-      margin:24px auto;
+
+    /* Top Nav */
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 16px;
+      border:1px solid var(--line);
+      background:rgba(14,22,42,.55);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      box-shadow: var(--shadow2);
+      position: sticky;
+      top: 12px;
+      z-index: 10;
     }
-    .btn{
-      display:inline-block;
-      padding:12px 18px;
-      border-radius:14px;
-      background:#22c55e;
-      color:#022c22;
+    .brand{
+      display:flex; align-items:center; gap:10px;
       font-weight:700;
-      margin-right:10px;
+      letter-spacing:.4px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), #44f0a0);
+      box-shadow: 0 0 0 6px rgba(40,199,111,.10);
+    }
+    .navlinks{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-weight:500;
+      font-size: 14px;
+    }
+    .chip:hover{ border-color: rgba(40,199,111,.35); color: var(--text); }
+
+    /* Hero */
+    .hero{
+      margin-top: 22px;
+      padding: 26px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(14,22,42,.82), rgba(12,19,36,.72));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 220px at 15% 5%, rgba(40,199,111,.18), transparent 65%),
+                  radial-gradient(420px 240px at 92% 30%, rgba(56,189,248,.10), transparent 60%);
+      pointer-events:none;
+      filter: saturate(1.1);
+    }
+    .hero > *{ position:relative; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border:1px solid rgba(40,199,111,.25);
+      background: rgba(40,199,111,.08);
+      color: rgba(234,240,255,.88);
+      border-radius:999px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    h1{
+      margin: 14px 0 8px;
+      font-size: clamp(30px, 6.2vw, 46px);
+      line-height: 1.08;
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 62ch;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 880px){
+      .heroGrid{ grid-template-columns: 1fr; }
+    }
+
+    .banner{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+    .banner img{
+      width:100%;
+      height:auto;
+      display:block;
+      transform: scale(1.01);
+    }
+    .banner .cap{
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    .ctaBox{
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 12px;
+      min-height: 100%;
+    }
+    .ctaTitle{
+      font-size: 18px;
+      margin: 0 0 6px;
+      font-weight: 600;
+      letter-spacing:.2px;
+    }
+    .list{
+      margin:0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+    .btnrow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      transition: .15s ease;
+      font-size: 15px;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-color: rgba(40,199,111,.35);
+      color: #06120A;
+      box-shadow: 0 16px 40px rgba(40,199,111,.22);
+    }
+    .btnPrimary:hover{ box-shadow: 0 18px 50px rgba(40,199,111,.28); }
+    .btnGhost{
+      background: transparent;
+      border-color: rgba(255,255,255,.12);
+      color: var(--text);
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(14,22,42,.55);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow2);
+      padding: 18px;
+    }
+    .sectionHeader{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin-bottom: 12px;
+    }
+    .sectionHeader h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .sectionHeader p{
+      margin:0;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 880px){
+      .grid3{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.7;
+      font-size: 14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      margin: 8px 8px 0 0;
+    }
+    .pill b{ color: var(--text); }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: 13px;
+      text-align:center;
+      padding: 14px 10px;
+    }
+
+    /* Bottom sticky CTA (mobile premium) */
+    .sticky{
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      padding: 10px 12px;
+      background: rgba(7,10,15,.72);
+      border-top: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+    }
+    .stickyInner{
+      width:min(1020px, 100%);
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .stickyText{
+      display:flex; flex-direction:column;
+      gap:2px;
+      min-width: 0;
+    }
+    .stickyText .t1{
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .stickyText .t2{
+      font-size: 12px;
+      color: var(--muted2);
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .stickyBtns{ display:flex; gap:10px; }
+    .miniBtn{
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      white-space:nowrap;
+    }
+    .miniBtn.primary{
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-color: rgba(40,199,111,.35);
+      color: #06120A;
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <h1>ตะพาบน้ำไต้หวัน ฟาร์ม</h1>
-    <p>จำหน่ายตะพาบน้ำไต้หวัน ลูกพันธุ์ / เนื้อ / B2B</p>
+  <div class="container">
 
-   <img src="images/FB_IMG_1768830578691.jpg"
-alt="ตะพาบน้ำไต้หวัน ฟาร์ม">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>ตะพาบน้ำไต้หวัน ฟาร์ม</span>
+      </div>
+      <div class="navlinks">
+        <a class="chip" href="#products">สินค้า</a>
+        <a class="chip" href="#about">มาตรฐานฟาร์ม</a>
+        <a class="chip" href="#contact">ติดต่อ</a>
+      </div>
+    </div>
 
-    <div class="card">
-      <h2>ติดต่อเร็วที่สุด</h2>
-      <ul>
-        <li>LINE: <b>@tapabnam.farm</b></li>
-        <li>โทร: <b>082-932-3965</b></li>
-        <li>โดเมน: tapabnamfarm.com</li>
-      </ul>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="kicker">Premium • คัดคุณภาพ • ตลาดจริง</div>
+      <h1>ฟาร์มตะพาบน้ำไต้หวัน<br/>สำหรับลูกค้าที่ “ต้องการความชัวร์”</h1>
+      <p class="subtitle">
+        จำหน่ายลูกพันธุ์ / เนื้อ / B2B พร้อมให้คำปรึกษาฟาร์มแบบเป็นระบบ
+        เน้นความนิ่ง น่าเชื่อถือ และการดูแลลูกค้าแบบระยะยาว
+      </p>
 
-      <a class="btn" href="https://lin.ee/cBeZNSB">แอดไลน์</a>
+      <div class="heroGrid">
+        <!-- Banner -->
+        <div class="banner">
+          <!-- เปลี่ยนชื่อไฟล์รูปตรงนี้ให้ตรงกับในโฟลเดอร์ docs/images -->
+          <img src="images/FB_IMG_1768830578691.jpg" alt="ตะพาบน้ำไต้หวัน ฟาร์ม">
+          <div class="cap">ภาพแบนเนอร์/แคตตาล็อก — อัปเดตได้โดยเปลี่ยนไฟล์ในโฟลเดอร์ <b>docs/images</b></div>
+        </div>
+
+        <!-- CTA -->
+        <div class="ctaBox" id="contact">
+          <div>
+            <p class="ctaTitle">ติดต่อฟาร์ม (เร็วที่สุด)</p>
+            <ul class="list">
+              <li>LINE: <b>@tapabnam.farm</b></li>
+              <li>โทร: <b>082-932-3965</b></li>
+              <li>โดเมน: <b>tapabnamfarm.com</b></li>
+              <li>Facebook: <b>ตะพาบน้ำไต้หวัน ฟาร์ม</b></li>
+            </ul>
+
+            <div class="btnrow">
+              <a class="btn btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์ / ขอรายละเอียด</a>
+              <a class="btn btnGhost" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank" rel="noopener">ดูเพจ Facebook</a>
+            </div>
+          </div>
+
+          <div>
+            <span class="pill"><b>โทนพรีเมียม</b> ไม่ขายยัด</span>
+            <span class="pill"><b>คัดคุณภาพ</b> เน้นความชัวร์</span>
+            <span class="pill"><b>B2B</b> ร้านอาหาร/ตลาด</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section" id="products">
+      <div class="sectionHeader">
+        <h2>สินค้า & บริการ</h2>
+        <p>โครงสร้างแบบพรีเมียม: ชัด / นิ่ง / ดูมีระบบ</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>ลูกตะพาบน้ำไต้หวัน (ลูกพันธุ์)</h3>
+          <p>
+            เหมาะสำหรับผู้เริ่มต้นเลี้ยง/ทำฟาร์ม พร้อมคำแนะนำการดูแลเบื้องต้น
+            (สอบถามรอบของสินค้าและเงื่อนไขการจัดส่งได้ทางไลน์)
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>เนื้อตะพาบน้ำไต้หวัน (พร้อมส่ง)</h3>
+          <p>
+            สำหรับผู้ที่ต้องการวัตถุดิบคุณภาพ เพื่อการบริโภคและร้านอาหาร
+            จัดส่งแบบควบคุมอุณหภูมิ (รายละเอียดและรอบส่งสอบถามได้)
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>ตะพาบเป็น ๆ สำหรับ B2B</h3>
+          <p>
+            สำหรับร้านอาหาร/ตลาดสด (ยกลอต) มีเป็นรอบตามการจับจากบ่อของฟาร์มและเครือข่าย
+            เน้นคัดคุณภาพและความสม่ำเสมอ
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / TRUST -->
+    <section class="section" id="about">
+      <div class="sectionHeader">
+        <h2>มาตรฐานฟาร์มที่ทำให้ “ดูแพง”</h2>
+        <p>เหตุผลที่ลูกค้ารู้สึกปลอดภัยก่อนตัดสินใจ</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>คัดคุณภาพ มากกว่าขายปริมาณ</h3>
+          <p>เว็บพรีเมียมต้องสื่อว่า “เราเลือกขาย” ไม่ใช่ “เร่งขาย” เพื่อความมั่นใจในระยะยาว</p>
+        </div>
+        <div class="card">
+          <h3>สื่อสารชัดเจน โปร่งใส</h3>
+          <p>รายละเอียดสินค้า/รอบส่ง/เงื่อนไข จะคุยให้ชัดในไลน์ ลดความกังวลก่อนซื้อ</p>
+        </div>
+        <div class="card">
+          <h3>โฟกัสลูกค้าแบบจริงจัง</h3>
+          <p>มีช่องทางติดต่อที่ชัด (LINE/โทร) และตอบไว เพื่อให้ลูกค้ารู้สึกว่า “มีคนดูแลจริง”</p>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <span class="pill"><b>Brand Tone:</b> นิ่ง • แพง • น่าเชื่อถือ</span>
+        <span class="pill"><b>Design:</b> พื้นที่หายใจ • เส้นบาง • มุมโค้ง</span>
+        <span class="pill"><b>CTA:</b> นุ่มแต่ชัดเจน</span>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม • ติดต่อ LINE: @tapabnam.farm • โทร 082-932-3965
+    </footer>
+  </div>
+
+  <!-- Sticky bottom CTA -->
+  <div class="sticky">
+    <div class="stickyInner">
+      <div class="stickyText">
+        <div class="t1">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+        <div class="t2">สอบถามรอบสินค้า / ราคา / จัดส่ง — แอดไลน์ได้ทันที</div>
+      </div>
+      <div class="stickyBtns">
+        <a class="miniBtn" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank" rel="noopener">Facebook</a>
+        <a class="miniBtn primary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
+      </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

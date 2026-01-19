@@ -2,16 +2,198 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ตะพาบน้ำไต้หวัน ฟาร์ม</title>
+    <style>
+      :root{
+        --bg:#0b0f14;
+        --card:#111826;
+        --muted:#a9b4c2;
+        --text:#eef2f7;
+        --accent:#ff8a3d;
+        --line:#22c55e;
+        --border: rgba(255,255,255,.08);
+      }
+      *{box-sizing:border-box}
+      body{
+        margin:0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", sans-serif;
+        background: radial-gradient(1200px 600px at 20% 0%, rgba(255,138,61,.18), transparent 60%),
+                    radial-gradient(900px 500px at 90% 10%, rgba(34,197,94,.14), transparent 55%),
+                    var(--bg);
+        color:var(--text);
+      }
+      a{color:inherit; text-decoration:none}
+      .wrap{max-width:980px; margin:0 auto; padding:18px}
+      .nav{
+        display:flex; align-items:center; justify-content:space-between;
+        gap:12px; padding:10px 12px; border:1px solid var(--border);
+        background: rgba(17,24,38,.6); border-radius:14px; backdrop-filter: blur(8px);
+        position: sticky; top: 10px;
+      }
+      .brand{font-weight:800; letter-spacing:.2px}
+      .brand small{display:block; font-weight:600; color:var(--muted); margin-top:2px}
+      .menu{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+      .pill{
+        padding:8px 10px; border:1px solid var(--border); border-radius:999px;
+        background: rgba(255,255,255,.03);
+        font-weight:700; font-size:14px;
+      }
+      .hero{padding:24px 0 8px}
+      .badge{
+        display:inline-flex; gap:8px; align-items:center;
+        padding:7px 10px; border:1px solid var(--border); border-radius:999px;
+        color:var(--muted); background: rgba(255,255,255,.03);
+        font-weight:700; font-size:13px;
+      }
+      h1{margin:12px 0 10px; font-size:30px; line-height:1.15}
+      .sub{color:var(--muted); font-size:15px; line-height:1.65; margin:0}
+      .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+      .btn{
+        display:inline-flex; align-items:center; justify-content:center; gap:8px;
+        padding:12px 14px; border-radius:14px; border:1px solid var(--border);
+        background: rgba(255,255,255,.03); font-weight:900;
+      }
+      .btn.primary{
+        background: linear-gradient(180deg, rgba(255,138,61,.95), rgba(255,138,61,.75));
+        color:#1a0f08; border-color: rgba(255,138,61,.35);
+      }
+      .btn.line{
+        background: linear-gradient(180deg, rgba(34,197,94,.95), rgba(34,197,94,.72));
+        color:#07120a; border-color: rgba(34,197,94,.35);
+      }
+      .grid{display:grid; grid-template-columns:1fr; gap:12px; margin-top:18px}
+      .card{
+        padding:14px; border-radius:16px; border:1px solid var(--border);
+        background: rgba(17,24,38,.55); backdrop-filter: blur(8px);
+      }
+      .card h2{margin:0 0 8px; font-size:16px}
+      .list{margin:0; padding-left:18px; color:var(--muted); line-height:1.65}
+      .kpi{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px}
+      .kpi .card{padding:12px}
+      .kpi strong{font-size:16px}
+      .muted{color:var(--muted)}
+      .products{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
+      .tag{display:inline-block; padding:5px 9px; border-radius:999px; border:1px solid var(--border); color:var(--muted); font-size:12px; font-weight:800}
+      .price{font-weight:1000; margin-top:6px}
+      footer{margin:22px 0 10px; color:var(--muted); font-size:12px; line-height:1.6}
+      @media(min-width:720px){
+        h1{font-size:38px}
+        .grid{grid-template-columns: 1.1fr .9fr}
+        .products{grid-template-columns:1fr 1fr}
+      }
+    </style>
   </head>
-  <body>
-    <h1>ตะพาบน้ำไต้หวัน ฟาร์ม 🐢</h1>
-    <p>เว็บไซต์กำลังพัฒนา</p>
 
-    <ul>
-      <li><a href="/about">เกี่ยวกับฟาร์ม</a></li>
-      <li><a href="/contact">ติดต่อเรา</a></li>
-      <li><a href="/disclaimer">ข้อสงวนสิทธิ์</a></li>
-    </ul>
+  <body>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          ตะพาบน้ำไต้หวัน ฟาร์ม
+          <small>ลูกตะพาบ • เนื้อ • อาหาร • ยา OXY-100 PRO</small>
+        </div>
+        <div class="menu">
+          <a class="pill" href="/about">เกี่ยวกับ</a>
+          <a class="pill" href="/contact">ติดต่อ</a>
+          <a class="pill" href="/disclaimer">ข้อสงวนสิทธิ์</a>
+        </div>
+      </div>
+
+      <section class="hero">
+        <div class="badge">🐢 ฟาร์มคัดเกรด • ให้คำปรึกษาการเลี้ยง • ส่งทั่วไทย</div>
+        <h1>ศูนย์รวมตะพาบน้ำไต้หวัน<br/>สำหรับคนเริ่มเลี้ยง & ตลาดจริง</h1>
+        <p class="sub">
+          เราโฟกัส “คัดคุณภาพ + ให้ข้อมูลชัด + ติดต่อสะดวก”
+          เพื่อให้ลูกค้าตัดสินใจง่าย และเริ่มเลี้ยงได้แบบมั่นใจ
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn line" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">💬 แอดไลน์ @tapabnam.farm</a>
+          <a class="btn primary" href="/contact">📞 ช่องทางติดต่อทั้งหมด</a>
+          <a class="btn" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank" rel="noopener">🔵 Facebook ฟาร์ม</a>
+        </div>
+
+        <div class="kpi">
+          <div class="card"><strong>ลูกตะพาบ</strong><div class="muted">15 บาท/ตัว • ขั้นต่ำ 30 ตัว • เก็บเงินปลายทาง</div></div>
+          <div class="card"><strong>เนื้อตะพาบ</strong><div class="muted">549 บาท/กก. • ส่งควบคุมอุณหภูมิ</div></div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h2>สินค้า/บริการหลัก</h2>
+          <div class="products">
+            <div class="card">
+              <span class="tag">ยอดนิยม</span>
+              <h2>ลูกตะพาบน้ำไต้หวัน</h2>
+              <ul class="list">
+                <li>ราคา 15 บาท/ตัว</li>
+                <li>ขั้นต่ำ 30 ตัว</li>
+                <li>มีเก็บเงินปลายทาง</li>
+                <li>รับประกันความเสียหายทุกกรณี</li>
+              </ul>
+              <div class="price">เริ่มต้นคุยในไลน์เพื่อเช็คคิวรอบส่ง</div>
+            </div>
+
+            <div class="card">
+              <span class="tag">สายกิน</span>
+              <h2>เนื้อตะพาบน้ำไต้หวัน</h2>
+              <ul class="list">
+                <li>ราคา 549 บาท/กก.</li>
+                <li>ส่งแบบควบคุมอุณหภูมิ</li>
+              </ul>
+              <div class="price">เหมาะสำหรับคนอยากลองของดี</div>
+            </div>
+
+            <div class="card">
+              <span class="tag">เลี้ยงให้โตไว</span>
+              <h2>อาหารตะพาบวัยอ่อน (โปรตีน 42%)</h2>
+              <ul class="list">
+                <li>ราคา 249 บาท</li>
+                <li>จัดส่งฟรีเมื่อโอน</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <span class="tag">ดูแลบ่อ</span>
+              <h2>OXY-100 PRO (ยาปฏิชีวนะสัตว์น้ำ)</h2>
+              <ul class="list">
+                <li>ราคา 289 บาท</li>
+                <li>จัดส่งฟรีเมื่อโอน</li>
+              </ul>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+              <span class="tag">B2B</span>
+              <h2>ตะพาบเป็น ๆ สำหรับทำอาหาร (ยกลอต)</h2>
+              <ul class="list">
+                <li>ขั้นต่ำ 5 กก. ขึ้นไป (ไม่ขายปลีกเป็นตัว)</li>
+                <li>เหมาะสำหรับร้านอาหาร/ตลาดของสด</li>
+                <li>มีเป็นรอบตามการจับจากบ่อของฟาร์มและบ่อเครือข่าย</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>ติดต่อเร็วที่สุด</h2>
+          <ul class="list">
+            <li>LINE: <b>@tapabnam.farm</b></li>
+            <li>ลิงก์แอดไลน์: lin.ee/cBeZNSB</li>
+            <li>โทร: <b>0829323965</b></li>
+            <li>Facebook: เพจฟาร์ม</li>
+            <li>โดเมน (ไว้ผูกทีหลังได้): <b>tapabnamfarm.com</b></li>
+          </ul>
+          <div class="ctaRow" style="margin-top:12px">
+            <a class="btn line" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์เลย</a>
+            <a class="btn" href="/contact">ไปหน้าติดต่อ</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        หมายเหตุ: เว็บไซต์นี้เป็นข้อมูลเบื้องต้นสำหรับลูกค้า หากต้องการสั่งซื้อ/เช็คคิวรอบส่ง แนะนำทักไลน์ของฟาร์มโดยตรง
+      </footer>
+    </div>
   </body>
 </html>

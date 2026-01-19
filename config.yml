@@ -1,0 +1,106 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "site"
+    label: "ข้อมูลเว็บไซต์ทั้งหมด"
+    files:
+      - file: "src/data/site.yml"
+        label: "Site Settings"
+        name: "site_settings"
+        fields:
+          - label: "Brand"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { label: "ชื่อแบรนด์", name: "name", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "ข้อความปุ่มหลัก", name: "primaryCtaText", widget: "string" }
+              - { label: "ไอดี LINE (มี @)", name: "lineId", widget: "string" }
+              - { label: "ไอดี LINE (มี @)", name: "lineId", widget: "string" }
+              - { label: "ลิงก์ LINE OA", name: "lineUrl", widget: "string" }
+              - { label: "เบอร์โทร", name: "phone", widget: "string", required: false }
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "TikTok", name: "tiktok", widget: "string", required: false }
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "YouTube", name: "youtube", widget: "string", required: false }
+              - { label: "ที่อยู่", name: "address", widget: "string", required: false }
+
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Subheadline", name: "subheadline", widget: "text" }
+              - { label: "รูป Hero", name: "image", widget: "image" }
+
+          - label: "Value Props"
+            name: "homeSections"
+            widget: "object"
+            fields:
+              - label: "Value Props"
+                name: "valueProps"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Image", name: "image", widget: "image" }
+
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            fields:
+              - { label: "Slug", name: "slug", widget: "string" }
+              - { label: "ชื่อสินค้า", name: "name", widget: "string" }
+              - { label: "ราคา", name: "priceText", widget: "string" }
+              - { label: "จุดเด่น", name: "highlights", widget: "list" }
+              - { label: "รูปสินค้า", name: "image", widget: "image" }
+              - { label: "ข้อความ CTA", name: "ctaText", widget: "string" }
+
+          - label: "FAQ"
+            name: "faq"
+            widget: "list"
+            fields:
+              - { label: "คำถาม", name: "q", widget: "string" }
+              - { label: "คำตอบ", name: "a", widget: "text" }
+
+          - label: "Ebooks"
+            name: "ebooks"
+            widget: "object"
+            fields:
+              - label: "Free"
+                name: "free"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "text" }
+                  - { label: "Cover", name: "coverImage", widget: "image" }
+                  - { label: "Bullets", name: "bullets", widget: "list" }
+              - label: "Paid"
+                name: "paid"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "text" }
+                  - { label: "Cover", name: "coverImage", widget: "image" }
+                  - { label: "Price", name: "priceText", widget: "string" }
+                  - { label: "Bullets", name: "bullets", widget: "list" }
+                  - { label: "CTA Text", name: "ctaText", widget: "string" }
+
+          - label: "Reviews"
+            name: "reviews"
+            widget: "list"
+            fields:
+              - { label: "ชื่อลูกค้า", name: "name", widget: "string" }
+              - { label: "ข้อความรีวิว", name: "text", widget: "text" }
+              - { label: "รูปรีวิว", name: "image", widget: "image" }
+
+          - label: "Policy"
+            name: "policy"
+            widget: "object"
+            fields:
+              - { label: "Disclaimer", name: "disclaimer", widget: "text" }

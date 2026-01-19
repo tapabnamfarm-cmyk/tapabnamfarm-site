@@ -171,11 +171,161 @@
       color: #062013;
     }
   </style>
+<style>
+/* ===== Product Card (Premium, calm) ===== */
+.productGrid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:16px;
+  margin-top:18px;
+}
+.productCard{
+  grid-column: span 12;
+  background: rgba(17,24,38,.72);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+}
+.productMedia{
+  position:relative;
+  background: rgba(255,255,255,.04);
+}
+.productMedia img{
+  width:100%;
+  display:block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.productBadge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  padding:8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .2px;
+  background: rgba(7, 18, 33, .65);
+  border:1px solid rgba(255,255,255,.10);
+  color:#e9eef7;
+}
+.productBody{
+  padding:14px 14px 16px 14px;
+}
+.productTitle{
+  font-size: 18px;
+  font-weight: 800;
+  margin: 2px 0 6px 0;
+}
+.productDesc{
+  margin:0 0 10px 0;
+  color: rgba(233,238,247,.82);
+  line-height: 1.55;
+  font-size: 14px;
+}
+.productMeta{
+  display:flex;
+  flex-wrap: wrap;
+  gap:8px;
+  margin: 0 0 12px 0;
+  padding:0;
+  list-style:none;
+}
+.productMeta li{
+  font-size: 12px;
+  color: rgba(233,238,247,.80);
+  padding:8px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.productActions{
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+}
+.btnGhost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration:none;
+  font-weight: 800;
+  background: rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  color:#e9eef7;
+}
+.btnPrimary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration:none;
+  font-weight: 900;
+  background: rgba(34,197,94,.95);
+  color:#04130a;
+  border: 1px solid rgba(34,197,94,.65);
+}
+.btnPrimary:active, .btnGhost:active{ transform: translateY(1px); }
+
+@media (min-width: 720px){
+  .productCard{ grid-column: span 6; }
+}
+@media (min-width: 980px){
+  .productCard{ grid-column: span 4; }
+}
+</style>
 </head>
 
 <body>
   <div class="wrap">
+<h1>สินค้า</h1>
+<p style="opacity:.85">
+ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ  
+ถ้าสงสัยรายละเอียด ถามได้ก่อนตัดสินใจ
+</p>
 
+<div class="productGrid">
+
+  <article class="productCard">
+    <div class="productMedia">
+      <span class="productBadge">คุยตรง • ดูแลกันยาว</span>
+
+      <!-- รูปต้องอยู่ใน docs/images -->
+      <img src="images/FB_IMG_1768830578691.jpg" alt="ลูกตะพาบน้ำไต้หวัน">
+    </div>
+
+    <div class="productBody">
+      <div class="productTitle">ลูกตะพาบน้ำไต้หวัน</div>
+
+      <p class="productDesc">
+        คัดจากฟาร์ม ดูแลเหมาะกับคนเริ่มเลี้ยง  
+        อธิบายตรงไปตรงมา ไม่เร่ง ไม่ยัดขาย
+      </p>
+
+      <ul class="productMeta">
+        <li>ขั้นต่ำ 30 ตัว</li>
+        <li>จัดส่งทั่วประเทศ</li>
+        <li>ให้คำแนะนำหลังรับของ</li>
+      </ul>
+
+      <div class="productActions">
+        <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank">
+          สอบถามในไลน์
+        </a>
+        <a class="btnGhost" href="index.html#contact">
+          กลับหน้าหลัก
+        </a>
+      </div>
+    </div>
+  </article>
+
+</div>
     <div class="topbar">
       <div class="brand">
         <div class="dot"></div>

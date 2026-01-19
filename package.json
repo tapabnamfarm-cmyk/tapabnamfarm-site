@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "astro": "^4.15.0",
+    "@astrojs/netlify": "^5.0.0",
     "js-yaml": "^4.1.0"
   }
 }

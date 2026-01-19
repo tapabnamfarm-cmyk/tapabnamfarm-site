@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteData } from "../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="ติดต่อ" data={data}>
+  <h1>ติดต่อเรา</h1>
+
+  <div class="grid cards">
+    <div class="card col6">
+      <h2>ช่องทางหลัก</h2>
+      <p><strong>LINE OA:</strong> <a href={data.brand.lineUrl} target="_blank" rel="noreferrer">{data.brand.lineId}</a></p>
+      <p><strong>โทร:</strong> <a href={`tel:${data.brand.phone}`}>{data.brand.phone}</a></p>
+      <p><strong>Facebook:</strong> <a href={data.brand.facebook} target="_blank" rel="noreferrer">เปิดเพจ</a></p>
+      {data.brand.address && <p><strong>ที่อยู่:</strong> {data.brand.address}</p>}
+    </div>
+
+    <div class="card col6">
+      <h2>โซเชียลอื่น ๆ</h2>
+      <ul>
+        <li><a href={data.brand.facebook} target="_blank" rel="noreferrer">Facebook</a></li>
+        {data.brand.tiktok && <li><a href={data.brand.tiktok} target="_blank" rel="noreferrer">TikTok</a></li>}
+        {data.brand.instagram && <li><a href={data.brand.instagram} target="_blank" rel="noreferrer">Instagram</a></li>}
+        {data.brand.youtube && <li><a href={data.brand.youtube} target="_blank" rel="noreferrer">YouTube</a></li>}
+      </ul>
+      <p class="small muted">ถ้าคุณยังไม่มีลิงก์บางช่องทาง ปล่อยว่างได้ แล้วค่อยเติมใน /admin</p>
+    </div>
+  </div>
+
+  <a class="btn primary" href={data.brand.lineUrl} target="_blank" rel="noreferrer">ทักไลน์เพื่อสอบถาม</a>
+</BaseLayout>

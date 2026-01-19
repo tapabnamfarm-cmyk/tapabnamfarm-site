@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteData } from "../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="FAQ" data={data}>
+  <h1>คำถาม & ความจริงที่ควรรู้</h1>
+  <p>หน้านี้ตั้งใจทำให้ชัดเจน เพื่อให้ทุกคนเริ่มจาก “ข้อมูลจริง”</p>
+
+  {data.faq.map((item) => (
+    <div class="card" style="margin-bottom:12px;">
+      <h3 style="margin-top:0;">{item.q}</h3>
+      <p>{item.a}</p>
+    </div>
+  ))}
+</BaseLayout>

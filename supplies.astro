@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteData } from "../../lib/siteData.js";
+const data = getSiteData();
+const p = data.products.find(x => x.slug === "supplies");
+---
+<BaseLayout title={p.name} data={data}>
+  <h1>{p.name}</h1>
+  <img src={p.image} alt={p.name} style="width:100%;height:360px;object-fit:cover;border-radius:18px;border:1px solid #eee;background:#fafafa;" />
+  <p class="badge">{p.priceText}</p>
+  <ul>
+    {p.highlights.map((h)=> <li>{h}</li>)}
+  </ul>
+
+  {p.slug === "juvenile" && (
+    <div class="card">
+      <h2>เหมาะกับใคร</h2>
+      <ul>
+        <li>คนเริ่มต้นที่อยากทดลองเลี้ยงแบบถูกระบบ</li>
+        <li>คนที่ต้องการคำแนะนำเรื่องบ่อ น้ำ อาหาร ก่อนรับไปเลี้ยง</li>
+      </ul>
+    </div>
+  )}
+
+  {p.slug === "meat" && (
+    <div class="card">
+      <h2>การจัดส่ง</h2>
+      <p>จัดส่งแบบควบคุมอุณหภูมิ เพื่อคงคุณภาพสินค้า (รายละเอียดรอบส่งแจ้งทางไลน์)</p>
+    </div>
+  )}
+
+  {p.slug === "supplies" && (
+    <div class="card">
+      <h2>หมายเหตุ</h2>
+      <p>ก่อนสั่งแนะนำให้ทักไลน์เพื่อเช็ควัย/ขนาด และวิธีใช้ให้เหมาะสม</p>
+    </div>
+  )}
+
+  {p.slug === "live-for-cooking" && (
+    <div class="card">
+      <h2>สำคัญ</h2>
+      <p>สินค้ามีเป็นรอบตามการจับจากบ่อของฟาร์มและบ่อเครือข่ายลูกฟาร์ม แนะนำทักไลน์เพื่อเช็คของและรอบส่ง</p>
+    </div>
+  )}
+
+  <a class="btn primary" href={data.brand.lineUrl} target="_blank" rel="noreferrer">{p.ctaText}</a>
+</BaseLayout>

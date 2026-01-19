@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteData } from "../../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="Disclaimer" data={data}>
+  <h1>Disclaimer</h1>
+  <p>{data.policy.disclaimer}</p>
+</BaseLayout>

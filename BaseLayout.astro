@@ -1,0 +1,49 @@
+---
+import "../styles/global.css";
+const { title, data } = Astro.props;
+---
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {data.brand.name}</title>
+    <meta name="description" content={data.brand.tagline} />
+  </head>
+  <body>
+    <div class="container">
+      <header class="nav">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <a href="/" style="font-weight:800;">{data.brand.name}</a>
+          <span class="badge">{data.brand.tagline}</span>
+        </div>
+        <nav style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;">
+          <a href="/products">สินค้า</a>
+          <a href="/knowledge">ความรู้</a>
+          <a href="/ebooks/free">E-book ฟรี</a>
+          <a href="/ebooks/paid">E-book ขาย</a>
+          <a href="/faq">FAQ</a>
+          <a href="/reviews">รีวิว</a>
+          <a href="/contact">ติดต่อ</a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="footer">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+          <div>
+            <div><strong>{data.brand.name}</strong></div>
+            <div class="small">LINE: {data.brand.lineId}</div>
+            <div class="small">{data.policy.disclaimer}</div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <a class="btn" href="/policy/disclaimer">Disclaimer</a>
+            <a class="btn primary" href={data.brand.lineUrl} target="_blank" rel="noreferrer">{data.brand.primaryCtaText}</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

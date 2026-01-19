@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteData } from "../../lib/siteData.js";
+const data = getSiteData();
+const e = data.ebooks.paid;
+---
+<BaseLayout title="E-book ขาย" data={data}>
+  <h1>{e.title}</h1>
+  <p>{e.subtitle}</p>
+  <img src={e.coverImage} alt="paid ebook" style="width:100%;height:360px;object-fit:cover;border-radius:18px;border:1px solid #eee;background:#fafafa;" />
+
+  <div class="card">
+    <div class="badge">ราคา: {e.priceText}</div>
+    <h2>คุณจะได้อะไร</h2>
+    <ul>
+      {e.bullets.map((b)=> <li>{b}</li>)}
+    </ul>
+  </div>
+
+  <a class="btn primary" href={data.brand.lineUrl} target="_blank" rel="noreferrer">{e.ctaText}</a>
+</BaseLayout>

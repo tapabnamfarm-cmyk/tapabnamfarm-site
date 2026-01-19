@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteData } from "../../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="Terms & Conditions" data={data}>
+  <h1>Terms & Conditions</h1>
+  <p>หน้านี้ใส่เงื่อนไขการใช้งาน/การสั่งซื้อของคุณ (แก้ได้ใน /admin)</p>
+</BaseLayout>

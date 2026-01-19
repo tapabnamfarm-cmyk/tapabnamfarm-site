@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteData } from "../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="เกี่ยวกับเรา" data={data}>
+  <h1>เกี่ยวกับ {data.brand.name}</h1>
+  <p>
+    เราโฟกัส “ความจริงก่อนเริ่ม” เพื่อให้คนเลี้ยงเข้าใจระบบ ลดการพลาดจากน้ำเสีย โตช้า ตายง่าย
+    และการวางแผนตลาดผิดที่ทำให้ต้องหยุดกลางทาง
+  </p>
+
+  <div class="card">
+    <h2>แนวทางของเรา</h2>
+    <ul>
+      <li>ให้ความรู้ก่อนขาย — เริ่มให้ถูกระบบ</li>
+      <li>อธิบายเงื่อนไขชัด — ไม่ขายฝัน ไม่การันตีเกินจริง</li>
+      <li>มีช่องทางปรึกษา — เพื่อให้คุณตัดสินใจบนข้อมูลจริง</li>
+    </ul>
+    <a class="btn primary" href={data.brand.lineUrl} target="_blank" rel="noreferrer">คุยกับผู้ดูแลฟาร์ม</a>
+  </div>
+</BaseLayout>

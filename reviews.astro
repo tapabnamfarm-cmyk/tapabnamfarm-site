@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteData } from "../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="รีวิว" data={data}>
+  <h1>รีวิว & หลักฐาน</h1>
+  <div class="grid cards">
+    {data.reviews.map((r)=> (
+      <div class="card col4">
+        <img src={r.image} alt={r.name} />
+        <h3>{r.name}</h3>
+        <p>{r.text}</p>
+      </div>
+    ))}
+  </div>
+</BaseLayout>

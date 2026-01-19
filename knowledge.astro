@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteData } from "../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="ศูนย์ความรู้" data={data}>
+  <h1>ศูนย์ความรู้</h1>
+  <p>พื้นที่รวมความรู้เพื่อให้เริ่มเลี้ยงได้อย่างเป็นระบบ และเข้าใจความจริงของตลาด</p>
+
+  <div class="grid cards">
+    <div class="card col6">
+      <h2>เริ่มจาก E-book ฟรี</h2>
+      <p>เหมาะสำหรับมือใหม่ — อ่านจบรู้ทันความเสี่ยง + เช็คลิสต์เตรียมบ่อ</p>
+      <a class="btn primary" href="/ebooks/free">ไปหน้า E-book ฟรี</a>
+    </div>
+    <div class="card col6">
+      <h2>E-book ฉบับจริงจัง</h2>
+      <p>รวมระบบคิด + วิธีเลี้ยงแบบลงรายละเอียด สำหรับคนอยากทำจริง</p>
+      <a class="btn" href="/ebooks/paid">ไปหน้า E-book ขาย</a>
+    </div>
+  </div>
+</BaseLayout>

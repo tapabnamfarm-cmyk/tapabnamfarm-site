@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteData } from "../../lib/siteData.js";
+const data = getSiteData();
+---
+<BaseLayout title="สินค้า" data={data}>
+  <h1>สินค้า & บริการ</h1>
+  <p>เลือกหมวดที่คุณสนใจ แล้วกดดูรายละเอียดได้เลย</p>
+
+  <div class="grid cards">
+    {data.products.map((p) => (
+      <div class="card col4">
+        <img src={p.image} alt={p.name} />
+        <h3>{p.name}</h3>
+        <div class="badge">{p.priceText}</div>
+        <a class="btn" href={`/products/${p.slug}`}>ดูรายละเอียด</a>
+      </div>
+    ))}
+  </div>
+</BaseLayout>

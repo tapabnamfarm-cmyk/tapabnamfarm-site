@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteData } from "../../lib/siteData.js";
+const data = getSiteData();
+const e = data.ebooks.free;
+---
+<BaseLayout title="E-book ฟรี" data={data}>
+  <h1>{e.title}</h1>
+  <p>{e.subtitle}</p>
+  <img src={e.coverImage} alt="free ebook" style="width:100%;height:360px;object-fit:cover;border-radius:18px;border:1px solid #eee;background:#fafafa;" />
+  <ul>
+    {e.bullets.map((b)=> <li>{b}</li>)}
+  </ul>
+  <a class="btn primary" href={data.brand.lineUrl} target="_blank" rel="noreferrer">แอดไลน์เพื่อรับ E-book ฟรี</a>
+</BaseLayout>

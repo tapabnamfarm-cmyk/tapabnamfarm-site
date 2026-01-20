@@ -1,459 +1,245 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>สินค้า | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>สินค้า | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
 
-  <style>
-    :root{
-      --bg:#070b12;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.085);
-      --line: rgba(255,255,255,.12);
-      --text:#e9edf6;
-      --muted: rgba(233,237,246,.72);
-      --muted2: rgba(233,237,246,.55);
-      --accent:#18c37e;
-      --accent2:#11a86b;
-      --shadow: 0 18px 55px rgba(0,0,0,.55);
-      --radius: 22px;
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Noto Sans Thai", "Segoe UI", sans-serif;
-      background:
-        radial-gradient(900px 550px at 18% 10%, rgba(24,195,126,.20), transparent 60%),
-        radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.12), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      line-height:1.6;
-    }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:1040px; margin:0 auto; padding:22px 18px 110px; }
-
-    .topbar{
-      position: sticky; top: 12px; z-index: 10;
-      display:flex; justify-content:space-between; align-items:center; gap:12px;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      background: rgba(10,14,22,.55);
-      backdrop-filter: blur(16px);
-      border-radius: 999px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
-    .dot{ width:10px; height:10px; border-radius:999px; background: var(--accent); box-shadow: 0 0 0 6px rgba(24,195,126,.15); }
-    .brandTitle{ font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .nav{ display:flex; gap:8px; align-items:center; }
-    .pill{
-      padding:10px 14px; border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
-      font-weight:800; font-size:14px;
-    }
-    .pill:hover{ background: rgba(255,255,255,.075); color: var(--text); }
-
-    .hero{
-      margin-top: 18px;
-      padding: 22px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      box-shadow: var(--shadow);
-    }
-    h1{ margin:0 0 10px; font-size: clamp(26px, 4.2vw, 40px); line-height:1.2; }
-    .sub{ margin:0; color: var(--muted); max-width: 72ch; }
-
-    .grid{
-      margin-top: 16px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
-
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.055);
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
-    .card h2{ margin: 0 0 8px; font-size: 18px; letter-spacing:.2px; }
-    .card p{ margin: 0 0 12px; color: var(--muted); }
-    .meta{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 6px;
-    }
-    .badge{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .btnRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding: 12px 14px; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 900; font-size: 14px;
-    }
-    .btn.primary{
-      background: linear-gradient(180deg, rgba(24,195,126,.95), rgba(17,168,107,.95));
-      border-color: rgba(24,195,126,.6);
-      color: #062013;
-      box-shadow: 0 12px 30px rgba(24,195,126,.22);
-    }
-
-    .note{
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.25);
-      color: var(--muted2);
-      font-size: 13px;
-    }
-
-    footer{
-      margin-top: 18px;
-      color: var(--muted2);
-      font-size: 13px;
-      text-align:center;
-      padding: 16px 8px 0;
-    }
-
-    .sticky{
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
-      z-index: 20;
-      background: linear-gradient(180deg, transparent, rgba(0,0,0,.55) 20%, rgba(0,0,0,.75));
-    }
-    .stickyInner{
-      max-width: 1040px;
-      margin: 0 auto;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(10,14,22,.62);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 16px 45px rgba(0,0,0,.55);
-      padding: 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
-    .stickyText .t1{ font-weight: 950; font-size: 14px; }
-    .stickyText .t2{ color: var(--muted); font-size: 12.5px; margin-top: 2px; }
-    .stickyBtns{ display:flex; gap:10px; }
-    .miniBtn{
-      padding: 11px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      font-weight: 900;
-      font-size: 14px;
-    }
-    .miniBtn.primary{
-      background: linear-gradient(180deg, rgba(24,195,126,.95), rgba(17,168,107,.95));
-      border-color: rgba(24,195,126,.6);
-      color: #062013;
-    }
-  </style>
 <style>
-/* ===== Product Card (Premium, calm) ===== */
+:root{
+  --bg:#070b12;
+  --panel: rgba(255,255,255,.06);
+  --line: rgba(255,255,255,.12);
+  --text:#e9edf6;
+  --muted: rgba(233,237,246,.72);
+  --accent:#18c37e;
+  --shadow: 0 18px 55px rgba(0,0,0,.55);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,"Noto Sans Thai","Segoe UI",sans-serif;
+  background:
+    radial-gradient(900px 550px at 18% 10%, rgba(24,195,126,.20), transparent 60%),
+    radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.12), transparent 55%),
+    var(--bg);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:22px 18px 120px}
+
+/* topbar */
+.topbar{
+  position:sticky;top:12px;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  background:rgba(10,14,22,.6);
+  backdrop-filter:blur(16px);
+  border-radius:999px;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.brandTitle{font-weight:800}
+.nav{display:flex;gap:8px}
+.pill{
+  padding:10px 14px;border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  font-weight:800;font-size:14px;
+}
+
+/* header */
+.header{
+  margin-top:18px;
+  padding:22px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  box-shadow:var(--shadow);
+}
+h1{margin:0 0 8px;font-size:clamp(26px,4vw,38px)}
+.sub{margin:0;color:var(--muted);max-width:70ch}
+
+/* products */
 .productGrid{
   display:grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns:repeat(12,1fr);
   gap:16px;
   margin-top:18px;
 }
 .productCard{
-  grid-column: span 12;
-  background: rgba(17,24,38,.72);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 18px;
+  grid-column:span 12;
+  background:rgba(17,24,38,.72);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
   overflow:hidden;
-  box-shadow: 0 18px 50px rgba(0,0,0,.35);
-  backdrop-filter: blur(10px);
+  box-shadow:0 18px 50px rgba(0,0,0,.35);
 }
-.productMedia{
-  position:relative;
-  background: rgba(255,255,255,.04);
-}
+.productMedia{position:relative}
 .productMedia img{
   width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
   display:block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
 }
 .productBadge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  padding:8px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  letter-spacing: .2px;
-  background: rgba(7, 18, 33, .65);
-  border:1px solid rgba(255,255,255,.10);
-  color:#e9eef7;
+  position:absolute;top:12px;left:12px;
+  padding:8px 10px;border-radius:999px;
+  font-size:12px;
+  background:rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.12);
 }
-.productBody{
-  padding:14px 14px 16px 14px;
-}
-.productTitle{
-  font-size: 18px;
-  font-weight: 800;
-  margin: 2px 0 6px 0;
-}
-.productDesc{
-  margin:0 0 10px 0;
-  color: rgba(233,238,247,.82);
-  line-height: 1.55;
-  font-size: 14px;
-}
+.productBody{padding:14px 14px 16px}
+.productTitle{font-size:18px;font-weight:800;margin:0 0 6px}
+.productDesc{margin:0 0 10px;color:var(--muted);font-size:14px}
 .productMeta{
-  display:flex;
-  flex-wrap: wrap;
-  gap:8px;
-  margin: 0 0 12px 0;
-  padding:0;
-  list-style:none;
+  list-style:none;padding:0;margin:0 0 12px;
+  display:flex;flex-wrap:wrap;gap:8px;
 }
 .productMeta li{
-  font-size: 12px;
-  color: rgba(233,238,247,.80);
   padding:8px 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  font-size:12px;
 }
-.productActions{
-  display:flex;
-  gap:10px;
-  flex-wrap: wrap;
-}
-.btnGhost{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  text-decoration:none;
-  font-weight: 800;
-  background: rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  color:#e9eef7;
+.productActions{display:flex;gap:10px}
+.btnPrimary,.btnGhost{
+  padding:12px 14px;border-radius:14px;
+  font-weight:900;font-size:14px;
+  border:1px solid rgba(255,255,255,.14);
 }
 .btnPrimary{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  text-decoration:none;
-  font-weight: 900;
-  background: rgba(34,197,94,.95);
-  color:#04130a;
-  border: 1px solid rgba(34,197,94,.65);
+  background:linear-gradient(180deg,#22c55e,#16a34a);
+  color:#04130a;border-color:rgba(34,197,94,.6);
 }
-.btnPrimary:active, .btnGhost:active{ transform: translateY(1px); }
+.btnGhost{background:rgba(255,255,255,.05)}
 
-@media (min-width: 720px){
-  .productCard{ grid-column: span 6; }
+@media(min-width:720px){.productCard{grid-column:span 6}}
+@media(min-width:980px){.productCard{grid-column:span 4}}
+
+/* footer & sticky */
+footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;
+  padding:12px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));
 }
-@media (min-width: 980px){
-  .productCard{ grid-column: span 4; }
+.stickyInner{
+  max-width:1040px;margin:0 auto;
+  padding:12px;
+  border-radius:18px;
+  background:rgba(10,14,22,.7);
+  border:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.miniBtn{
+  padding:11px 14px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  font-weight:900;font-size:14px;
+}
+.miniBtn.primary{
+  background:linear-gradient(180deg,#22c55e,#16a34a);
+  color:#04130a;
 }
 </style>
 </head>
 
 <body>
-  <div class="wrap">
-<h1>สินค้า</h1>
-<p style="opacity:.85">
-ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ  
-ถ้าสงสัยรายละเอียด ถามได้ก่อนตัดสินใจ
-</p>
+<div class="wrap">
 
-<div class="productGrid">
-
-  <article class="productCard">
-    <div class="productMedia">
-      <span class="productBadge">คุยตรง • ดูแลกันยาว</span>
-
-      <!-- รูปต้องอยู่ใน docs/images -->
-      <img src="images/baby-turtle.jpg" alt="ลูกตะพาบน้ำไต้หวัน">
+  <div class="topbar">
+    <div class="brand">
+      <div class="dot"></div>
+      <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
     </div>
+    <div class="nav">
+      <a class="pill" href="index.html">หน้าแรก</a>
+      <a class="pill" href="#contact">ติดต่อ</a>
+    </div>
+  </div>
 
-    <div class="productBody">
-      <div class="productTitle">ลูกตะพาบน้ำไต้หวัน</div>
+  <section class="header">
+    <h1>สินค้า</h1>
+    <p class="sub">
+      ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ  
+      สนใจรายละเอียด ถามได้ก่อนตัดสินใจ
+    </p>
+  </section>
 
-      <p class="productDesc">
-        คัดจากฟาร์ม ดูแลเหมาะกับคนเริ่มเลี้ยง  
-        อธิบายตรงไปตรงมา ไม่เร่ง ไม่ยัดขาย
-      </p>
+  <div class="productGrid">
 
-      <ul class="productMeta">
-        <li>ขั้นต่ำ 30 ตัว</li>
-        <li>จัดส่งทั่วประเทศ</li>
-        <li>ให้คำแนะนำหลังรับของ</li>
-      </ul>
-
-      <div class="productActions">
-        <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank">
-          สอบถามในไลน์
-        </a>
-        <a class="btnGhost" href="index.html#contact">
-          กลับหน้าหลัก
-        </a>
+    <!-- ลูกตะพาบ -->
+    <article class="productCard">
+      <div class="productMedia">
+        <span class="productBadge">คุยตรง • ดูแลกันยาว</span>
+        <img src="images/baby-turtle.jpg" alt="ลูกตะพาบน้ำไต้หวัน">
       </div>
-    </div>
-  </article>
+      <div class="productBody">
+        <div class="productTitle">ลูกตะพาบน้ำไต้หวัน</div>
+        <p class="productDesc">
+          คัดจากฟาร์ม เหมาะกับคนเริ่มเลี้ยง  
+          อธิบายตามจริง ไม่เร่ง ไม่ยัดขาย
+        </p>
+        <ul class="productMeta">
+          <li>ขั้นต่ำ 30 ตัว</li>
+          <li>จัดส่งทั่วประเทศ</li>
+          <li>แนะนำหลังรับของ</li>
+        </ul>
+        <div class="productActions">
+          <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank">สอบถามในไลน์</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- เนื้อตะพาบ -->
+    <article class="productCard">
+      <div class="productMedia">
+        <span class="productBadge">ของจริงจากฟาร์ม</span>
+        <img src="images/turtle-meat.jpg" alt="เนื้อตะพาบน้ำไต้หวัน">
+      </div>
+      <div class="productBody">
+        <div class="productTitle">เนื้อตะพาบน้ำไต้หวัน</div>
+        <p class="productDesc">
+          วัตถุดิบจากฟาร์ม คัดตามรอบ  
+          ขายตามจริง แจ้งตรง ไม่โฆษณาเกิน
+        </p>
+        <ul class="productMeta">
+          <li>ขายเป็นกิโลกรัม</li>
+          <li>ส่งควบคุมอุณหภูมิ</li>
+          <li>มีรอบสินค้า</li>
+        </ul>
+        <div class="productActions">
+          <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank">สอบถามในไลน์</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <footer id="contact">
+    © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม • LINE: @tapabnam.farm • โทร 082-932-3965
+  </footer>
 
 </div>
-    <div class="topbar">
-      <div class="brand">
-        <div class="dot"></div>
-        <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      </div>
-      <div class="nav">
-        <a class="pill" href="index.html">หน้าแรก</a>
-        <a class="pill" href="#contact">ติดต่อ</a>
-      </div>
+
+<div class="sticky">
+  <div class="stickyInner">
+    <div>
+      <strong>ตะพาบน้ำไต้หวัน ฟาร์ม</strong><br>
+      <span style="opacity:.7;font-size:13px">ดูสินค้าแล้วทักไลน์ได้เลย</span>
     </div>
-
-    <section class="hero">
-      <h1>สินค้า</h1>
-      <p class="sub">
-        รายการด้านล่างเป็นหมวดสินค้าหลักของฟาร์ม
-        หากต้องการรายละเอียดรอบสินค้า/การจัดส่ง/ราคา ให้กดแอดไลน์แล้วส่งข้อความได้เลย
-      </p>
-
-      <div class="grid">
-        <!-- 1 -->
-        <div class="card">
-          <h2>ลูกตะพาบน้ำไต้หวัน</h2>
-          <p>
-            สำหรับผู้ที่ต้องการเริ่มเลี้ยงหรือทำฟาร์ม
-          </p>
-          <div class="meta">
-            <div class="badge">ราคา: 15 บาท/ตัว</div>
-            <div class="badge">ขั้นต่ำ: 30 ตัว</div>
-            <div class="badge">มีเก็บปลายทาง</div>
-          </div>
-          <div class="note">
-            หมายเหตุ: รอบสินค้าและขนาดอาจเปลี่ยนตามรอบฟาร์ม
-          </div>
-        </div>
-
-        <!-- 2 -->
-        <div class="card">
-          <h2>เนื้อตะพาบน้ำไต้หวัน</h2>
-          <p>
-            จัดส่งแบบควบคุมอุณหภูมิ
-          </p>
-          <div class="meta">
-            <div class="badge">ราคา: 549 บาท/กก.</div>
-            <div class="badge">ส่งควบคุมอุณหภูมิ</div>
-          </div>
-          <div class="note">
-            หมายเหตุ: รอบส่งและพื้นที่จัดส่งสอบถามได้ทางไลน์
-          </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="card">
-          <h2>ตะพาบเป็น ๆ (ยกลอต)</h2>
-          <p>
-            จำหน่ายเฉพาะยกลอตสำหรับนำไปทำอาหาร
-          </p>
-          <div class="meta">
-            <div class="badge">ขั้นต่ำ: 5 กก. ขึ้นไป</div>
-            <div class="badge">ไม่ขายปลีกเป็นตัว</div>
-          </div>
-          <div class="note">
-            หมายเหตุ: มีสินค้าเป็นรอบตามการจับจากบ่อของฟาร์มและเครือข่าย
-          </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="card">
-          <h2>อาหารตะพาบวัยอ่อน (โปรตีน 42%)</h2>
-          <p>
-            อาหารสำหรับลูกตะพาบวัยอ่อน
-          </p>
-          <div class="meta">
-            <div class="badge">ราคา: 249 บาท</div>
-            <div class="badge">ส่งฟรีเมื่อโอน</div>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="card">
-          <h2>OXY-100 PRO</h2>
-          <p>
-            ผลิตภัณฑ์สำหรับงานเลี้ยงสัตว์น้ำ
-          </p>
-          <div class="meta">
-            <div class="badge">ราคา: 289 บาท</div>
-            <div class="badge">ส่งฟรีเมื่อโอน</div>
-          </div>
-        </div>
-
-        <!-- 6 -->
-        <div class="card" id="contact">
-          <h2>ติดต่อสั่งซื้อ / สอบถาม</h2>
-          <p>
-            กดแอดไลน์เพื่อสอบถามรายละเอียด หรือโทรได้โดยตรง
-          </p>
-          <div class="btnRow">
-            <a class="btn primary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
-            <a class="btn" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank" rel="noopener">Facebook</a>
-            <a class="btn" href="tel:0829323965">โทร</a>
-          </div>
-          <div class="note">
-            LINE: @tapabnam.farm • โทร: 082-932-3965
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <footer>
-      © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม • LINE: @tapabnam.farm • โทร 082-932-3965
-    </footer>
-  </div>
-
-  <div class="sticky">
-    <div class="stickyInner">
-      <div class="stickyText">
-        <div class="t1">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-        <div class="t2">ดูสินค้าแล้วกดแอดไลน์เพื่อสอบถามรายละเอียด</div>
-      </div>
-      <div class="stickyBtns">
-        <a class="miniBtn" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank" rel="noopener">Facebook</a>
-        <a class="miniBtn primary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
-      </div>
+    <div>
+      <a class="miniBtn" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank">Facebook</a>
+      <a class="miniBtn primary" href="https://lin.ee/cBeZNSB" target="_blank">แอดไลน์</a>
     </div>
   </div>
+</div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

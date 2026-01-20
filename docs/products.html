@@ -105,7 +105,7 @@ h1{margin:0 0 8px;font-size:clamp(26px,4vw,38px)}
   border:1px solid rgba(255,255,255,.08);
   font-size:12px;
 }
-.productActions{display:flex;gap:10px}
+.productActions{display:flex;gap:10px;flex-wrap:wrap}
 .btnPrimary,.btnGhost{
   padding:12px 14px;border-radius:14px;
   font-weight:900;font-size:14px;
@@ -134,6 +134,7 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
   background:rgba(10,14,22,.7);
   border:1px solid rgba(255,255,255,.14);
   display:flex;justify-content:space-between;align-items:center;
+  gap:12px;
 }
 .miniBtn{
   padding:11px 14px;border-radius:14px;
@@ -189,7 +190,7 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
           <li>แนะนำหลังรับของ</li>
         </ul>
         <div class="productActions">
-          <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank">สอบถามในไลน์</a>
+          <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
         </div>
       </div>
     </article>
@@ -212,7 +213,31 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
           <li>มีรอบสินค้า</li>
         </ul>
         <div class="productActions">
-          <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank">สอบถามในไลน์</a>
+          <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ตะพาบเป็น ๆ (ยกลอต) -->
+    <article class="productCard">
+      <div class="productMedia">
+        <span class="productBadge">ขายเป็นรอบ • แจ้งตามจริง</span>
+        <img src="images/live-turtle.jpg" alt="ตะพาบน้ำไต้หวันเป็น ๆ ยกลอต">
+      </div>
+      <div class="productBody">
+        <div class="productTitle">ตะพาบน้ำไต้หวัน (เป็น ๆ ยกลอต)</div>
+        <p class="productDesc">
+          จำหน่ายตะพาบเป็นสำหรับนำไปทำอาหาร  
+          ขายเฉพาะยกลอต และมีสินค้าเป็นรอบตามการจับจากบ่อ  
+          ทักมาคุยรายละเอียดก่อนตัดสินใจได้
+        </p>
+        <ul class="productMeta">
+          <li>ขั้นต่ำ 5 กก. ขึ้นไป</li>
+          <li>ไม่ขายปลีกเป็นตัว</li>
+          <li>สินค้าเป็นรอบ</li>
+        </ul>
+        <div class="productActions">
+          <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
         </div>
       </div>
     </article>
@@ -232,8 +257,8 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
       <span style="opacity:.7;font-size:13px">ดูสินค้าแล้วทักไลน์ได้เลย</span>
     </div>
     <div>
-      <a class="miniBtn" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank">Facebook</a>
-      <a class="miniBtn primary" href="https://lin.ee/cBeZNSB" target="_blank">แอดไลน์</a>
+      <a class="miniBtn" href="https://www.facebook.com/share/1JmkGWGXWN/" target="_blank" rel="noopener">Facebook</a>
+      <a class="miniBtn primary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
     </div>
   </div>
 </div>

@@ -12,11 +12,13 @@
   --line: rgba(255,255,255,.12);
   --text:#e9edf6;
   --muted: rgba(233,237,246,.72);
+  --muted2: rgba(233,237,246,.58);
   --accent:#18c37e;
   --shadow: 0 18px 55px rgba(0,0,0,.55);
   --radius:22px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   font-family: system-ui,-apple-system,"Noto Sans Thai","Segoe UI",sans-serif;
@@ -25,30 +27,37 @@ body{
     radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.12), transparent 55%),
     var(--bg);
   color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.65;
 }
 a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
 .wrap{max-width:1040px;margin:0 auto;padding:22px 18px 120px}
 
 /* topbar */
 .topbar{
   position:sticky;top:12px;z-index:10;
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
   padding:12px 14px;
   border:1px solid var(--line);
   background:rgba(10,14,22,.6);
   backdrop-filter:blur(16px);
   border-radius:999px;
 }
-.brand{display:flex;align-items:center;gap:10px}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
-.brandTitle{font-weight:800}
-.nav{display:flex;gap:8px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+.brandTitle{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .pill{
   padding:10px 14px;border-radius:999px;
   border:1px solid var(--line);
   background:rgba(255,255,255,.05);
-  font-weight:800;font-size:14px;
+  font-weight:900;font-size:14px;
+  color: rgba(233,237,246,.8);
+  transition: transform .12s ease, background .12s ease, color .12s ease;
 }
+.pill:hover{background:rgba(255,255,255,.08);color:var(--text);transform:translateY(-1px)}
+.pill:active{transform:translateY(0)}
 
 /* header */
 .header{
@@ -59,7 +68,7 @@ a{color:inherit;text-decoration:none}
   background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
   box-shadow:var(--shadow);
 }
-h1{margin:0 0 8px;font-size:clamp(26px,4vw,38px)}
+h1{margin:0 0 8px;font-size:clamp(26px,4vw,38px);line-height:1.15}
 .sub{margin:0;color:var(--muted);max-width:70ch}
 
 /* products */
@@ -87,12 +96,12 @@ h1{margin:0 0 8px;font-size:clamp(26px,4vw,38px)}
 .productBadge{
   position:absolute;top:12px;left:12px;
   padding:8px 10px;border-radius:999px;
-  font-size:12px;
+  font-size:12px;font-weight:900;
   background:rgba(0,0,0,.55);
   border:1px solid rgba(255,255,255,.12);
 }
 .productBody{padding:14px 14px 16px}
-.productTitle{font-size:18px;font-weight:800;margin:0 0 6px}
+.productTitle{font-size:18px;font-weight:950;margin:0 0 6px}
 .productDesc{margin:0 0 10px;color:var(--muted);font-size:14px}
 .productMeta{
   list-style:none;padding:0;margin:0 0 12px;
@@ -104,27 +113,100 @@ h1{margin:0 0 8px;font-size:clamp(26px,4vw,38px)}
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.08);
   font-size:12px;
+  color: rgba(233,237,246,.78);
 }
 .productActions{display:flex;gap:10px;flex-wrap:wrap}
 .btnPrimary,.btnGhost{
   padding:12px 14px;border-radius:14px;
-  font-weight:900;font-size:14px;
+  font-weight:950;font-size:14px;
   border:1px solid rgba(255,255,255,.14);
+  transition: transform .12s ease, background .12s ease, filter .12s ease;
 }
 .btnPrimary{
   background:linear-gradient(180deg,#22c55e,#16a34a);
   color:#04130a;border-color:rgba(34,197,94,.6);
+  box-shadow: 0 12px 26px rgba(34,197,94,.14);
 }
-.btnGhost{background:rgba(255,255,255,.05)}
-
+.btnGhost{background:rgba(255,255,255,.05);color:var(--text)}
+.btnPrimary:hover,.btnGhost:hover{transform:translateY(-1px);filter:brightness(1.02)}
+.btnPrimary:active,.btnGhost:active{transform:translateY(0)}
 @media(min-width:720px){.productCard{grid-column:span 6}}
 @media(min-width:980px){.productCard{grid-column:span 4}}
+
+/* ---------- FAQ (Accordion) ---------- */
+.section{
+  margin-top:18px;
+  padding:22px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  box-shadow:var(--shadow);
+}
+.kicker{
+  color: var(--muted2);
+  font-weight:950;
+  letter-spacing:.22px;
+  font-size:13px;
+  text-transform: uppercase;
+}
+.h2{
+  margin:10px 0 0;
+  font-size: clamp(20px, 3.2vw, 30px);
+  line-height:1.22;
+}
+.p{
+  margin:10px 0 0;
+  color: var(--muted);
+  max-width: 78ch;
+}
+
+.faq{ margin-top: 12px; display:grid; gap:10px; }
+.faqItem{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  overflow:hidden;
+}
+.faqQ{
+  list-style:none;
+  cursor:pointer;
+  padding: 14px 14px;
+  font-weight: 950;
+  color: var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+}
+.faqQ::-webkit-details-marker{ display:none; }
+.faqQ::after{
+  content:"＋";
+  font-weight: 950;
+  color: rgba(233,237,246,.75);
+  flex:0 0 auto;
+  transition: transform .18s ease;
+}
+.faqItem[open] .faqQ::after{
+  content:"－";
+  transform: translateY(-1px);
+}
+.faqA{
+  padding: 0 14px 14px;
+  color: var(--muted);
+  animation: faqIn .18s ease both;
+}
+.faqA ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+.faqA b{ color: rgba(233,237,246,.92); }
+@keyframes faqIn{
+  from{ opacity: 0; transform: translateY(6px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
 
 /* footer & sticky */
 footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
 .sticky{
   position:fixed;left:0;right:0;bottom:0;
-  padding:12px;
+  padding:12px 12px calc(12px + env(safe-area-inset-bottom));
   background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));
 }
 .stickyInner{
@@ -139,11 +221,22 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
 .miniBtn{
   padding:11px 14px;border-radius:14px;
   border:1px solid rgba(255,255,255,.14);
-  font-weight:900;font-size:14px;
+  background:rgba(255,255,255,.05);
+  font-weight:950;font-size:14px;
+  transition: transform .12s ease, background .12s ease;
 }
+.miniBtn:hover{background:rgba(255,255,255,.08);transform:translateY(-1px)}
+.miniBtn:active{transform:translateY(0)}
 .miniBtn.primary{
   background:linear-gradient(180deg,#22c55e,#16a34a);
   color:#04130a;
+  border-color: rgba(34,197,94,.6);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .pill,.btnPrimary,.btnGhost,.miniBtn{transition:none}
 }
 </style>
 </head>
@@ -158,6 +251,7 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
     </div>
     <div class="nav">
       <a class="pill" href="index.html">หน้าแรก</a>
+      <a class="pill" href="#faq">FAQ</a>
       <a class="pill" href="#contact">ติดต่อ</a>
     </div>
   </div>
@@ -165,7 +259,7 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
   <section class="header">
     <h1>สินค้า</h1>
     <p class="sub">
-      ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ  
+      ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ<br>
       สนใจรายละเอียด ถามได้ก่อนตัดสินใจ
     </p>
   </section>
@@ -181,8 +275,8 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
       <div class="productBody">
         <div class="productTitle">ลูกตะพาบน้ำไต้หวัน</div>
         <p class="productDesc">
-          คัดจากฟาร์ม เหมาะกับคนเริ่มเลี้ยง  
-          อธิบายตามจริง ไม่เร่ง ไม่ยัดขาย
+          คัดจากฟาร์ม เหมาะกับคนเริ่มเลี้ยง<br>
+          อธิบายตามจริง ให้ข้อมูลครบก่อนตัดสินใจ
         </p>
         <ul class="productMeta">
           <li>ขั้นต่ำ 30 ตัว</li>
@@ -204,8 +298,8 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
       <div class="productBody">
         <div class="productTitle">เนื้อตะพาบน้ำไต้หวัน</div>
         <p class="productDesc">
-          วัตถุดิบจากฟาร์ม คัดตามรอบ  
-          ขายตามจริง แจ้งตรง ไม่โฆษณาเกิน
+          วัตถุดิบจากฟาร์ม คัดตามรอบ<br>
+          แจ้งรายละเอียดตามจริงก่อนส่งทุกครั้ง
         </p>
         <ul class="productMeta">
           <li>ขายเป็นกิโลกรัม</li>
@@ -227,8 +321,8 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
       <div class="productBody">
         <div class="productTitle">ตะพาบน้ำไต้หวัน (เป็น ๆ ยกลอต)</div>
         <p class="productDesc">
-          จำหน่ายตะพาบเป็นสำหรับนำไปทำอาหาร  
-          ขายเฉพาะยกลอต และมีสินค้าเป็นรอบตามการจับจากบ่อ  
+          จำหน่ายตะพาบเป็นสำหรับนำไปทำอาหาร<br>
+          ขายเฉพาะยกลอต และมีสินค้าเป็นรอบตามการจับจากบ่อ<br>
           ทักมาคุยรายละเอียดก่อนตัดสินใจได้
         </p>
         <ul class="productMeta">
@@ -243,6 +337,93 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
     </article>
 
   </div>
+
+  <!-- FAQ (แทรกหลังสินค้า) -->
+  <section class="section" id="faq">
+    <div class="kicker">FAQ</div>
+    <h2 class="h2">คำถามที่พบบ่อย</h2>
+    <p class="p">รวมคำถามสำคัญที่ลูกค้าถามบ่อย เพื่อให้คุณตัดสินใจจากข้อมูลที่ชัดเจน</p>
+
+    <div class="faq" aria-label="คำถามที่พบบ่อย">
+      <details class="faqItem">
+        <summary class="faqQ">ตะพาบน้ำไต้หวันเหมาะกับใคร?</summary>
+        <div class="faqA">
+          ตะพาบน้ำไต้หวันเหมาะกับ
+          <ul>
+            <li>ผู้ที่สนใจเลี้ยงเชิงเศรษฐกิจและต้องการศึกษาข้อมูลก่อนเริ่มจริง</li>
+            <li>ร้านอาหารหรือตลาดที่ต้องการวัตถุดิบตามรอบสินค้า</li>
+            <li>ผู้ที่ต้องการสอบถามข้อมูลและเงื่อนไขก่อนตัดสินใจ</li>
+          </ul>
+          หากคุณยังไม่แน่ใจว่าสิ่งนี้เหมาะกับคุณหรือไม่ สามารถสอบถามรายละเอียดเพิ่มเติมได้ก่อน
+          เพื่อให้ตัดสินใจจากข้อมูลที่ชัดเจนและตรงกับความต้องการของคุณมากที่สุด
+        </div>
+      </details>
+
+      <details class="faqItem">
+        <summary class="faqQ">มีขั้นต่ำในการสั่งซื้อไหม?</summary>
+        <div class="faqA">
+          มีขั้นต่ำตามประเภทสินค้าและตามรอบของฟาร์ม ได้แก่
+          <ul>
+            <li><b>ลูกตะพาบน้ำไต้หวัน:</b> มีขั้นต่ำตามรอบ (แจ้งก่อนทุกครั้ง)</li>
+            <li><b>ตะพาบน้ำเป็น:</b> จำหน่ายเฉพาะยกลอต ขั้นต่ำ 5 กิโลกรัมขึ้นไป</li>
+            <li><b>เนื้อตะพาบน้ำ:</b> จำหน่ายเป็นกิโลกรัม ตามรอบสินค้า</li>
+          </ul>
+          เงื่อนไขอาจเปลี่ยนแปลงได้ในแต่ละรอบ แนะนำให้สอบถามก่อนสั่งทุกครั้ง
+        </div>
+      </details>
+
+      <details class="faqItem">
+        <summary class="faqQ">สินค้ามีของตลอดไหม?</summary>
+        <div class="faqA">
+          สินค้าไม่ได้มีตลอดเวลา สินค้าทุกประเภทเป็น <b>สินค้าแบบมีรอบ</b> ตามรอบการจับและรอบของฟาร์ม รวมถึงฟาร์มเครือข่าย
+          เราจะแจ้งให้ชัดเจนก่อนรับออเดอร์ว่า มีสินค้าหรือไม่ ส่งได้วันไหน และเงื่อนไขของรอบนั้นเป็นอย่างไร
+        </div>
+      </details>
+
+      <details class="faqItem">
+        <summary class="faqQ">การจัดส่งทำอย่างไร?</summary>
+        <div class="faqA">
+          การจัดส่งแตกต่างตามประเภทสินค้า
+          <ul>
+            <li><b>ลูกตะพาบน้ำ:</b> แพ็กตามมาตรฐานฟาร์ม และเลือกวิธีจัดส่งที่เหมาะสมกับสินค้า</li>
+            <li><b>เนื้อตะพาบน้ำ:</b> จัดส่งแบบควบคุมอุณหภูมิ เพื่อรักษาคุณภาพสินค้า</li>
+            <li><b>ตะพาบน้ำเป็น:</b> จัดส่งตามเงื่อนไขที่ตกลงกันเป็นกรณี</li>
+          </ul>
+          ทุกเคสจะแจ้งรายละเอียดการจัดส่งให้ทราบก่อนส่งเสมอ
+        </div>
+      </details>
+
+      <details class="faqItem">
+        <summary class="faqQ">มีการรับซื้อคืนไหม?</summary>
+        <div class="faqA">
+          ทางฟาร์มมีการรับซื้อคืน <b>ตามเงื่อนไขและตามคิวของตลาด</b> แต่ไม่สามารถการันตีล่วงหน้าแบบตายตัวได้
+          ราคาและรอบรับซื้อขึ้นอยู่กับสภาพตลาดในช่วงนั้น ไม่ควรผูกความหวังไว้กับช่องทางเดียว
+          เราจะอธิบายตามความเป็นจริงเพื่อให้คุณตัดสินใจอย่างรอบคอบตั้งแต่ต้น
+        </div>
+      </details>
+
+      <details class="faqItem">
+        <summary class="faqQ">ถ้ายังไม่พร้อมซื้อ สามารถติดต่อสอบถามได้ไหม?</summary>
+        <div class="faqA">
+          ได้แน่นอน คุณสามารถสอบถามข้อมูลหรือขอคำแนะนำก่อนได้โดยไม่มีข้อผูกมัด
+          หากคุยแล้วเห็นว่ายังไม่เหมาะ หรือยังไม่ถึงจังหวะที่พร้อม เราก็ยินดีให้คุณตัดสินใจในเวลาที่เหมาะสมของคุณเอง
+        </div>
+      </details>
+
+      <details class="faqItem">
+        <summary class="faqQ">ติดต่อช่องทางไหนสะดวกที่สุด?</summary>
+        <div class="faqA">
+          แนะนำให้ติดต่อผ่าน <b>LINE OA: @tapabnam.farm</b> เพื่อคุยรายละเอียดและเช็ครอบสินค้าได้สะดวกที่สุด
+          หรือโทร <b>082-932-3965</b> และ Facebook Page ได้เช่นกัน
+        </div>
+      </details>
+    </div>
+
+    <div class="productActions" style="margin-top:14px">
+      <a class="btnPrimary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE เพื่อเช็ครอบสินค้า</a>
+      <a class="btnGhost" href="#top">กลับไปด้านบน</a>
+    </div>
+  </section>
 
   <footer id="contact">
     © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม • LINE: @tapabnam.farm • โทร 082-932-3965
@@ -264,7 +445,19 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
 </div>
 
 <script>
+// ปีลิขสิทธิ์
 document.getElementById("y").textContent = new Date().getFullYear();
+
+// FAQ: เปิดได้ทีละข้อ (Accordion)
+document.querySelectorAll("#faq details").forEach((d) => {
+  d.addEventListener("toggle", () => {
+    if (d.open) {
+      document.querySelectorAll("#faq details").forEach((other) => {
+        if (other !== d) other.removeAttribute("open");
+      });
+    }
+  });
+});
 </script>
 </body>
 </html>

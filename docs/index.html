@@ -75,15 +75,14 @@
       opacity: 1;
       transform: translateY(0) scale(1);
     }
-    /* delay */
     .reveal.d1{ transition-delay: .06s; }
     .reveal.d2{ transition-delay: .12s; }
     .reveal.d3{ transition-delay: .18s; }
     .reveal.d4{ transition-delay: .24s; }
 
-    /* Topbar */
+    /* ===== Topbar (ปรับเป็น: ปุ่ม 3 ขีดซ้ายบน + ชื่อแบรนด์) ===== */
     .topbar{
-      position: sticky; top: 12px; z-index: 50;
+      position: sticky; top: 12px; z-index: 70;
       display:flex; justify-content:space-between; align-items:center; gap:10px;
       padding: 12px 12px;
       border: 1px solid var(--line);
@@ -91,6 +90,9 @@
       backdrop-filter: blur(16px);
       border-radius: 999px;
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .leftBar{
+      display:flex; align-items:center; gap:10px; min-width:0;
     }
     .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
     .dot{
@@ -103,7 +105,38 @@
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
       letter-spacing:.2px;
     }
-    .nav{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+
+    /* Hamburger button (มุมซ้ายบน) */
+    .burgerBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+      flex: 0 0 auto;
+    }
+    .burgerBtn:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
+    .burgerBtn:active{ transform: translateY(0); }
+    .burgerIcon{
+      width:18px; height:12px; position:relative;
+    }
+    .burgerIcon span{
+      position:absolute; left:0; right:0;
+      height:2px; border-radius:999px;
+      background: rgba(233,237,246,.92);
+    }
+    .burgerIcon span:nth-child(1){ top:0; }
+    .burgerIcon span:nth-child(2){ top:5px; opacity:.92; }
+    .burgerIcon span:nth-child(3){ top:10px; opacity:.86; }
+
+    /* Right side quick actions (คงไว้แบบน้อยๆ) */
+    .topActions{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .pill{
       padding:10px 14px; border-radius:999px;
       border:1px solid var(--line);
@@ -111,36 +144,113 @@
       color: var(--muted);
       font-weight:900; font-size:14px;
       transition: transform .12s ease, background .12s ease, color .12s ease;
+      display:inline-flex; align-items:center; gap:8px;
+      white-space:nowrap;
     }
     .pill:hover{ background: rgba(255,255,255,.08); color: var(--text); transform: translateY(-1px); }
     .pill:active{ transform: translateY(0px); }
 
-    /* Mobile menu button */
-    .menuBtn{
-      display:none;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
+    /* ===== Side Drawer ===== */
+    .drawerOverlay{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(2px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index: 90;
+    }
+    .drawer{
+      position:fixed;
+      top:0; left:0;
+      height:100vh;
+      width:min(86vw, 360px);
+      background: rgba(10,14,22,.86);
+      border-right: 1px solid rgba(255,255,255,.12);
+      box-shadow: 18px 0 60px rgba(0,0,0,.55);
+      transform: translateX(-102%);
+      transition: transform .22s cubic-bezier(.2,.9,.2,1);
+      z-index: 95;
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .drawerHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 8px 6px;
+    }
+    .drawerBrand{
+      display:flex; align-items:center; gap:10px; min-width:0;
+    }
+    .drawerTitle{
+      font-weight: 980;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .closeBtn{
+      width:44px; height:44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       color: var(--text);
-      font-weight:950;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+      flex: 0 0 auto;
     }
-    @media (max-width: 720px){
-      .nav{ display:none; }
-      .menuBtn{ display:inline-flex; align-items:center; gap:8px; }
-    }
-    .mobileNav{
-      display:none;
-      margin-top: 10px;
-      border:1px solid var(--line);
-      background: rgba(10,14,22,.62);
-      backdrop-filter: blur(16px);
+    .closeBtn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+    .closeBtn:active{ transform: translateY(0); }
+
+    .drawerBody{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
       border-radius: 18px;
       padding: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    .mobileNav a{ display:block; padding:12px 12px; border-radius:14px; color:var(--muted); font-weight:900; }
-    .mobileNav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .drawerLink{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      color: var(--muted);
+      font-weight: 950;
+      transition: background .12s ease, color .12s ease, transform .12s ease;
+    }
+    .drawerLink:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      transform: translateX(1px);
+    }
+    .drawerLink small{ color: var(--muted2); font-weight: 900; }
+
+    .drawerCtas{
+      margin-top: auto;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      border-radius: 18px;
+      padding: 12px;
+      display:grid;
+      gap:10px;
+    }
+    .drawerNote{
+      color: var(--muted2);
+      font-size: 13px;
+      line-height:1.5;
+    }
+
+    /* when open */
+    body.drawerOpen{ overflow:hidden; }
+    body.drawerOpen .drawerOverlay{
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.drawerOpen .drawer{
+      transform: translateX(0);
+    }
 
     /* Generic section */
     .section{
@@ -542,12 +652,13 @@
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .pill,.btn,.miniBtn{ transition:none; }
+      .pill,.btn,.miniBtn,.burgerBtn,.closeBtn{ transition:none; }
       .reveal{
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
       }
+      .drawer, .drawerOverlay{ transition:none !important; }
     }
   </style>
 
@@ -569,34 +680,67 @@
 <body>
 <a class="skip" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
 
+<!-- Drawer overlay + Drawer -->
+<div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
+
+<aside class="drawer" id="drawer" aria-label="เมนูด้านข้าง">
+  <div class="drawerHead">
+    <div class="drawerBrand">
+      <div class="dot" aria-hidden="true"></div>
+      <div class="drawerTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+    </div>
+    <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
+  </div>
+
+  <div class="drawerBody" role="navigation" aria-label="ลิงก์เมนู">
+    <a class="drawerLink" href="#top" data-drawer-link>
+      หน้าแรก <small>Home</small>
+    </a>
+    <a class="drawerLink" href="products.html" data-drawer-link>
+      สินค้า <small>Products</small>
+    </a>
+    <a class="drawerLink" href="#value" data-drawer-link>
+      ความรู้ <small>Free Value</small>
+    </a>
+    <a class="drawerLink" href="#reviews" data-drawer-link>
+      รีวิว <small>Proof</small>
+    </a>
+    <a class="drawerLink" href="#contact" data-drawer-link>
+      ติดต่อ <small>Contact</small>
+    </a>
+  </div>
+
+  <div class="drawerCtas">
+    <div class="drawerNote">
+      กดเมนูเพื่อไปยังส่วนต่าง ๆ หรือไปหน้าสินค้าได้ทันที
+    </div>
+    <a class="btn primary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ปรึกษาฟรี / แอด LINE</a>
+    <a class="btn" href="products.html">ไปหน้าสินค้า</a>
+  </div>
+</aside>
+
 <div class="wrap">
 
   <!-- Topbar -->
-  <header class="topbar" aria-label="เมนูนำทาง">
-    <div class="brand">
-      <div class="dot" aria-hidden="true"></div>
-      <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+  <header class="topbar" aria-label="แถบนำทาง">
+    <div class="leftBar">
+      <button class="burgerBtn" id="drawerOpen" type="button" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="drawer">
+        <span class="burgerIcon" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+      </div>
     </div>
 
-    <nav class="nav" aria-label="เมนูหลัก">
-      <a class="pill" href="#products">ดูสินค้า</a>
-      <a class="pill" href="#value">ความรู้</a>
-      <a class="pill" href="#reviews">รีวิว</a>
-      <a class="pill" href="#contact">ติดต่อ</a>
-    </nav>
-
-    <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">
-      ☰ เมนู
-    </button>
+    <div class="topActions" aria-label="ปุ่มลัด">
+      <a class="pill" href="products.html">สินค้า</a>
+      <a class="pill" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
+    </div>
   </header>
-
-  <!-- Mobile nav -->
-  <nav class="mobileNav" id="mobileNav" aria-label="เมนูมือถือ">
-    <a href="#products">ดูสินค้า</a>
-    <a href="#value">ความรู้</a>
-    <a href="#reviews">รีวิว</a>
-    <a href="#contact">ติดต่อ</a>
-  </nav>
 
   <main id="main">
 
@@ -898,21 +1042,39 @@
   // ปีลิขสิทธิ์
   document.getElementById("y").textContent = new Date().getFullYear();
 
-  // เมนูมือถือ
-  const btn = document.getElementById("menuBtn");
-  const nav = document.getElementById("mobileNav");
-  btn?.addEventListener("click", () => {
-    const open = btn.getAttribute("aria-expanded") === "true";
-    btn.setAttribute("aria-expanded", String(!open));
-    nav.style.display = open ? "none" : "block";
+  // ===== Drawer open/close =====
+  const openBtn = document.getElementById("drawerOpen");
+  const closeBtn = document.getElementById("drawerClose");
+  const overlay = document.getElementById("drawerOverlay");
+  const drawerLinks = document.querySelectorAll("[data-drawer-link]");
+
+  function openDrawer(){
+    document.body.classList.add("drawerOpen");
+    openBtn?.setAttribute("aria-expanded", "true");
+    // โฟกัสปุ่มปิดเพื่อใช้งานคีย์บอร์ด
+    setTimeout(() => closeBtn?.focus(), 50);
+  }
+  function closeDrawer(){
+    document.body.classList.remove("drawerOpen");
+    openBtn?.setAttribute("aria-expanded", "false");
+    setTimeout(() => openBtn?.focus(), 50);
+  }
+
+  openBtn?.addEventListener("click", openDrawer);
+  closeBtn?.addEventListener("click", closeDrawer);
+  overlay?.addEventListener("click", closeDrawer);
+
+  drawerLinks.forEach(a => {
+    a.addEventListener("click", () => {
+      closeDrawer();
+    });
   });
 
-  // ปิดเมนูเมื่อกดลิงก์
-  nav?.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
-      btn.setAttribute("aria-expanded", "false");
-      nav.style.display = "none";
-    });
+  // ESC ปิด drawer
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && document.body.classList.contains("drawerOpen")){
+      closeDrawer();
+    }
   });
 
   // ===== Scroll Reveal (IntersectionObserver) =====
@@ -920,7 +1082,6 @@
     const items = document.querySelectorAll(".reveal");
     if(!items.length) return;
 
-    // fallback
     if(!("IntersectionObserver" in window)){
       items.forEach(el => el.classList.add("is-in"));
       return;
@@ -930,7 +1091,7 @@
       entries.forEach(entry => {
         if(entry.isIntersecting){
           entry.target.classList.add("is-in");
-          obs.unobserve(entry.target); // เล่นครั้งเดียว
+          obs.unobserve(entry.target);
         }
       });
     },{

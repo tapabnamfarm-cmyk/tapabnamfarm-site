@@ -19,6 +19,9 @@
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0b121a" />
 
+  <!-- ✅ Added: external CSS -->
+  <link rel="stylesheet" href="assets/app.css" />
+
   <style>
     :root{
       --bg:#070b12;
@@ -1102,5 +1105,8 @@
     items.forEach(el => observer.observe(el));
   })();
 </script>
+
+<!-- ✅ Added: external JS (defer) -->
+<script src="assets/app.js" defer></script>
 </body>
 </html>

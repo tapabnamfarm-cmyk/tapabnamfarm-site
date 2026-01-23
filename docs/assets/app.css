@@ -3,7 +3,7 @@
    - Drawer (เมนู 3 ขีด)
    - Topbar
    - Shared Buttons
-   - Bottom Bar (ปุ่มสินค้าเขียวด้านล่าง)
+   - Bottom Bar
    ========================================================= */
 
 /* --------- Base (safe defaults) --------- */
@@ -61,8 +61,11 @@ img{ max-width:100%; display:block; }
   z-index:9999;
 }
 
+/* รองรับ JS ที่ล็อคสกรอล */
+html.noScroll, body.noScroll{ overflow:hidden; }
+
 /* =========================================================
-   Topbar (แถบบน: ปุ่ม 3 ขีดซ้าย + ชื่อแบรนด์)
+   Topbar
    ========================================================= */
 .topbar{
   position: sticky; top: 12px; z-index: 70;
@@ -123,7 +126,7 @@ img{ max-width:100%; display:block; }
 .burgerIcon span:nth-child(2){ top:5px; opacity:.92; }
 .burgerIcon span:nth-child(3){ top:10px; opacity:.86; }
 
-/* ถ้าคุณยังอยากมีปุ่มลัดบน topbar (ไม่ใส่ก็ไม่พัง) */
+/* ปุ่มลัดบน topbar (ไม่ใส่ก็ไม่พัง) */
 .topActions{
   display:flex; gap:8px; align-items:center;
   flex-wrap:wrap; justify-content:flex-end;
@@ -142,112 +145,157 @@ img{ max-width:100%; display:block; }
 .pill:active{ transform: translateY(0px); }
 
 /* =========================================================
-   Drawer (เมนู 3 ขีด) — ใช้ร่วมกันทุกหน้า
+   Drawer (เมนู 3 ขีด) — ปรับให้เหมือนตัวอย่าง (แผ่นเมนูกลางจอ)
    ========================================================= */
+
+/* overlay */
 .drawerOverlay{
   position:fixed; inset:0;
   background: rgba(0,0,0,.55);
-  backdrop-filter: blur(2px);
   opacity:0;
   pointer-events:none;
   transition: opacity .18s ease;
   z-index: 90;
 }
 
+/* container (modal style) */
 .drawer{
   position:fixed;
-  top:0; left:0;
-  height:100vh;
-  width:min(86vw, 360px);
-  background: rgba(10,14,22,.86);
-  border-right: 1px solid rgba(255,255,255,.12);
-  box-shadow: 18px 0 60px rgba(0,0,0,.55);
-  transform: translateX(-102%);
-  transition: transform .22s cubic-bezier(.2,.9,.2,1);
-  z-index: 95;
-  padding: 14px;
+  inset:0;
   display:flex;
-  flex-direction:column;
-  gap: 12px;
+  align-items:flex-start;
+  justify-content:center;
+
+  padding: 18px 14px;
+  z-index: 95;
+
+  /* hidden state */
+  opacity:0;
+  pointer-events:none;
+  transform: translateY(10px) scale(.98);
+  transition: opacity .18s ease, transform .20s cubic-bezier(.2,.9,.2,1);
 }
 
-body.drawerOpen{ overflow:hidden; }
+/* open state */
 body.drawerOpen .drawerOverlay{ opacity:1; pointer-events:auto; }
-body.drawerOpen .drawer{ transform: translateX(0); }
+body.drawerOpen .drawer{
+  opacity:1;
+  pointer-events:auto;
+  transform: translateY(0) scale(1);
+}
 
-/* Drawer content (สำคัญ: ของคุณเดิมยังไม่มีส่วนนี้) */
+/* panel */
+.drawer > *{
+  /* ให้แน่ใจว่า child ภายใน drawer ไม่โดน affect แปลก ๆ */
+}
+
+.drawerHead,
+.drawerBody,
+.drawerCtas{
+  width: min(92vw, 520px);
+}
+
+/* ทำ panel หลักเป็นสีอ่อนเหมือนตัวอย่าง */
 .drawerHead{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  padding: 8px 6px;
+
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.80);
+  border-radius: 18px 18px 0 0;
+  padding: 14px 14px;
+
+  box-shadow: 0 22px 70px rgba(0,0,0,.55);
 }
-.drawerBrand{
-  display:flex; align-items:center; gap:10px; min-width:0;
-}
-.drawerTitle{
-  font-weight:980;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
+
+/* ซ่อนแบรนด์/จุด เพื่อให้หน้าตาใกล้ตัวอย่าง (ยังคงไว้ใน DOM ได้) */
+.drawerBrand{ display:none; }
+.drawerTitle{ display:none; }
+
+/* ปุ่มปิด */
 .closeBtn{
-  width:44px; height:44px;
+  margin-left:auto;
+  width:42px; height:42px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(0,0,0,.06);
+  color: rgba(0,0,0,.70);
   cursor:pointer;
   transition: transform .12s ease, background .12s ease;
-  flex: 0 0 auto;
 }
-.closeBtn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+.closeBtn:hover{ background: rgba(0,0,0,.10); transform: translateY(-1px); }
 .closeBtn:active{ transform: translateY(0); }
 
+/* รายการเมนู */
 .drawerBody{
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
-  border-radius: 18px;
-  padding: 10px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.80);
+  border-top: 0;
+  border-radius: 0 0 18px 18px;
+  overflow:hidden;
 }
+
+/* เมนูเป็นแถบสูงเท่ากันเหมือนตัวอย่าง */
 .drawerLink{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding: 12px 12px;
-  border-radius: 14px;
-  color: var(--muted);
+  justify-content:center; /* จัดกลางเหมือนตัวอย่าง */
+  padding: 18px 16px;
+  min-height: 56px;
+
   font-weight: 950;
-  transition: background .12s ease, color .12s ease, transform .12s ease;
+  font-size: 18px;
+  color: rgba(0,0,0,.82);
+
+  background: transparent;
+  transition: background .12s ease, transform .12s ease;
 }
+
+/* เส้นคั่นแต่ละเมนู */
+.drawerLink + .drawerLink{
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+/* hover */
 .drawerLink:hover{
-  background: rgba(255,255,255,.06);
-  color: var(--text);
-  transform: translateX(1px);
+  background: rgba(0,0,0,.05);
+  transform: translateY(-1px);
 }
-.drawerLink small{ color: var(--muted2); font-weight: 900; }
 
-/* active page highlight (ใช้กับ JS ที่ผมให้ไว้) */
+/* ไม่โชว์ English small เพื่อให้เหมือนตัวอย่าง */
+.drawerLink small{ display:none; }
+
+/* active page highlight */
 .is-active-link{
-  background: rgba(255,255,255,.07) !important;
-  color: rgba(233,237,246,.95) !important;
-  border-radius: 14px;
+  background: rgba(0,0,0,.06) !important;
+  color: rgba(0,0,0,.88) !important;
+  border-radius: 0; /* ให้เป็นแถบตรงเหมือนตัวอย่าง */
 }
 
+/* ===== โซนสินค้า (ล่างสุด แยกโซน + เน้นตัวเดียว) =====
+   เงื่อนไข: ให้ "สินค้า" เป็นลิงก์ตัวสุดท้ายใน .drawerBody
+*/
+.drawerBody .drawerLink:last-child{
+  margin-top: 0;
+  border-top: 10px solid rgba(0,0,0,.06); /* แยกโซน */
+  background: linear-gradient(180deg, var(--accent), var(--accent2));
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.20);
+}
+.drawerBody .drawerLink:last-child:hover{
+  background: linear-gradient(180deg, rgba(24,195,126,.95), rgba(17,168,107,.95));
+  transform: translateY(-1px);
+}
+
+/* CTA ใต้เมนู (ถ้าอยากให้เหมือนตัวอย่างมากขึ้น: ซ่อนบล็อคนี้ได้) */
 .drawerCtas{
-  margin-top:auto;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.22);
-  border-radius: 18px;
-  padding: 12px;
-  display:grid;
-  gap:10px;
+  width: min(92vw, 520px);
+  margin-top: 12px;
+  display:none; /* ปิดไว้ให้เหมือนตัวอย่าง */
 }
-.drawerNote{
-  color: var(--muted2);
-  font-size: 13px;
-  line-height:1.5;
-}
+.drawerNote{ display:none; }
 
 /* =========================================================
    Shared Buttons
@@ -269,7 +317,7 @@ body.drawerOpen .drawer{ transform: translateX(0); }
 .btn:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
 .btn:active{ transform: translateY(0px); }
 
-/* ✅ ปุ่มเขียว (สินค้า) ตัวหนังสือขาว */
+/* ✅ ปุ่มเขียว */
 .btnGreen{
   background: linear-gradient(180deg, var(--accent), var(--accent2));
   border-color: rgba(24,195,126,.60);
@@ -279,8 +327,7 @@ body.drawerOpen .drawer{ transform: translateX(0); }
 .btnGreen:hover{ filter: brightness(1.05); }
 
 /* =========================================================
-   Bottom Bar (ปุ่มสินค้า “ด้านล่าง” แบบเดียวกันทั้งเว็บ)
-   - ใช้ class="bottomBar" + "bottomBarInner"
+   Bottom Bar
    ========================================================= */
 .bottomBar{
   position: fixed;

@@ -1,69 +1,75 @@
 /* assets/app.js
-   ใช้ร่วมทั้งเว็บ:
-   - เมนู 3 ขีด (Overlay กลางจอแบบตัวอย่าง)
-   - ปีลิขสิทธิ์
-   - ไฮไลต์เมนูหน้าปัจจุบัน
+   - Drawer open/close
+   - Close on overlay click
+   - Close on ESC
 */
 
-(function () {
+(function(){
   "use strict";
 
   document.addEventListener("DOMContentLoaded", () => {
-    // ===== 1) ปีลิขสิทธิ์ =====
-    const y = document.getElementById("y");
-    if (y) y.textContent = new Date().getFullYear();
-
-    // ===== 2) Menu Overlay open/close =====
-    const openBtn = document.getElementById("drawerOpen");
+    const openBtn  = document.getElementById("drawerOpen");
     const closeBtn = document.getElementById("drawerClose");
-    const overlay = document.getElementById("drawerOverlay");
-    const panel = document.getElementById("drawer");
-    const menuLinks = document.querySelectorAll("[data-drawer-link]");
+    const overlay  = document.getElementById("drawerOverlay");
+    const drawer   = document.getElementById("drawer");
 
-    const canUseMenu = !!(openBtn && closeBtn && overlay && panel);
+    if (!openBtn || !closeBtn || !overlay || !drawer) return;
 
-    function openMenu() {
-      if (!canUseMenu) return;
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    function openDrawer(){
       document.body.classList.add("drawerOpen");
       openBtn.setAttribute("aria-expanded", "true");
-      setTimeout(() => closeBtn.focus(), 30);
+      overlay.setAttribute("aria-hidden", "false");
+
+      // focus close button
+      setTimeout(() => closeBtn.focus(), 0);
     }
 
-    function closeMenu() {
-      if (!canUseMenu) return;
+    function closeDrawer(){
       document.body.classList.remove("drawerOpen");
       openBtn.setAttribute("aria-expanded", "false");
-      setTimeout(() => openBtn.focus(), 30);
+      overlay.setAttribute("aria-hidden", "true");
+
+      // return focus to burger
+      setTimeout(() => openBtn.focus(), 0);
     }
 
-    if (canUseMenu) {
-      openBtn.addEventListener("click", openMenu);
-      closeBtn.addEventListener("click", closeMenu);
-      overlay.addEventListener("click", closeMenu);
+    openBtn.addEventListener("click", openDrawer);
+    closeBtn.addEventListener("click", closeDrawer);
+    overlay.addEventListener("click", closeDrawer);
 
-      // คลิกเมนูแล้วปิด (ถ้าเป็น anchor ในหน้าเดียวก็ยังปิด)
-      menuLinks.forEach((a) => a.addEventListener("click", () => closeMenu()));
-
-      // ESC ปิด
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && document.body.classList.contains("drawerOpen")) {
-          closeMenu();
-        }
-      });
-    }
-
-    // ===== 3) ไฮไลต์เมนูหน้าปัจจุบัน =====
-    const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-
-    document.querySelectorAll("a[href]").forEach((a) => {
-      const href = (a.getAttribute("href") || "").toLowerCase();
-      if (!href || href.startsWith("http") || href.startsWith("#") || href.startsWith("tel:")) return;
-
-      const cleanHref = href.split("/").pop();
-      if (cleanHref && cleanHref === path) {
-        a.classList.add("is-active-link");
-        a.setAttribute("aria-current", "page");
+    // close on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && document.body.classList.contains("drawerOpen")) {
+        closeDrawer();
       }
+    });
+
+    // basic focus trap inside drawer
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      if (!document.body.classList.contains("drawerOpen")) return;
+
+      const focusables = drawer.querySelectorAll(focusableSelector);
+      if (!focusables.length) return;
+
+      const first = focusables[0];
+      const last  = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    // optional: close when clicking any link in drawer
+    drawer.querySelectorAll('a[data-drawer-link]').forEach((a) => {
+      a.addEventListener("click", () => closeDrawer());
     });
   });
 })();

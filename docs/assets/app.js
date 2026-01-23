@@ -1,6 +1,10 @@
 /* assets/app.js
-   ใช้ร่วมทั้งเว็บ: Menu Overlay (3 ขีด) + ปีลิขสิทธิ์ + ไฮไลต์เมนูหน้าปัจจุบัน
+   ใช้ร่วมทั้งเว็บ:
+   - เมนู 3 ขีด (Overlay กลางจอแบบตัวอย่าง)
+   - ปีลิขสิทธิ์
+   - ไฮไลต์เมนูหน้าปัจจุบัน
 */
+
 (function () {
   "use strict";
 
@@ -9,36 +13,38 @@
     const y = document.getElementById("y");
     if (y) y.textContent = new Date().getFullYear();
 
-    // ===== 2) Menu open/close =====
+    // ===== 2) Menu Overlay open/close =====
     const openBtn = document.getElementById("drawerOpen");
     const closeBtn = document.getElementById("drawerClose");
     const overlay = document.getElementById("drawerOverlay");
-    const drawer = document.getElementById("drawer");
-    const drawerLinks = document.querySelectorAll("[data-drawer-link]");
+    const panel = document.getElementById("drawer");
+    const menuLinks = document.querySelectorAll("[data-drawer-link]");
 
-    const canUse = !!(openBtn && closeBtn && overlay && drawer);
+    const canUseMenu = !!(openBtn && closeBtn && overlay && panel);
 
     function openMenu() {
-      if (!canUse) return;
+      if (!canUseMenu) return;
       document.body.classList.add("drawerOpen");
       openBtn.setAttribute("aria-expanded", "true");
       setTimeout(() => closeBtn.focus(), 30);
     }
 
     function closeMenu() {
-      if (!canUse) return;
+      if (!canUseMenu) return;
       document.body.classList.remove("drawerOpen");
       openBtn.setAttribute("aria-expanded", "false");
       setTimeout(() => openBtn.focus(), 30);
     }
 
-    if (canUse) {
+    if (canUseMenu) {
       openBtn.addEventListener("click", openMenu);
       closeBtn.addEventListener("click", closeMenu);
       overlay.addEventListener("click", closeMenu);
 
-      drawerLinks.forEach((a) => a.addEventListener("click", () => closeMenu()));
+      // คลิกเมนูแล้วปิด (ถ้าเป็น anchor ในหน้าเดียวก็ยังปิด)
+      menuLinks.forEach((a) => a.addEventListener("click", () => closeMenu()));
 
+      // ESC ปิด
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && document.body.classList.contains("drawerOpen")) {
           closeMenu();

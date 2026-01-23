@@ -201,3 +201,48 @@ body.drawerOpen .drawer{
 @media (prefers-reduced-motion: reduce){
   .drawerOverlay, .drawer{ transition:none; }
 }
+
+
+/* ===============================
+   Drawer layout (ใหม่)
+   =============================== */
+
+.drawerNav{
+  display:flex;
+  flex-direction:column;
+  border-top:1px solid #eee;
+}
+
+.drawerLink{
+  padding:18px;
+  text-align:center;
+  font-size:18px;
+  font-weight:600;
+  border-bottom:1px solid #eee;
+  color:#111;
+  background:#fff;
+}
+
+.drawerLink:hover{
+  background:#f5f5f5;
+}
+
+/* โซนล่าง */
+.drawerBottom{
+  margin-top:auto;
+  padding:16px;
+  background:#fff;
+}
+
+/* ปุ่มสินค้า (ใหญ่ + เขียว) */
+.drawerProductBtn{
+  display:block;
+  width:100%;
+  text-align:center;
+  padding:18px;
+  border-radius:14px;
+  font-size:18px;
+  font-weight:700;
+  background:#18c37e;
+  color:#fff;
+}

@@ -1,5 +1,9 @@
 /* =========================================================
-   Tapabnam Farm - Shared UI (one CSS for all pages)
+   Tapabnam Farm - Shared UI (ONE CSS for all pages)
+   - Drawer (เมนู 3 ขีด)
+   - Topbar
+   - Shared Buttons
+   - Bottom Bar (ปุ่มสินค้าเขียวด้านล่าง)
    ========================================================= */
 
 /* --------- Base (safe defaults) --------- */
@@ -20,7 +24,122 @@
 }
 
 *{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Noto Sans Thai", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(900px 550px at 18% 10%, rgba(24,195,126,.18), transparent 60%),
+    radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.11), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.03), transparent 18%),
+    var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.65;
+}
 a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+
+/* container กลางหน้า */
+.wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  padding: 22px 18px 120px; /* เผื่อพื้นที่ bottom bar */
+}
+
+/* Accessibility: skip link */
+.skip{
+  position:absolute; left:-999px; top:auto;
+  width:1px; height:1px; overflow:hidden;
+}
+.skip:focus{
+  left:18px; top:18px; width:auto; height:auto;
+  padding:10px 12px;
+  background:#0b121a;
+  border:1px solid var(--line);
+  border-radius:12px;
+  z-index:9999;
+}
+
+/* =========================================================
+   Topbar (แถบบน: ปุ่ม 3 ขีดซ้าย + ชื่อแบรนด์)
+   ========================================================= */
+.topbar{
+  position: sticky; top: 12px; z-index: 70;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  padding: 12px 12px;
+  border: 1px solid var(--line);
+  background: rgba(10,14,22,.62);
+  backdrop-filter: blur(16px);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.leftBar{
+  display:flex; align-items:center; gap:10px; min-width:0;
+}
+
+.brand{
+  display:flex; align-items:center; gap:10px; min-width:0;
+}
+
+.dot{
+  width:10px; height:10px; border-radius:999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(24,195,126,.15);
+  flex:0 0 auto;
+}
+
+.brandTitle{
+  font-weight:950;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  letter-spacing:.2px;
+}
+
+/* Hamburger button */
+.burgerBtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px; height:44px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.05);
+  color: var(--text);
+  cursor:pointer;
+  transition: transform .12s ease, background .12s ease;
+  flex:0 0 auto;
+}
+.burgerBtn:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
+.burgerBtn:active{ transform: translateY(0); }
+
+.burgerIcon{ width:18px; height:12px; position:relative; }
+.burgerIcon span{
+  position:absolute; left:0; right:0;
+  height:2px; border-radius:999px;
+  background: rgba(233,237,246,.92);
+}
+.burgerIcon span:nth-child(1){ top:0; }
+.burgerIcon span:nth-child(2){ top:5px; opacity:.92; }
+.burgerIcon span:nth-child(3){ top:10px; opacity:.86; }
+
+/* ถ้าคุณยังอยากมีปุ่มลัดบน topbar (ไม่ใส่ก็ไม่พัง) */
+.topActions{
+  display:flex; gap:8px; align-items:center;
+  flex-wrap:wrap; justify-content:flex-end;
+}
+.pill{
+  padding:10px 14px; border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.05);
+  color: var(--muted);
+  font-weight:900; font-size:14px;
+  transition: transform .12s ease, background .12s ease, color .12s ease;
+  display:inline-flex; align-items:center; gap:8px;
+  white-space:nowrap;
+}
+.pill:hover{ background: rgba(255,255,255,.08); color: var(--text); transform: translateY(-1px); }
+.pill:active{ transform: translateY(0px); }
 
 /* =========================================================
    Drawer (เมนู 3 ขีด) — ใช้ร่วมกันทุกหน้า
@@ -34,6 +153,7 @@ a{ color:inherit; text-decoration:none; }
   transition: opacity .18s ease;
   z-index: 90;
 }
+
 .drawer{
   position:fixed;
   top:0; left:0;
@@ -50,9 +170,84 @@ a{ color:inherit; text-decoration:none; }
   flex-direction:column;
   gap: 12px;
 }
+
 body.drawerOpen{ overflow:hidden; }
 body.drawerOpen .drawerOverlay{ opacity:1; pointer-events:auto; }
 body.drawerOpen .drawer{ transform: translateX(0); }
+
+/* Drawer content (สำคัญ: ของคุณเดิมยังไม่มีส่วนนี้) */
+.drawerHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding: 8px 6px;
+}
+.drawerBrand{
+  display:flex; align-items:center; gap:10px; min-width:0;
+}
+.drawerTitle{
+  font-weight:980;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.closeBtn{
+  width:44px; height:44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  cursor:pointer;
+  transition: transform .12s ease, background .12s ease;
+  flex: 0 0 auto;
+}
+.closeBtn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+.closeBtn:active{ transform: translateY(0); }
+
+.drawerBody{
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  padding: 10px;
+}
+.drawerLink{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  color: var(--muted);
+  font-weight: 950;
+  transition: background .12s ease, color .12s ease, transform .12s ease;
+}
+.drawerLink:hover{
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  transform: translateX(1px);
+}
+.drawerLink small{ color: var(--muted2); font-weight: 900; }
+
+/* active page highlight (ใช้กับ JS ที่ผมให้ไว้) */
+.is-active-link{
+  background: rgba(255,255,255,.07) !important;
+  color: rgba(233,237,246,.95) !important;
+  border-radius: 14px;
+}
+
+.drawerCtas{
+  margin-top:auto;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.22);
+  border-radius: 18px;
+  padding: 12px;
+  display:grid;
+  gap:10px;
+}
+.drawerNote{
+  color: var(--muted2);
+  font-size: 13px;
+  line-height:1.5;
+}
 
 /* =========================================================
    Shared Buttons
@@ -85,7 +280,7 @@ body.drawerOpen .drawer{ transform: translateX(0); }
 
 /* =========================================================
    Bottom Bar (ปุ่มสินค้า “ด้านล่าง” แบบเดียวกันทั้งเว็บ)
-   - วางไว้ทุกหน้า แล้วแค่กำหนด href ไป products.html
+   - ใช้ class="bottomBar" + "bottomBarInner"
    ========================================================= */
 .bottomBar{
   position: fixed;
@@ -118,6 +313,7 @@ body.drawerOpen .drawer{ transform: translateX(0); }
    Reduce motion
    ========================================================= */
 @media (prefers-reduced-motion: reduce){
-  .btn{ transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn, .pill, .burgerBtn, .closeBtn{ transition:none; }
   .drawer, .drawerOverlay{ transition:none !important; }
 }

@@ -1,248 +1,173 @@
 /* assets/app.css
-   Tapabnam Farm (Starter) - Shared UI only
-   - Topbar (hamburger left)
-   - Drawer (slides from left, almost full screen)
-   - Overlay + close (X)
-   - No page content styling yet
+   Minimal site + Drawer menu (match example style)
 */
 
-:root{
-  --bg: #070b12;
-  --text: #e9edf6;
-
-  /* drawer theme (like example: light panel) */
-  --drawer-bg: #f3f4f6;
-  --drawer-text: #111827;
-  --drawer-line: rgba(17,24,39,.12);
-
-  --overlay: rgba(0,0,0,.55);
-  --radius: 18px;
-}
-
+/* ===== Base ===== */
 *{ box-sizing:border-box; }
-html, body{ height:100%; }
+html,body{ height:100%; }
 body{
   margin:0;
   font-family: system-ui, -apple-system, "Noto Sans Thai", "Segoe UI", sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  background:#0b0f16; /* พื้นหลังเว็บ (เว็บเปล่า) */
+  color:#fff;
 }
 
-/* ===== Topbar ===== */
+/* ===== Topbar (ปุ่ม 3 ขีดซ้ายบน) ===== */
 .topbar{
-  position: sticky;
-  top: 12px;
-  z-index: 50;
-  margin: 12px auto 0;
-  width: min(1120px, calc(100% - 24px));
+  position:fixed;
+  top:12px; left:12px;
+  z-index:50;
   display:flex;
   align-items:center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  background: rgba(10,14,22,.62);
-  border: 1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(14px);
+  gap:10px;
 }
 
 .burgerBtn{
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
+  width:46px; height:46px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.25);
+  color:#fff;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   cursor:pointer;
 }
 
-.burgerIcon{
-  width: 18px;
-  height: 12px;
-  position: relative;
-}
+.burgerIcon{ width:18px; height:12px; position:relative; }
 .burgerIcon span{
-  position:absolute;
-  left:0; right:0;
-  height:2px;
-  border-radius:999px;
-  background: rgba(233,237,246,.92);
+  position:absolute; left:0; right:0;
+  height:2px; border-radius:999px;
+  background: rgba(255,255,255,.92);
 }
 .burgerIcon span:nth-child(1){ top:0; }
 .burgerIcon span:nth-child(2){ top:5px; opacity:.92; }
 .burgerIcon span:nth-child(3){ top:10px; opacity:.86; }
 
 .brandTitle{
-  font-weight: 900;
-  letter-spacing: .2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-weight:800;
+  letter-spacing:.2px;
+  opacity:.95;
 }
 
 /* ===== Drawer Overlay ===== */
 .drawerOverlay{
-  position: fixed;
-  inset: 0;
-  background: var(--overlay);
-  opacity: 0;
-  pointer-events: none;
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.55);
+  opacity:0;
+  pointer-events:none;
   transition: opacity .18s ease;
-  z-index: 90;
+  z-index:80;
 }
 
-/* ===== Drawer Panel (slides from left, almost full screen) ===== */
+/* ===== Drawer (เมนูสไลด์จากซ้าย เกือบเต็มจอ) ===== */
 .drawer{
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
+  position:fixed;
+  top:0; left:0;
+  height:100vh;
 
-  /* almost full screen like example */
-  width: min(86vw, 420px);
+  /* เหมือนภาพ: เกือบเต็มจอ เหลือขอบขวานิดเดียว */
+  width:92vw;
+  max-width: 520px;
 
-  background: var(--drawer-bg);
-  color: var(--drawer-text);
+  background:#f3f3f3;
+  color:#111;
   transform: translateX(-102%);
   transition: transform .22s cubic-bezier(.2,.9,.2,1);
-  z-index: 95;
 
+  z-index:90;
   display:flex;
-  flex-direction: column;
+  flex-direction:column;
 }
 
-body.drawerOpen{
-  overflow: hidden;
-}
+/* เปิด drawer */
+body.drawerOpen{ overflow:hidden; }
 body.drawerOpen .drawerOverlay{
-  opacity: 1;
-  pointer-events: auto;
+  opacity:1;
+  pointer-events:auto;
 }
 body.drawerOpen .drawer{
   transform: translateX(0);
 }
 
-/* Drawer Header (X top-right inside panel) */
-.drawerHead{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding: 14px 14px;
-  border-bottom: 1px solid var(--drawer-line);
-}
-.drawerHeadTitle{
-  font-weight: 900;
-  font-size: 16px;
+/* ===== ปุ่มปิด (X) มุมขวาบนใน drawer ===== */
+.drawerClose{
+  position:absolute;
+  top:14px;
+  right:14px;
+
+  width:44px; height:44px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.15);
+  background:#fff;
+  color:#111;
+
+  font-size:26px;
+  line-height:1;
+  cursor:pointer;
 }
 
-.closeBtn{
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid var(--drawer-line);
-  background: #ffffff;
-  color: var(--drawer-text);
-  cursor: pointer;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size: 18px;
-}
-
-/* Drawer Menu List (centered like example) */
+/* ===== เมนูหลัก ===== */
 .drawerNav{
-  padding: 10px 0;
+  /* เว้นหัวด้านบนตามภาพ */
+  padding-top: 70px;
 }
 
+/* ลิงก์เมนู: ตัวใหญ่ กลาง เส้นคั่น */
 .drawerLink{
-  display:flex;
-  align-items:center;
-  justify-content:center;      /* center text like example */
-  text-align:center;
-  padding: 18px 16px;
-  font-weight: 900;
-  font-size: 18px;
-  color: var(--drawer-text);
-  border-bottom: 1px solid var(--drawer-line);
-  text-decoration: none;
-}
-
-/* Main hierarchy: same look all items (no special) */
-.drawerLink:active{
-  opacity: .85;
-}
-
-/* Separate zone for "สินค้า" at bottom */
-.drawerBottom{
-  margin-top: auto;
-  padding: 14px;
-  border-top: 1px solid var(--drawer-line);
-  background: rgba(17,24,39,.03);
-}
-
-.drawerProduct{
   display:block;
-  width: 100%;
   text-align:center;
-  padding: 16px 16px;
-  border-radius: 16px;
-  font-weight: 950;
-  font-size: 18px;
+  padding: 22px 18px;
+  font-size: 26px;
+  font-weight: 800;
+  color:#111;
   text-decoration:none;
 
-  background: #18c37e;
-  color: #ffffff;
-  border: 1px solid rgba(24,195,126,.45);
+  border-top:1px solid #dddddd;
+}
+
+/* อันแรกมีพื้นเทาอ่อนแบบภาพ */
+.drawerLink:first-child{
+  background:#e6e6e6;
+  border-top: none;
+}
+
+/* ===== โซนล่าง: ปุ่มสินค้า (ให้ขึ้นแน่นอน) ===== */
+.drawerBottom{
+  margin-top:auto;
+  padding: 26px 18px calc(22px + env(safe-area-inset-bottom));
+  display:flex;
+  justify-content:center;
+}
+
+/* ปุ่มสินค้าเขียวใหญ่ */
+.drawerProductBtn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width: 78%;
+  max-width: 360px;
+  height: 66px;
+
+  border-radius: 18px;
+  background: linear-gradient(180deg, #1ed184, #12b06e);
+  color:#fff;
+  font-size: 26px;
+  font-weight: 900;
+  text-decoration:none;
+
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+}
+
+/* ===== Active page (ถ้าต้องการในอนาคต) ===== */
+.is-active-link{
+  outline: 2px solid rgba(0,0,0,.12);
+  outline-offset: -2px;
 }
 
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce){
-  .drawerOverlay, .drawer{ transition:none; }
-}
-
-
-/* ===============================
-   Drawer layout (ใหม่)
-   =============================== */
-
-.drawerNav{
-  display:flex;
-  flex-direction:column;
-  border-top:1px solid #eee;
-}
-
-.drawerLink{
-  padding:18px;
-  text-align:center;
-  font-size:18px;
-  font-weight:600;
-  border-bottom:1px solid #eee;
-  color:#111;
-  background:#fff;
-}
-
-.drawerLink:hover{
-  background:#f5f5f5;
-}
-
-/* โซนล่าง */
-.drawerBottom{
-  margin-top:auto;
-  padding:16px;
-  background:#fff;
-}
-
-/* ปุ่มสินค้า (ใหญ่ + เขียว) */
-.drawerProductBtn{
-  display:block;
-  width:100%;
-  text-align:center;
-  padding:18px;
-  border-radius:14px;
-  font-size:18px;
-  font-weight:700;
-  background:#18c37e;
-  color:#fff;
+  .drawer, .drawerOverlay{ transition:none !important; }
 }

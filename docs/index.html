@@ -6,10 +6,11 @@
   <title>หน้าแรก | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
   <meta name="description" content="ตะพาบน้ำไต้หวัน ฟาร์ม — แหล่งรวมสินค้าและความรู้สำหรับคนเลี้ยงและผู้ที่ต้องการวัตถุดิบจากฟาร์ม คุยตรง ให้ข้อมูลครบ" />
 
-  <!-- ✅ Shared CSS (ใช้ทุกหน้า) -->
+  <!-- ✅ Shared CSS -->
   <link rel="stylesheet" href="assets/app.css" />
 
   <style>
+    /* (คงสไตล์เดิมของคุณไว้) */
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
@@ -112,27 +113,26 @@
 <body>
 <a class="skip" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
 
-<!-- ✅ Drawer overlay + Drawer -->
+<!-- ✅ Overlay + Menu (ใช้ id เดิม) -->
 <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
 
 <aside class="drawer" id="drawer" aria-label="เมนู">
-  <div class="drawerInner" role="dialog" aria-modal="true" aria-label="เมนูนำทาง">
-    <div class="drawerTop">
-      <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
-    </div>
+  <!-- ปุ่มปิด (มุมขวาบน) -->
+  <div class="drawerHead">
+    <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
+  </div>
 
-    <!-- ✅ Hierarchy ตามที่กำหนด -->
-    <nav class="drawerBody" aria-label="ลิงก์เมนู">
-      <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
-      <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
-      <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
-      <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
-    </nav>
+  <!-- เมนูหลัก: ตาม Hierarchy ที่คุณกำหนด -->
+  <nav class="drawerBody" aria-label="เมนูหลัก">
+    <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
+    <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
+    <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
+    <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
+  </nav>
 
-    <!-- ✅ สินค้าอยู่ล่างสุด แยกโซน + เน้น -->
-    <div class="drawerBottom">
-      <a class="productBtn" href="products.html" data-drawer-link>สินค้า</a>
-    </div>
+  <!-- สินค้า: แยกโซน ล่างสุด เน้นตัวเดียว -->
+  <div class="drawerCtas" aria-label="ปุ่มสินค้า">
+    <a class="btn btnGreen" href="products.html" data-drawer-link>สินค้า</a>
   </div>
 </aside>
 
@@ -153,8 +153,8 @@
       </div>
     </div>
 
+    <!-- (คุณบอกว่าไม่ต้องเน้นเมนูด้านบน ผมไม่ยุ่ง) -->
     <div class="topActions" aria-label="ปุ่มลัด">
-      <a class="pill" href="products.html">สินค้า</a>
       <a class="pill" href="knowledge.html">ความรู้</a>
       <a class="pill" href="contact.html">ติดต่อ</a>
     </div>

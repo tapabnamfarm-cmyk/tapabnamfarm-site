@@ -1,1 +1,393 @@
-.
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เกี่ยวกับเรา | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
+  <meta name="description" content="เกี่ยวกับ ตะพาบน้ำไต้หวัน ฟาร์ม — แนวทางการทำงานแบบคุยตรง ให้ข้อมูลครบ และดูแลหลังการสั่งซื้อ" />
+
+  <!-- ✅ Shared CSS (ใช้ทุกหน้า) -->
+  <link rel="stylesheet" href="assets/app.css" />
+
+  <!-- ✅ Page CSS (เฉพาะหน้านี้) -->
+  <style>
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,"Noto Sans Thai","Segoe UI",sans-serif;
+      background:
+        radial-gradient(900px 550px at 18% 10%, rgba(24,195,126,.18), transparent 60%),
+        radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.65;
+    }
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--max);margin:0 auto;padding:22px 18px 120px}
+
+    /* Skip link */
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left:18px; top:18px; width:auto; height:auto; padding:10px 12px;
+      background:#0b121a; border:1px solid var(--line); border-radius:12px; z-index:9999;
+    }
+
+    /* ===== Topbar ===== */
+    .topbar{
+      position: sticky; top: 12px; z-index: 70;
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      padding: 12px 12px;
+      border: 1px solid var(--line);
+      background: rgba(10,14,22,.62);
+      backdrop-filter: blur(16px);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .leftBar{ display:flex; align-items:center; gap:10px; min-width:0; }
+    .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
+      box-shadow:0 0 0 6px rgba(24,195,126,.15);
+      flex:0 0 auto;
+    }
+    .brandTitle{ font-weight:950; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:.2px; }
+
+    .burgerBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:44px; height:44px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+      flex:0 0 auto;
+    }
+    .burgerBtn:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
+    .burgerBtn:active{ transform: translateY(0); }
+    .burgerIcon{ width:18px; height:12px; position:relative; }
+    .burgerIcon span{
+      position:absolute; left:0; right:0;
+      height:2px; border-radius:999px;
+      background: rgba(233,237,246,.92);
+    }
+    .burgerIcon span:nth-child(1){ top:0; }
+    .burgerIcon span:nth-child(2){ top:5px; opacity:.92; }
+    .burgerIcon span:nth-child(3){ top:10px; opacity:.86; }
+
+    .topActions{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+    .pill{
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color: rgba(233,237,246,.80);
+      font-weight:900;font-size:14px;
+      transition: transform .12s ease, background .12s ease, color .12s ease;
+      display:inline-flex; align-items:center; gap:8px;
+      white-space:nowrap;
+    }
+    .pill:hover{ background: rgba(255,255,255,.08); color: var(--text); transform: translateY(-1px); }
+    .pill:active{ transform: translateY(0px); }
+
+    /* ===== Blocks ===== */
+    .section{
+      margin-top:18px;
+      padding:22px;
+      border-radius: var(--radius2);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+    }
+    .kicker{
+      color: var(--muted2);
+      font-weight:950;
+      letter-spacing:.22px;
+      font-size:13px;
+      text-transform: uppercase;
+    }
+    h1{
+      margin: 8px 0 8px;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height:1.15;
+      letter-spacing:.2px;
+    }
+    .sub{ margin:0; color: var(--muted); max-width: 76ch; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .card{
+      grid-column: span 12;
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+    }
+    @media(min-width:860px){
+      .card.half{ grid-column: span 6; }
+      .card.third{ grid-column: span 4; }
+    }
+
+    .cardTitle{ font-weight:980; font-size:16px; margin:0 0 8px; }
+    .cardText{ margin:0; color: var(--muted); }
+    .list{
+      margin:10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .list li{ margin: 6px 0; }
+
+    .quote{
+      margin: 0;
+      padding: 14px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(233,237,246,.9);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+    .quote small{ display:block; margin-top:8px; color: var(--muted2); font-weight: 800; }
+
+    .ctaRow{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:flex-start;
+    }
+    .btn{ text-decoration:none; }
+
+    /* Footer */
+    .footer{
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+    .footer a{ text-decoration:none; }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .pill, .burgerBtn{ transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+<a class="skip" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
+
+<!-- ✅ Drawer overlay + Drawer -->
+<div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
+
+<aside class="drawer" id="drawer" aria-label="เมนูด้านข้าง">
+  <div class="drawerHead">
+    <div class="drawerBrand">
+      <div class="dot" aria-hidden="true"></div>
+      <div class="drawerTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+    </div>
+    <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
+  </div>
+
+  <div class="drawerBody" role="navigation" aria-label="ลิงก์เมนู">
+    <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก <small>Home</small></a>
+    <a class="drawerLink" href="products.html" data-drawer-link>สินค้า <small>Products</small></a>
+    <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้ <small>Knowledge</small></a>
+    <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา <small>About</small></a>
+    <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ <small>Contact</small></a>
+    <a class="drawerLink" href="#values" data-drawer-link>แนวทางของฟาร์ม <small>Values</small></a>
+    <a class="drawerLink" href="#how" data-drawer-link>ขั้นตอนทำงาน <small>How it works</small></a>
+  </div>
+
+  <div class="drawerCtas">
+    <div class="drawerNote">อยากรู้ว่าเหมาะกับคุณไหม? ทักมาถามได้ก่อนตัดสินใจ</div>
+    <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ปรึกษา / แอด LINE</a>
+    <a class="btn" href="products.html">ดูสินค้า</a>
+  </div>
+</aside>
+
+<div class="wrap">
+
+  <!-- Topbar -->
+  <header class="topbar" aria-label="แถบนำทาง">
+    <div class="leftBar">
+      <button class="burgerBtn" id="drawerOpen" type="button" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="drawer">
+        <span class="burgerIcon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+      </div>
+    </div>
+
+    <div class="topActions" aria-label="ปุ่มลัด">
+      <a class="pill" href="products.html">สินค้า</a>
+      <a class="pill" href="#values">แนวทาง</a>
+      <a class="pill" href="contact.html">ติดต่อ</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="section">
+      <div class="kicker">ABOUT</div>
+      <h1>เกี่ยวกับเรา</h1>
+      <p class="sub">
+        “ตะพาบน้ำไต้หวัน ฟาร์ม” ทำงานด้วยแนวคิด <b>คุยตรง • ให้ข้อมูลครบ • ไม่ขายข้ามขั้น</b><br>
+        เป้าหมายคือให้คุณตัดสินใจจากข้อมูลจริง และเลี้ยง/สั่งซื้อได้อย่างสบายใจ
+      </p>
+
+      <div class="grid" style="margin-top:14px">
+        <div class="card half">
+          <p class="quote">
+            เราไม่พยายามให้คุณ “รีบซื้อ”<br>
+            แต่พยายามให้คุณ “เข้าใจ” ก่อนเสมอ
+            <small>— แนวทางการทำงานของฟาร์ม</small>
+          </p>
+        </div>
+        <div class="card half">
+          <div class="cardTitle">ติดต่อเร็วที่สุด</div>
+          <p class="cardText">
+            แนะนำ LINE OA: <b>@tapabnam.farm</b> เพื่อเช็ครอบสินค้า/เงื่อนไขได้ไวที่สุด
+          </p>
+          <div class="ctaRow">
+            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
+            <a class="btn" href="products.html">ดูสินค้า</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section" id="values">
+      <div class="kicker">VALUES</div>
+      <div style="margin-top:10px;font-weight:980;font-size:clamp(20px,3.2vw,30px);line-height:1.22;">
+        แนวทางของฟาร์ม (ที่เรายึดใช้ทุกวัน)
+      </div>
+      <p class="sub" style="margin-top:10px;">
+        เพื่อให้คุณรู้ว่าฟาร์มยืนอยู่ฝั่งไหน — และอะไรที่คุณคาดหวังได้จากเรา
+      </p>
+
+      <div class="grid">
+        <div class="card third">
+          <div class="cardTitle">คุยตรง</div>
+          <p class="cardText">
+            บอกตามจริงเรื่องรอบสินค้า เงื่อนไขขั้นต่ำ และการจัดส่ง เพื่อให้คุณตัดสินใจแบบรู้ครบ
+          </p>
+        </div>
+        <div class="card third">
+          <div class="cardTitle">ให้ข้อมูลครบก่อนซื้อ</div>
+          <p class="cardText">
+            เราเน้นให้คุณเข้าใจการดูแล/ความเหมาะสมก่อน ไม่เร่งปิดการขาย
+          </p>
+        </div>
+        <div class="card third">
+          <div class="cardTitle">ดูแลหลังการสั่งซื้อ</div>
+          <p class="cardText">
+            มีคำแนะนำหลังรับของ และช่วยตอบคำถามที่จำเป็น เพื่อให้การเลี้ยง/การใช้งานราบรื่น
+          </p>
+        </div>
+
+        <div class="card half">
+          <div class="cardTitle">ไม่ขายข้ามขั้น</div>
+          <p class="cardText">
+            ถ้ายังไม่แน่ใจว่าสิ่งนี้เหมาะกับคุณ เราจะช่วยประเมินก่อนเสมอ เพื่อให้คุณ “ปลอดภัยใจ” มากที่สุด
+          </p>
+        </div>
+        <div class="card half">
+          <div class="cardTitle">สินค้าเป็น “รอบ”</div>
+          <p class="cardText">
+            สินค้าหลายอย่างไม่ได้มีตลอด เราจะแจ้งรอบให้ชัดก่อนรับออเดอร์ทุกครั้ง
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how">
+      <div class="kicker">HOW IT WORKS</div>
+      <div style="margin-top:10px;font-weight:980;font-size:clamp(20px,3.2vw,30px);line-height:1.22;">
+        ขั้นตอนการทำงานแบบเข้าใจง่าย
+      </div>
+      <p class="sub" style="margin-top:10px;">
+        เพื่อให้คุณรู้ว่าทักมาแล้วต้องทำอะไรต่อ และจะได้ข้อมูลแบบไหน
+      </p>
+
+      <div class="grid">
+        <div class="card third">
+          <div class="cardTitle">1) ทัก LINE</div>
+          <p class="cardText">ส่งสิ่งที่คุณสนใจ (ลูกตะพาบ/เนื้อ/ตะพาบเป็นยกลอต) + จังหวัดปลายทาง</p>
+        </div>
+        <div class="card third">
+          <div class="cardTitle">2) เช็ครอบ + เงื่อนไข</div>
+          <p class="cardText">เราจะแจ้งรอบสินค้า ราคาหรือเงื่อนไขขั้นต่ำ และวิธีจัดส่งที่เหมาะสม</p>
+        </div>
+        <div class="card third">
+          <div class="cardTitle">3) ตัดสินใจแบบสบายใจ</div>
+          <p class="cardText">ถ้าพร้อมค่อยสั่งซื้อ ถ้ายังไม่พร้อมก็ถามข้อมูลได้ก่อน</p>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">สิ่งที่คุณจะได้รับ “ก่อนตัดสินใจ”</div>
+          <ul class="list">
+            <li>รายละเอียดสินค้า/รอบสินค้า และเงื่อนไขขั้นต่ำ</li>
+            <li>แนวทางการจัดส่งที่เหมาะสมกับสินค้า</li>
+            <li>คำแนะนำเบื้องต้น (เพื่อให้คุณมั่นใจว่าเหมาะกับคุณจริง)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ctaRow">
+        <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE ตอนนี้</a>
+        <a class="btn" href="products.html">กลับไปดูสินค้า</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <div style="font-weight:980; color:var(--text); margin-bottom:6px;">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+      <div>
+        LINE: <b>@tapabnam.farm</b> • โทร: <b><a href="tel:0829324965">082-932-4965</a></b>
+      </div>
+      <div style="margin-top:10px; color:var(--muted2); font-size:13px;">
+        © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม
+      </div>
+    </footer>
+  </main>
+</div>
+
+<!-- ✅ Bottom bar (ใช้ร่วมทุกหน้า) -->
+<div class="bottomBar" role="region" aria-label="แถบปุ่มลัดด้านล่าง">
+  <div class="bottomBarInner">
+    <div class="bottomBarText">
+      <div class="t1">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+      <div class="t2">อยากรู้ว่าเหมาะกับคุณไหม? ทักมาถามได้ก่อน</div>
+    </div>
+    <div class="bottomBarBtns">
+      <a class="btn" href="products.html">ดูสินค้า</a>
+      <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Shared JS (ใช้ทุกหน้า) -->
+<script src="assets/app.js" defer></script>
+
+<!-- ✅ Page JS -->
+<script>
+  const y = document.getElementById("y");
+  if (y) y.textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

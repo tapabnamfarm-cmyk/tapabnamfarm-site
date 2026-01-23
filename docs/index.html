@@ -181,6 +181,30 @@
       html{ scroll-behavior:auto; }
       .pill, .burgerBtn{ transition:none; }
     }
+
+    /* ✅ เพิ่มสไตล์เฉพาะ “โซนสินค้า” ใน Drawer (ไม่ไปยุ่ง app.css) */
+    .drawerDivider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 10px 4px;
+      border-radius: 999px;
+    }
+    .drawerZoneTitle{
+      color: rgba(233,237,246,.58);
+      font-weight: 950;
+      font-size: 12px;
+      letter-spacing: .18px;
+      margin: 2px 6px 10px;
+      text-transform: uppercase;
+    }
+    .drawerProductCta{
+      display:grid;
+      gap:10px;
+      padding: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+    }
   </style>
 </head>
 
@@ -199,12 +223,10 @@
     <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
   </div>
 
+  <!-- ✅ เมนูหลัก: เรียงตาม Hierarchy ที่คุณกำหนดเท่านั้น -->
   <div class="drawerBody" role="navigation" aria-label="ลิงก์เมนู">
     <a class="drawerLink" href="index.html" data-drawer-link>
       หน้าแรก <small>Home</small>
-    </a>
-    <a class="drawerLink" href="products.html" data-drawer-link>
-      สินค้า <small>Products</small>
     </a>
     <a class="drawerLink" href="knowledge.html" data-drawer-link>
       ความรู้ <small>Knowledge</small>
@@ -215,16 +237,18 @@
     <a class="drawerLink" href="contact.html" data-drawer-link>
       ติดต่อ <small>Contact</small>
     </a>
-    <a class="drawerLink" href="#main" data-drawer-link>
-      เริ่มต้น <small>Top</small>
-    </a>
+
+    <!-- ✅ แยกโซนสินค้าไว้ “ล่างสุด” และทำให้เด่น -->
+    <div class="drawerDivider" aria-hidden="true"></div>
+    <div class="drawerZoneTitle">สินค้า</div>
+
+    <div class="drawerProductCta">
+      <a class="btn btnGreen" href="products.html" data-drawer-link>ไปหน้าสินค้า</a>
+      <a class="btn" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ปรึกษาฟรี / แอด LINE</a>
+    </div>
   </div>
 
-  <div class="drawerCtas">
-    <div class="drawerNote">กดเมนูเพื่อไปยังส่วนต่าง ๆ ได้ทันที</div>
-    <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ปรึกษาฟรี / แอด LINE</a>
-    <a class="btn" href="products.html">ดูสินค้า</a>
-  </div>
+  <!-- (คง drawerCtas ไว้ได้ แต่ไม่จำเป็นแล้ว — เอาออกเพื่อให้เหมือนตัวอย่าง “เมนู + โซนสินค้า” ชัด ๆ) -->
 </aside>
 
 <div class="wrap">
@@ -360,10 +384,6 @@
 
 <!-- ✅ Shared JS (ใช้ทุกหน้า) -->
 <script src="assets/app.js" defer></script>
-
-<script>
-  const y = document.getElementById("y");
-  if (y) y.textContent = new Date().getFullYear();
-</script>
 </body>
 </html>
+```0

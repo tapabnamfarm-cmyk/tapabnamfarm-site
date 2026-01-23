@@ -12,13 +12,15 @@
 
   <!-- Topbar (hamburger left) -->
   <header class="topbar" aria-label="แถบนำทางด้านบน">
+    <!-- ปุ่ม 3 ขีด (เปิดเมนู) -->
     <button
-      class="burgerBtn"
       id="drawerOpen"
+      class="burgerBtn"
       type="button"
       aria-label="เปิดเมนู"
       aria-expanded="false"
-      aria-controls="drawer">
+      aria-controls="drawer"
+    >
       <span class="burgerIcon" aria-hidden="true">
         <span></span><span></span><span></span>
       </span>
@@ -31,39 +33,36 @@
   <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
 
   <!-- Drawer -->
-  <aside class="drawer" id="drawer" aria-label="เมนู">
+  <aside id="drawer" class="drawer" aria-label="เมนูด้านข้าง">
 
-  <!-- ปุ่มปิด (ไม่มีคำว่า เมนู แล้ว) -->
-  <div class="drawerHead">
+    <!-- ปุ่มปิด (กากะบาท) -->
     <button
-      class="closeBtn"
       id="drawerClose"
+      class="drawerClose"
       type="button"
-      aria-label="ปิดเมนู">
-      ✕
+      aria-label="ปิดเมนู"
+    >
+      ×
     </button>
-  </div>
 
-  <!-- เมนูหลัก (Hierarchy สำคัญ) -->
-  <nav class="drawerNav" aria-label="ลิงก์หลัก">
-    <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
-    <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
-    <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
-    <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
-  </nav>
+    <!-- เมนูหลัก (Hierarchy สำคัญ) -->
+    <nav class="drawerNav" aria-label="ลิงก์หลัก">
+      <a href="index.html" class="drawerLink" data-drawer-link>หน้าแรก</a>
+      <a href="knowledge.html" class="drawerLink" data-drawer-link>ความรู้</a>
+      <a href="about.html" class="drawerLink" data-drawer-link>เกี่ยวกับเรา</a>
+      <a href="contact.html" class="drawerLink" data-drawer-link>ติดต่อ</a>
+    </nav>
 
-  <!-- โซนล่าง: สินค้า (เน้นตัวเดียว) -->
-  <div class="drawerBottom">
-    <a
-      class="drawerProductBtn"
-      href="products.html"
-      data-drawer-link>
-      สินค้า
-    </a>
-  </div>
+    <!-- โซนล่าง: สินค้า (แยกโซน + เน้นตัวเดียว) -->
+    <div class="drawerBottom">
+      <a href="products.html" class="drawerProductBtn" data-drawer-link>
+        สินค้า
+      </a>
+    </div>
 
-</aside>
+  </aside>
 
+  <!-- JS -->
   <script src="assets/app.js" defer></script>
 </body>
 </html>

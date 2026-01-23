@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>สินค้า | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
-  <meta name="description" content="รวมสินค้า ตะพาบน้ำไต้หวัน ฟาร์ม — ลูกตะพาบ เนื้อ ตะพาบเป็น (ยกลอต) พร้อม FAQ และช่องทางติดต่อ" />
+  <title>หน้าแรก | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
+  <meta name="description" content="ตะพาบน้ำไต้หวัน ฟาร์ม — แหล่งรวมสินค้าและความรู้สำหรับคนเลี้ยงและผู้ที่ต้องการวัตถุดิบจากฟาร์ม คุยตรง ให้ข้อมูลครบ" />
 
   <!-- ✅ Shared CSS (ใช้ทุกหน้า) -->
   <link rel="stylesheet" href="assets/app.css" />
 
-  <!-- ✅ Page CSS (เฉพาะหน้านี้) -->
   <style>
-    /* Base (เฉพาะหน้า products) */
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
@@ -27,7 +25,6 @@
     img{ max-width:100%; display:block; }
     .wrap{ max-width:var(--max); margin:0 auto; padding: 22px 18px 120px; }
 
-    /* Skip link */
     .skip{
       position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
     }
@@ -36,7 +33,7 @@
       background:#0b121a; border:1px solid var(--line); border-radius:12px; z-index:9999;
     }
 
-    /* ===== Topbar (เหมือน index) ===== */
+    /* ===== Topbar (เหมือนหน้าอื่น) ===== */
     .topbar{
       position: sticky; top: 12px; z-index: 70;
       display:flex; justify-content:space-between; align-items:center; gap:10px;
@@ -47,9 +44,7 @@
       border-radius: 999px;
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    .leftBar{
-      display:flex; align-items:center; gap:10px; min-width:0;
-    }
+    .leftBar{ display:flex; align-items:center; gap:10px; min-width:0; }
     .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
     .dot{
       width:10px; height:10px; border-radius:999px; background: var(--accent);
@@ -62,14 +57,9 @@
       letter-spacing:.2px;
     }
 
-    /* Hamburger button */
     .burgerBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:44px;
-      height:44px;
-      border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
       color: var(--text);
@@ -99,11 +89,12 @@
       transition: transform .12s ease, background .12s ease, color .12s ease;
       display:inline-flex; align-items:center; gap:8px;
       white-space:nowrap;
+      text-decoration:none;
     }
     .pill:hover{ background: rgba(255,255,255,.08); color: var(--text); transform: translateY(-1px); }
     .pill:active{ transform: translateY(0px); }
 
-    /* ===== Section block ===== */
+    /* ===== Sections ===== */
     .section{
       margin-top: 18px;
       padding: 22px;
@@ -120,114 +111,62 @@
       text-transform: uppercase;
     }
     h1{
-      margin: 8px 0 8px;
-      font-size: clamp(26px, 4vw, 40px);
-      line-height:1.15;
+      margin: 10px 0 10px;
+      font-size: clamp(28px, 4.5vw, 46px);
+      line-height:1.12;
       letter-spacing:.2px;
     }
     .sub{ margin:0; color: var(--muted); max-width: 72ch; }
 
-    /* ===== Products ===== */
-    .productGrid{
+    .heroGrid{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-      margin-top: 18px;
+      gap: 14px;
+      margin-top: 14px;
     }
-    .productCard{
-      grid-column: span 12;
-      border-radius: 20px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    .heroLeft{ grid-column: span 12; }
+    .heroRight{ grid-column: span 12; }
+    @media(min-width:920px){
+      .heroLeft{ grid-column: span 7; }
+      .heroRight{ grid-column: span 5; }
     }
-    @media(min-width:720px){ .productCard{ grid-column: span 6; } }
-    @media(min-width:980px){ .productCard{ grid-column: span 4; } }
 
-    .productMedia{ position:relative; }
-    .productMedia img{
-      width:100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-    .productBadge{
-      position:absolute; top:12px; left:12px;
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px; }
+    .chip{
       padding:8px 10px;
       border-radius:999px;
-      font-size:12px;
-      font-weight: 950;
-      background: rgba(0,0,0,.55);
-      border: 1px solid rgba(255,255,255,.14);
-      color: rgba(233,237,246,.92);
-    }
-    .productBody{ padding: 14px 14px 16px; }
-    .productTitle{ font-size:18px; font-weight: 980; margin:0 0 6px; }
-    .productDesc{ margin:0 0 10px; color: var(--muted); font-size:14px; }
-
-    .productMeta{
-      list-style:none;
-      padding:0; margin:0 0 12px;
-      display:flex; flex-wrap:wrap; gap:8px;
-    }
-    .productMeta li{
-      padding:8px 10px;
-      border-radius: 999px;
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.10);
       color: rgba(233,237,246,.78);
       font-size:12px;
       font-weight: 900;
     }
-    .productActions{ display:flex; gap:10px; flex-wrap:wrap; }
 
-    /* ใช้ปุ่ม shared */
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
     .btn{ text-decoration:none; }
 
-    /* ===== FAQ (Accordion) ===== */
-    .faq{ margin-top: 12px; display:grid; gap:10px; }
-    .faqItem{
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .card{
+      grid-column: span 12;
+      border-radius: 20px;
       overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 18px 50px rgba(0,0,0,.30);
+      padding: 16px;
     }
-    .faqQ{
-      list-style:none;
-      cursor:pointer;
-      padding: 14px 14px;
-      font-weight: 980;
-      color: var(--text);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
-    .faqQ::-webkit-details-marker{ display:none; }
-    .faqQ::after{
-      content:"＋";
-      font-weight: 980;
-      color: rgba(233,237,246,.75);
-      flex:0 0 auto;
-      transition: transform .18s ease;
-    }
-    .faqItem[open] .faqQ::after{
-      content:"－";
-      transform: translateY(-1px);
-    }
-    .faqA{
-      padding: 0 14px 14px;
-      color: var(--muted);
-      animation: faqIn .18s ease both;
-    }
-    .faqA ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-    .faqA b{ color: rgba(233,237,246,.92); }
-    @keyframes faqIn{
-      from{ opacity: 0; transform: translateY(6px); }
-      to{ opacity: 1; transform: translateY(0); }
-    }
+    @media(min-width:820px){ .card{ grid-column: span 4; } }
 
-    /* Footer */
+    .cardTitle{ font-weight:980; font-size:18px; margin:0 0 6px; }
+    .cardDesc{ margin:0; color: var(--muted); font-size:14px; }
+
+    .quickLinks{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+
     .footer{
       margin-top: 18px;
       padding: 18px;
@@ -238,7 +177,6 @@
     }
     .footer a{ text-decoration:none; }
 
-    /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
       .pill, .burgerBtn{ transition:none; }
@@ -249,7 +187,7 @@
 <body>
 <a class="skip" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
 
-<!-- ✅ Drawer overlay + Drawer (เหมือน index) -->
+<!-- ✅ Drawer overlay + Drawer (เหมือนหน้าอื่น) -->
 <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
 
 <aside class="drawer" id="drawer" aria-label="เมนูด้านข้าง">
@@ -277,17 +215,15 @@
     <a class="drawerLink" href="contact.html" data-drawer-link>
       ติดต่อ <small>Contact</small>
     </a>
-    <a class="drawerLink" href="#faq" data-drawer-link>
-      FAQ <small>Common Qs</small>
+    <a class="drawerLink" href="#main" data-drawer-link>
+      เริ่มต้น <small>Top</small>
     </a>
   </div>
 
   <div class="drawerCtas">
-    <div class="drawerNote">
-      กดเมนูเพื่อไปยังส่วนต่าง ๆ ได้ทันที
-    </div>
+    <div class="drawerNote">กดเมนูเพื่อไปยังส่วนต่าง ๆ ได้ทันที</div>
     <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ปรึกษาฟรี / แอด LINE</a>
-    <a class="btn" href="index.html">กลับหน้าแรก</a>
+    <a class="btn" href="products.html">ดูสินค้า</a>
   </div>
 </aside>
 
@@ -309,186 +245,92 @@
     </div>
 
     <div class="topActions" aria-label="ปุ่มลัด">
-      <a class="pill" href="index.html">หน้าแรก</a>
-      <a class="pill" href="#faq">FAQ</a>
+      <a class="pill" href="products.html">สินค้า</a>
+      <a class="pill" href="knowledge.html">ความรู้</a>
       <a class="pill" href="contact.html">ติดต่อ</a>
     </div>
   </header>
 
   <main id="main">
-    <!-- Header -->
+
+    <!-- HERO -->
     <section class="section">
-      <div class="kicker">PRODUCTS</div>
-      <h1>สินค้า</h1>
-      <p class="sub">
-        ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ<br />
-        สนใจรายละเอียด ถามได้ก่อนตัดสินใจ
-      </p>
-    </section>
+      <div class="kicker">HOME</div>
 
-    <!-- Products -->
-    <div class="productGrid" aria-label="รายการสินค้า">
-
-      <!-- ลูกตะพาบ -->
-      <article class="productCard">
-        <div class="productMedia">
-          <span class="productBadge">คุยตรง • ดูแลกันยาว</span>
-          <img src="images/baby-turtle.jpg" alt="ลูกตะพาบน้ำไต้หวัน" loading="lazy">
-        </div>
-        <div class="productBody">
-          <div class="productTitle">ลูกตะพาบน้ำไต้หวัน</div>
-          <p class="productDesc">
-            คัดจากฟาร์ม เหมาะกับคนเริ่มเลี้ยง<br />
-            อธิบายตามจริง ให้ข้อมูลครบก่อนตัดสินใจ
+      <div class="heroGrid">
+        <div class="heroLeft">
+          <h1>ของจริงจากฟาร์ม<br/>คุยตรง ให้ข้อมูลครบ</h1>
+          <p class="sub">
+            ตะพาบน้ำไต้หวัน ฟาร์ม — รวมสินค้าและความรู้สำหรับคนที่อยากเริ่มเลี้ยงเชิงเศรษฐกิจ
+            และผู้ที่ต้องการวัตถุดิบตามรอบสินค้า<br/>
+            ถ้ายังไม่แน่ใจ ทักมาถามก่อนได้เสมอ
           </p>
-          <ul class="productMeta">
-            <li>ขั้นต่ำ 30 ตัว</li>
-            <li>จัดส่งทั่วประเทศ</li>
-            <li>แนะนำหลังรับของ</li>
-          </ul>
-          <div class="productActions">
-            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
+
+          <div class="chips" aria-label="จุดเด่น">
+            <span class="chip">คุยตรง ไม่ขายเกินจริง</span>
+            <span class="chip">เช็ครอบสินค้าได้</span>
+            <span class="chip">แนะนำก่อน–หลังรับของ</span>
+            <span class="chip">ส่งทั่วประเทศ (ตามเงื่อนไขสินค้า)</span>
+          </div>
+
+          <div class="ctaRow" aria-label="ปุ่มหลัก">
+            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE เช็ครอบสินค้า</a>
+            <a class="btn" href="products.html">ดูหน้าสินค้า</a>
+            <a class="btn" href="knowledge.html">อ่านความรู้</a>
           </div>
         </div>
-      </article>
 
-      <!-- เนื้อตะพาบ -->
-      <article class="productCard">
-        <div class="productMedia">
-          <span class="productBadge">ของจริงจากฟาร์ม</span>
-          <img src="images/turtle-meat.jpg" alt="เนื้อตะพาบน้ำไต้หวัน" loading="lazy">
-        </div>
-        <div class="productBody">
-          <div class="productTitle">เนื้อตะพาบน้ำไต้หวัน</div>
-          <p class="productDesc">
-            วัตถุดิบจากฟาร์ม คัดตามรอบ<br />
-            แจ้งรายละเอียดตามจริงก่อนส่งทุกครั้ง
-          </p>
-          <ul class="productMeta">
-            <li>ขายเป็นกิโลกรัม</li>
-            <li>ส่งควบคุมอุณหภูมิ</li>
-            <li>มีรอบสินค้า</li>
-          </ul>
-          <div class="productActions">
-            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
+        <div class="heroRight">
+          <div class="card">
+            <div class="cardTitle">เริ่มต้นเร็ว (แนะนำ)</div>
+            <p class="cardDesc">
+              ถ้าคุณเป็นมือใหม่ ให้เริ่มจาก “อ่านความรู้” แล้วค่อยดู “สินค้า” จะตัดสินใจง่ายขึ้นมาก
+            </p>
+            <div class="quickLinks" style="margin-top:12px;">
+              <a class="btn" href="knowledge.html">ไปหน้า ความรู้</a>
+              <a class="btn" href="products.html">ไปหน้า สินค้า</a>
+              <a class="btn" href="about.html">เกี่ยวกับเรา</a>
+            </div>
           </div>
         </div>
-      </article>
-
-      <!-- ตะพาบเป็น ๆ (ยกลอต) -->
-      <article class="productCard">
-        <div class="productMedia">
-          <span class="productBadge">ขายเป็นรอบ • แจ้งตามจริง</span>
-          <img src="images/live-turtle.jpg" alt="ตะพาบน้ำไต้หวันเป็น ๆ ยกลอต" loading="lazy">
-        </div>
-        <div class="productBody">
-          <div class="productTitle">ตะพาบน้ำไต้หวัน (เป็น ๆ ยกลอต)</div>
-          <p class="productDesc">
-            จำหน่ายตะพาบเป็นสำหรับนำไปทำอาหาร<br />
-            ขายเฉพาะยกลอต และมีสินค้าเป็นรอบตามการจับจากบ่อ<br />
-            ทักมาคุยรายละเอียดก่อนตัดสินใจได้
-          </p>
-          <ul class="productMeta">
-            <li>ขั้นต่ำ 5 กก. ขึ้นไป</li>
-            <li>ไม่ขายปลีกเป็นตัว</li>
-            <li>สินค้าเป็นรอบ</li>
-          </ul>
-          <div class="productActions">
-            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="kicker">FAQ</div>
-      <div class="h2" style="margin-top:10px; font-weight:980; font-size:clamp(20px, 3.2vw, 30px);">คำถามที่พบบ่อย</div>
-      <p class="sub" style="margin-top:10px;">รวมคำถามสำคัญที่ลูกค้าถามบ่อย เพื่อให้คุณตัดสินใจจากข้อมูลที่ชัดเจน</p>
-
-      <div class="faq" aria-label="คำถามที่พบบ่อย">
-        <details class="faqItem">
-          <summary class="faqQ">ตะพาบน้ำไต้หวันเหมาะกับใคร?</summary>
-          <div class="faqA">
-            ตะพาบน้ำไต้หวันเหมาะกับ
-            <ul>
-              <li>ผู้ที่สนใจเลี้ยงเชิงเศรษฐกิจและต้องการศึกษาข้อมูลก่อนเริ่มจริง</li>
-              <li>ร้านอาหารหรือตลาดที่ต้องการวัตถุดิบตามรอบสินค้า</li>
-              <li>ผู้ที่ต้องการสอบถามข้อมูลและเงื่อนไขก่อนตัดสินใจ</li>
-            </ul>
-            หากคุณยังไม่แน่ใจว่าสิ่งนี้เหมาะกับคุณหรือไม่ สามารถสอบถามรายละเอียดเพิ่มเติมได้ก่อน
-            เพื่อให้ตัดสินใจจากข้อมูลที่ชัดเจนและตรงกับความต้องการของคุณมากที่สุด
-          </div>
-        </details>
-
-        <details class="faqItem">
-          <summary class="faqQ">มีขั้นต่ำในการสั่งซื้อไหม?</summary>
-          <div class="faqA">
-            มีขั้นต่ำตามประเภทสินค้าและตามรอบของฟาร์ม ได้แก่
-            <ul>
-              <li><b>ลูกตะพาบน้ำไต้หวัน:</b> ขั้นต่ำ 30 ตัว</li>
-              <li><b>ตะพาบน้ำเป็น:</b> จำหน่ายเฉพาะยกลอต ขั้นต่ำ 5 กิโลกรัมขึ้นไป</li>
-              <li><b>เนื้อตะพาบน้ำ:</b> จำหน่ายเป็นกิโลกรัม ตามรอบสินค้า</li>
-            </ul>
-            เงื่อนไขอาจเปลี่ยนแปลงได้ในแต่ละรอบ แนะนำให้สอบถามก่อนสั่งทุกครั้ง
-          </div>
-        </details>
-
-        <details class="faqItem">
-          <summary class="faqQ">สินค้ามีของตลอดไหม?</summary>
-          <div class="faqA">
-            สินค้าไม่ได้มีตลอดเวลา สินค้าทุกประเภทเป็น <b>สินค้าแบบมีรอบ</b> ตามรอบการจับและรอบของฟาร์ม รวมถึงฟาร์มเครือข่าย
-            เราจะแจ้งให้ชัดเจนก่อนรับออเดอร์ว่า มีสินค้าหรือไม่ ส่งได้วันไหน และเงื่อนไขของรอบนั้นเป็นอย่างไร
-          </div>
-        </details>
-
-        <details class="faqItem">
-          <summary class="faqQ">การจัดส่งทำอย่างไร?</summary>
-          <div class="faqA">
-            การจัดส่งแตกต่างตามประเภทสินค้า
-            <ul>
-              <li><b>ลูกตะพาบน้ำ:</b> แพ็กตามมาตรฐานฟาร์ม และเลือกวิธีจัดส่งที่เหมาะสมกับสินค้า</li>
-              <li><b>เนื้อตะพาบน้ำ:</b> จัดส่งแบบควบคุมอุณหภูมิ เพื่อรักษาคุณภาพสินค้า</li>
-              <li><b>ตะพาบน้ำเป็น:</b> จัดส่งตามเงื่อนไขที่ตกลงกันเป็นกรณี</li>
-            </ul>
-            ทุกเคสจะแจ้งรายละเอียดการจัดส่งให้ทราบก่อนส่งเสมอ
-          </div>
-        </details>
-
-        <details class="faqItem">
-          <summary class="faqQ">มีการรับซื้อคืนไหม?</summary>
-          <div class="faqA">
-            ทางฟาร์มมีการรับซื้อคืน <b>ตามเงื่อนไขและตามคิวของตลาด</b> แต่ไม่สามารถการันตีล่วงหน้าแบบตายตัวได้
-            ราคาและรอบรับซื้อขึ้นอยู่กับสภาพตลาดในช่วงนั้น ไม่ควรผูกความหวังไว้กับช่องทางเดียว
-            เราจะอธิบายตามความเป็นจริงเพื่อให้คุณตัดสินใจอย่างรอบคอบตั้งแต่ต้น
-          </div>
-        </details>
-
-        <details class="faqItem">
-          <summary class="faqQ">ถ้ายังไม่พร้อมซื้อ สามารถติดต่อสอบถามได้ไหม?</summary>
-          <div class="faqA">
-            ได้แน่นอน คุณสามารถสอบถามข้อมูลหรือขอคำแนะนำก่อนได้โดยไม่มีข้อผูกมัด
-            หากคุยแล้วเห็นว่ายังไม่เหมาะ หรือยังไม่ถึงจังหวะที่พร้อม เราก็ยินดีให้คุณตัดสินใจในเวลาที่เหมาะสมของคุณเอง
-          </div>
-        </details>
-
-        <details class="faqItem">
-          <summary class="faqQ">ติดต่อช่องทางไหนสะดวกที่สุด?</summary>
-          <div class="faqA">
-            แนะนำให้ติดต่อผ่าน <b>LINE OA: @tapabnam.farm</b> เพื่อคุยรายละเอียดและเช็ครอบสินค้าได้สะดวกที่สุด
-            หรือโทร <b>082-932-4965</b> และ Facebook Page ได้เช่นกัน
-          </div>
-        </details>
-      </div>
-
-      <div class="productActions" style="margin-top:14px">
-        <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE เพื่อเช็ครอบสินค้า</a>
-        <a class="btn" href="#main">กลับไปด้านบน</a>
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 3 CARDS -->
+    <section class="section" aria-label="ทางลัด">
+      <div class="kicker">QUICK START</div>
+      <div style="margin-top:10px; font-weight:980; font-size:clamp(20px, 3.2vw, 30px);">เริ่มจากตรงไหนได้บ้าง</div>
+      <p class="sub" style="margin-top:10px;">เลือกเส้นทางที่ใช่สำหรับคุณ แล้วค่อยทักมาคุยรายละเอียด</p>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="cardTitle">อยากเลี้ยง (เริ่มศึกษา)</div>
+          <p class="cardDesc">อ่านพื้นฐาน/ข้อควรรู้/คำถามพบบ่อย เพื่อหลีกเลี่ยงความผิดพลาดของมือใหม่</p>
+          <div class="quickLinks">
+            <a class="btn" href="knowledge.html">เปิดหน้า ความรู้</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">อยากดูสินค้า (เช็ครอบ)</div>
+          <p class="cardDesc">รวมสินค้า: ลูกตะพาบ / เนื้อ / ตะพาบเป็นยกลอต พร้อม FAQ และแนวทางการจัดส่ง</p>
+          <div class="quickLinks">
+            <a class="btn" href="products.html">เปิดหน้า สินค้า</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">อยากคุยรายละเอียด</div>
+          <p class="cardDesc">ถามได้ก่อนตัดสินใจ—ขอให้คุยจาก “ข้อมูลจริง + เงื่อนไขจริง” ของรอบนั้น ๆ</p>
+          <div class="quickLinks">
+            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE</a>
+            <a class="btn" href="contact.html">ช่องทางติดต่อ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="footer" id="contact">
       <div style="font-weight:980; color:var(--text); margin-bottom:6px;">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
       <div>
@@ -498,6 +340,7 @@
         © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม
       </div>
     </footer>
+
   </main>
 </div>
 
@@ -509,7 +352,7 @@
       <div class="t2">เช็ครอบสินค้า + เงื่อนไขการส่ง ทัก LINE ได้เลย</div>
     </div>
     <div class="bottomBarBtns">
-      <a class="btn" href="index.html">หน้าแรก</a>
+      <a class="btn" href="products.html">สินค้า</a>
       <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
     </div>
   </div>
@@ -518,22 +361,9 @@
 <!-- ✅ Shared JS (ใช้ทุกหน้า) -->
 <script src="assets/app.js" defer></script>
 
-<!-- ✅ Page JS (เฉพาะหน้านี้) -->
 <script>
-  // ปีลิขสิทธิ์ (เผื่อ app.js ยังไม่ได้ใส่)
   const y = document.getElementById("y");
   if (y) y.textContent = new Date().getFullYear();
-
-  // FAQ: เปิดได้ทีละข้อ (Accordion)
-  document.querySelectorAll("#faq details").forEach((d) => {
-    d.addEventListener("toggle", () => {
-      if (d.open) {
-        document.querySelectorAll("#faq details").forEach((other) => {
-          if (other !== d) other.removeAttribute("open");
-        });
-      }
-    });
-  });
 </script>
 </body>
 </html>

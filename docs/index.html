@@ -3,60 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ตะพาบน้ำไต้หวัน ฟาร์ม | ของจริงจากฟาร์ม คุยตรง ดูแลกันยาว</title>
-  <meta name="description" content="ตะพาบน้ำไต้หวัน ฟาร์ม — เพาะจริง คัดจริง ให้คำปรึกษาจริง สำหรับผู้เริ่มเลี้ยง ร้านอาหาร และตลาด สนใจสอบถามได้ก่อนตัดสินใจ" />
+  <title>สินค้า | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
+  <meta name="description" content="รวมสินค้า ตะพาบน้ำไต้หวัน ฟาร์ม — ลูกตะพาบ เนื้อ ตะพาบเป็น (ยกลอต) พร้อม FAQ และช่องทางติดต่อ" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="th_TH" />
-  <meta property="og:title" content="ตะพาบน้ำไต้หวัน ฟาร์ม | ของจริงจากฟาร์ม คุยตรง ดูแลกันยาว" />
-  <meta property="og:description" content="เพาะจริง คัดจริง ให้คำปรึกษาจริง สำหรับผู้เริ่มเลี้ยง ร้านอาหาร และตลาด" />
-  <meta property="og:image" content="images/og-cover.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Basic SEO -->
-  <link rel="canonical" href="https://tapabnamfarm.com/" />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0b121a" />
-
-  <!-- ✅ external CSS (ใช้ร่วมทั้งเว็บ) -->
+  <!-- ✅ Shared CSS (ใช้ทุกหน้า) -->
   <link rel="stylesheet" href="assets/app.css" />
 
+  <!-- ✅ Page CSS (เฉพาะหน้านี้) -->
   <style>
-    :root{
-      --bg:#070b12;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
-      --line: rgba(255,255,255,.12);
-      --text:#e9edf6;
-      --muted: rgba(233,237,246,.74);
-      --muted2: rgba(233,237,246,.58);
-      --accent:#18c37e;
-      --accent2:#11a86b;
-      --shadow: 0 18px 55px rgba(0,0,0,.55);
-      --radius: 22px;
-      --radius2: 28px;
-      --max: 1120px;
-    }
-    *{ box-sizing:border-box; }
+    /* Base (เฉพาะหน้า products) */
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, "Noto Sans Thai", "Segoe UI", sans-serif;
       background:
-        radial-gradient(900px 550px at 18% 10%, rgba(24,195,126,.18), transparent 60%),
-        radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.11), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.03), transparent 18%),
+        radial-gradient(900px 550px at 18% 10%, rgba(24,195,126,.20), transparent 60%),
+        radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.12), transparent 55%),
         var(--bg);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       line-height:1.65;
     }
-    a{ color:inherit; text-decoration:none; }
     img{ max-width:100%; display:block; }
     .wrap{ max-width:var(--max); margin:0 auto; padding: 22px 18px 120px; }
 
-    /* Accessibility */
+    /* Skip link */
     .skip{
       position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
     }
@@ -65,25 +36,7 @@
       background:#0b121a; border:1px solid var(--line); border-radius:12px; z-index:9999;
     }
 
-    /* ===== Scroll Reveal (Pop-up on view) ===== */
-    .reveal{
-      opacity: 0;
-      transform: translateY(18px) scale(.985);
-      transition:
-        opacity .70s ease,
-        transform .70s cubic-bezier(.2,.85,.2,1);
-      will-change: opacity, transform;
-    }
-    .reveal.is-in{
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    .reveal.d1{ transition-delay: .06s; }
-    .reveal.d2{ transition-delay: .12s; }
-    .reveal.d3{ transition-delay: .18s; }
-    .reveal.d4{ transition-delay: .24s; }
-
-    /* ===== Topbar (ปรับเป็น: ปุ่ม 3 ขีดซ้ายบน + ชื่อแบรนด์) ===== */
+    /* ===== Topbar (เหมือน index) ===== */
     .topbar{
       position: sticky; top: 12px; z-index: 70;
       display:flex; justify-content:space-between; align-items:center; gap:10px;
@@ -109,7 +62,7 @@
       letter-spacing:.2px;
     }
 
-    /* Hamburger button (มุมซ้ายบน) */
+    /* Hamburger button */
     .burgerBtn{
       display:inline-flex;
       align-items:center;
@@ -126,9 +79,7 @@
     }
     .burgerBtn:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
     .burgerBtn:active{ transform: translateY(0); }
-    .burgerIcon{
-      width:18px; height:12px; position:relative;
-    }
+    .burgerIcon{ width:18px; height:12px; position:relative; }
     .burgerIcon span{
       position:absolute; left:0; right:0;
       height:2px; border-radius:999px;
@@ -138,13 +89,12 @@
     .burgerIcon span:nth-child(2){ top:5px; opacity:.92; }
     .burgerIcon span:nth-child(3){ top:10px; opacity:.86; }
 
-    /* Right side quick actions (คงไว้แบบน้อยๆ) */
     .topActions{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .pill{
       padding:10px 14px; border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
-      color: var(--muted);
+      color: rgba(233,237,246,.80);
       font-weight:900; font-size:14px;
       transition: transform .12s ease, background .12s ease, color .12s ease;
       display:inline-flex; align-items:center; gap:8px;
@@ -153,142 +103,153 @@
     .pill:hover{ background: rgba(255,255,255,.08); color: var(--text); transform: translateY(-1px); }
     .pill:active{ transform: translateY(0px); }
 
-    /* ===== Side Drawer ===== */
-    .drawerOverlay{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(2px);
-      opacity:0;
-      pointer-events:none;
-      transition: opacity .18s ease;
-      z-index: 90;
+    /* ===== Section block ===== */
+    .section{
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
     }
-    .drawer{
-      position:fixed;
-      top:0; left:0;
-      height:100vh;
-      width:min(86vw, 360px);
-      background: rgba(10,14,22,.86);
-      border-right: 1px solid rgba(255,255,255,.12);
-      box-shadow: 18px 0 60px rgba(0,0,0,.55);
-      transform: translateX(-102%);
-      transition: transform .22s cubic-bezier(.2,.9,.2,1);
-      z-index: 95;
-      padding: 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
+    .kicker{
+      color: var(--muted2);
+      font-weight:950;
+      letter-spacing:.22px;
+      font-size:13px;
+      text-transform: uppercase;
     }
-    .drawerHead{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding: 8px 6px;
+    h1{
+      margin: 8px 0 8px;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height:1.15;
+      letter-spacing:.2px;
     }
-    .drawerBrand{
-      display:flex; align-items:center; gap:10px; min-width:0;
-    }
-    .drawerTitle{
-      font-weight: 980;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
-    .closeBtn{
-      width:44px; height:44px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease;
-      flex: 0 0 auto;
-    }
-    .closeBtn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
-    .closeBtn:active{ transform: translateY(0); }
+    .sub{ margin:0; color: var(--muted); max-width: 72ch; }
 
-    .drawerBody{
+    /* ===== Products ===== */
+    .productGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .productCard{
+      grid-column: span 12;
+      border-radius: 20px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+    @media(min-width:720px){ .productCard{ grid-column: span 6; } }
+    @media(min-width:980px){ .productCard{ grid-column: span 4; } }
+
+    .productMedia{ position:relative; }
+    .productMedia img{
+      width:100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .productBadge{
+      position:absolute; top:12px; left:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight: 950;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(233,237,246,.92);
+    }
+    .productBody{ padding: 14px 14px 16px; }
+    .productTitle{ font-size:18px; font-weight: 980; margin:0 0 6px; }
+    .productDesc{ margin:0 0 10px; color: var(--muted); font-size:14px; }
+
+    .productMeta{
+      list-style:none;
+      padding:0; margin:0 0 12px;
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .productMeta li{
+      padding:8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(233,237,246,.78);
+      font-size:12px;
+      font-weight: 900;
+    }
+    .productActions{ display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* ใช้ปุ่ม shared */
+    .btn{ text-decoration:none; }
+
+    /* ===== FAQ (Accordion) ===== */
+    .faq{ margin-top: 12px; display:grid; gap:10px; }
+    .faqItem{
+      border-radius: 18px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
-      border-radius: 18px;
-      padding: 10px;
+      overflow:hidden;
     }
-    .drawerLink{
+    .faqQ{
+      list-style:none;
+      cursor:pointer;
+      padding: 14px 14px;
+      font-weight: 980;
+      color: var(--text);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:10px;
-      padding: 12px 12px;
-      border-radius: 14px;
+      gap: 12px;
+    }
+    .faqQ::-webkit-details-marker{ display:none; }
+    .faqQ::after{
+      content:"＋";
+      font-weight: 980;
+      color: rgba(233,237,246,.75);
+      flex:0 0 auto;
+      transition: transform .18s ease;
+    }
+    .faqItem[open] .faqQ::after{
+      content:"－";
+      transform: translateY(-1px);
+    }
+    .faqA{
+      padding: 0 14px 14px;
       color: var(--muted);
-      font-weight: 950;
-      transition: background .12s ease, color .12s ease, transform .12s ease;
+      animation: faqIn .18s ease both;
     }
-    .drawerLink:hover{
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      transform: translateX(1px);
+    .faqA ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+    .faqA b{ color: rgba(233,237,246,.92); }
+    @keyframes faqIn{
+      from{ opacity: 0; transform: translateY(6px); }
+      to{ opacity: 1; transform: translateY(0); }
     }
-    .drawerLink small{ color: var(--muted2); font-weight: 900; }
 
-    .drawerCtas{
-      margin-top: auto;
+    /* Footer */
+    .footer{
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--radius2);
       border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.22);
-      border-radius: 18px;
-      padding: 12px;
-      display:grid;
-      gap:10px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
     }
-    .drawerNote{
-      color: var(--muted2);
-      font-size: 13px;
-      line-height:1.5;
-    }
-
-    /* when open */
-    body.drawerOpen{ overflow:hidden; }
-    body.drawerOpen .drawerOverlay{
-      opacity: 1;
-      pointer-events: auto;
-    }
-    body.drawerOpen .drawer{
-      transform: translateX(0);
-    }
-
-    /* ... (CSS ที่เหลือของคุณอยู่เหมือนเดิมทั้งหมด) ... */
+    .footer a{ text-decoration:none; }
 
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .pill,.btn,.miniBtn,.burgerBtn,.closeBtn{ transition:none; }
-      .reveal{
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-      .drawer, .drawerOverlay{ transition:none !important; }
+      .pill, .burgerBtn{ transition:none; }
     }
   </style>
-
-  <!-- LocalBusiness schema (แก้ชื่อ/ที่อยู่เพิ่มได้) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "ตะพาบน้ำไต้หวัน ฟาร์ม",
-    "url": "https://tapabnamfarm.com/",
-    "telephone": "+66-82-932-4965",
-    "sameAs": [
-      "https://www.facebook.com/share/1JmkGWGXWN/"
-    ]
-  }
-  </script>
 </head>
 
 <body>
 <a class="skip" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
 
-<!-- Drawer overlay + Drawer -->
+<!-- ✅ Drawer overlay + Drawer (เหมือน index) -->
 <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
 
 <aside class="drawer" id="drawer" aria-label="เมนูด้านข้าง">
@@ -301,35 +262,38 @@
   </div>
 
   <div class="drawerBody" role="navigation" aria-label="ลิงก์เมนู">
-    <a class="drawerLink" href="#top" data-drawer-link>
+    <a class="drawerLink" href="index.html" data-drawer-link>
       หน้าแรก <small>Home</small>
     </a>
     <a class="drawerLink" href="products.html" data-drawer-link>
       สินค้า <small>Products</small>
     </a>
-    <a class="drawerLink" href="#value" data-drawer-link>
-      ความรู้ <small>Free Value</small>
+    <a class="drawerLink" href="knowledge.html" data-drawer-link>
+      ความรู้ <small>Knowledge</small>
     </a>
-    <a class="drawerLink" href="#reviews" data-drawer-link>
-      รีวิว <small>Proof</small>
+    <a class="drawerLink" href="about.html" data-drawer-link>
+      เกี่ยวกับเรา <small>About</small>
     </a>
-    <a class="drawerLink" href="#contact" data-drawer-link>
+    <a class="drawerLink" href="contact.html" data-drawer-link>
       ติดต่อ <small>Contact</small>
+    </a>
+    <a class="drawerLink" href="#faq" data-drawer-link>
+      FAQ <small>Common Qs</small>
     </a>
   </div>
 
   <div class="drawerCtas">
     <div class="drawerNote">
-      กดเมนูเพื่อไปยังส่วนต่าง ๆ หรือไปหน้าสินค้าได้ทันที
+      กดเมนูเพื่อไปยังส่วนต่าง ๆ ได้ทันที
     </div>
-    <a class="btn primary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ปรึกษาฟรี / แอด LINE</a>
-    <a class="btn" href="products.html">ไปหน้าสินค้า</a>
+    <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ปรึกษาฟรี / แอด LINE</a>
+    <a class="btn" href="index.html">กลับหน้าแรก</a>
   </div>
 </aside>
 
 <div class="wrap">
 
-  <!-- Topbar -->
+  <!-- ✅ Topbar -->
   <header class="topbar" aria-label="แถบนำทาง">
     <div class="leftBar">
       <button class="burgerBtn" id="drawerOpen" type="button" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="drawer">
@@ -345,95 +309,231 @@
     </div>
 
     <div class="topActions" aria-label="ปุ่มลัด">
-      <a class="pill" href="products.html">สินค้า</a>
-      <a class="pill" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
+      <a class="pill" href="index.html">หน้าแรก</a>
+      <a class="pill" href="#faq">FAQ</a>
+      <a class="pill" href="contact.html">ติดต่อ</a>
     </div>
   </header>
 
   <main id="main">
+    <!-- Header -->
+    <section class="section">
+      <div class="kicker">PRODUCTS</div>
+      <h1>สินค้า</h1>
+      <p class="sub">
+        ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ<br />
+        สนใจรายละเอียด ถามได้ก่อนตัดสินใจ
+      </p>
+    </section>
 
-    <!-- (เนื้อหาทั้งหมดของคุณอยู่เหมือนเดิม) -->
-    <!-- ... -->
+    <!-- Products -->
+    <div class="productGrid" aria-label="รายการสินค้า">
+
+      <!-- ลูกตะพาบ -->
+      <article class="productCard">
+        <div class="productMedia">
+          <span class="productBadge">คุยตรง • ดูแลกันยาว</span>
+          <img src="images/baby-turtle.jpg" alt="ลูกตะพาบน้ำไต้หวัน" loading="lazy">
+        </div>
+        <div class="productBody">
+          <div class="productTitle">ลูกตะพาบน้ำไต้หวัน</div>
+          <p class="productDesc">
+            คัดจากฟาร์ม เหมาะกับคนเริ่มเลี้ยง<br />
+            อธิบายตามจริง ให้ข้อมูลครบก่อนตัดสินใจ
+          </p>
+          <ul class="productMeta">
+            <li>ขั้นต่ำ 30 ตัว</li>
+            <li>จัดส่งทั่วประเทศ</li>
+            <li>แนะนำหลังรับของ</li>
+          </ul>
+          <div class="productActions">
+            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- เนื้อตะพาบ -->
+      <article class="productCard">
+        <div class="productMedia">
+          <span class="productBadge">ของจริงจากฟาร์ม</span>
+          <img src="images/turtle-meat.jpg" alt="เนื้อตะพาบน้ำไต้หวัน" loading="lazy">
+        </div>
+        <div class="productBody">
+          <div class="productTitle">เนื้อตะพาบน้ำไต้หวัน</div>
+          <p class="productDesc">
+            วัตถุดิบจากฟาร์ม คัดตามรอบ<br />
+            แจ้งรายละเอียดตามจริงก่อนส่งทุกครั้ง
+          </p>
+          <ul class="productMeta">
+            <li>ขายเป็นกิโลกรัม</li>
+            <li>ส่งควบคุมอุณหภูมิ</li>
+            <li>มีรอบสินค้า</li>
+          </ul>
+          <div class="productActions">
+            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ตะพาบเป็น ๆ (ยกลอต) -->
+      <article class="productCard">
+        <div class="productMedia">
+          <span class="productBadge">ขายเป็นรอบ • แจ้งตามจริง</span>
+          <img src="images/live-turtle.jpg" alt="ตะพาบน้ำไต้หวันเป็น ๆ ยกลอต" loading="lazy">
+        </div>
+        <div class="productBody">
+          <div class="productTitle">ตะพาบน้ำไต้หวัน (เป็น ๆ ยกลอต)</div>
+          <p class="productDesc">
+            จำหน่ายตะพาบเป็นสำหรับนำไปทำอาหาร<br />
+            ขายเฉพาะยกลอต และมีสินค้าเป็นรอบตามการจับจากบ่อ<br />
+            ทักมาคุยรายละเอียดก่อนตัดสินใจได้
+          </p>
+          <ul class="productMeta">
+            <li>ขั้นต่ำ 5 กก. ขึ้นไป</li>
+            <li>ไม่ขายปลีกเป็นตัว</li>
+            <li>สินค้าเป็นรอบ</li>
+          </ul>
+          <div class="productActions">
+            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">สอบถามในไลน์</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="kicker">FAQ</div>
+      <div class="h2" style="margin-top:10px; font-weight:980; font-size:clamp(20px, 3.2vw, 30px);">คำถามที่พบบ่อย</div>
+      <p class="sub" style="margin-top:10px;">รวมคำถามสำคัญที่ลูกค้าถามบ่อย เพื่อให้คุณตัดสินใจจากข้อมูลที่ชัดเจน</p>
+
+      <div class="faq" aria-label="คำถามที่พบบ่อย">
+        <details class="faqItem">
+          <summary class="faqQ">ตะพาบน้ำไต้หวันเหมาะกับใคร?</summary>
+          <div class="faqA">
+            ตะพาบน้ำไต้หวันเหมาะกับ
+            <ul>
+              <li>ผู้ที่สนใจเลี้ยงเชิงเศรษฐกิจและต้องการศึกษาข้อมูลก่อนเริ่มจริง</li>
+              <li>ร้านอาหารหรือตลาดที่ต้องการวัตถุดิบตามรอบสินค้า</li>
+              <li>ผู้ที่ต้องการสอบถามข้อมูลและเงื่อนไขก่อนตัดสินใจ</li>
+            </ul>
+            หากคุณยังไม่แน่ใจว่าสิ่งนี้เหมาะกับคุณหรือไม่ สามารถสอบถามรายละเอียดเพิ่มเติมได้ก่อน
+            เพื่อให้ตัดสินใจจากข้อมูลที่ชัดเจนและตรงกับความต้องการของคุณมากที่สุด
+          </div>
+        </details>
+
+        <details class="faqItem">
+          <summary class="faqQ">มีขั้นต่ำในการสั่งซื้อไหม?</summary>
+          <div class="faqA">
+            มีขั้นต่ำตามประเภทสินค้าและตามรอบของฟาร์ม ได้แก่
+            <ul>
+              <li><b>ลูกตะพาบน้ำไต้หวัน:</b> ขั้นต่ำ 30 ตัว</li>
+              <li><b>ตะพาบน้ำเป็น:</b> จำหน่ายเฉพาะยกลอต ขั้นต่ำ 5 กิโลกรัมขึ้นไป</li>
+              <li><b>เนื้อตะพาบน้ำ:</b> จำหน่ายเป็นกิโลกรัม ตามรอบสินค้า</li>
+            </ul>
+            เงื่อนไขอาจเปลี่ยนแปลงได้ในแต่ละรอบ แนะนำให้สอบถามก่อนสั่งทุกครั้ง
+          </div>
+        </details>
+
+        <details class="faqItem">
+          <summary class="faqQ">สินค้ามีของตลอดไหม?</summary>
+          <div class="faqA">
+            สินค้าไม่ได้มีตลอดเวลา สินค้าทุกประเภทเป็น <b>สินค้าแบบมีรอบ</b> ตามรอบการจับและรอบของฟาร์ม รวมถึงฟาร์มเครือข่าย
+            เราจะแจ้งให้ชัดเจนก่อนรับออเดอร์ว่า มีสินค้าหรือไม่ ส่งได้วันไหน และเงื่อนไขของรอบนั้นเป็นอย่างไร
+          </div>
+        </details>
+
+        <details class="faqItem">
+          <summary class="faqQ">การจัดส่งทำอย่างไร?</summary>
+          <div class="faqA">
+            การจัดส่งแตกต่างตามประเภทสินค้า
+            <ul>
+              <li><b>ลูกตะพาบน้ำ:</b> แพ็กตามมาตรฐานฟาร์ม และเลือกวิธีจัดส่งที่เหมาะสมกับสินค้า</li>
+              <li><b>เนื้อตะพาบน้ำ:</b> จัดส่งแบบควบคุมอุณหภูมิ เพื่อรักษาคุณภาพสินค้า</li>
+              <li><b>ตะพาบน้ำเป็น:</b> จัดส่งตามเงื่อนไขที่ตกลงกันเป็นกรณี</li>
+            </ul>
+            ทุกเคสจะแจ้งรายละเอียดการจัดส่งให้ทราบก่อนส่งเสมอ
+          </div>
+        </details>
+
+        <details class="faqItem">
+          <summary class="faqQ">มีการรับซื้อคืนไหม?</summary>
+          <div class="faqA">
+            ทางฟาร์มมีการรับซื้อคืน <b>ตามเงื่อนไขและตามคิวของตลาด</b> แต่ไม่สามารถการันตีล่วงหน้าแบบตายตัวได้
+            ราคาและรอบรับซื้อขึ้นอยู่กับสภาพตลาดในช่วงนั้น ไม่ควรผูกความหวังไว้กับช่องทางเดียว
+            เราจะอธิบายตามความเป็นจริงเพื่อให้คุณตัดสินใจอย่างรอบคอบตั้งแต่ต้น
+          </div>
+        </details>
+
+        <details class="faqItem">
+          <summary class="faqQ">ถ้ายังไม่พร้อมซื้อ สามารถติดต่อสอบถามได้ไหม?</summary>
+          <div class="faqA">
+            ได้แน่นอน คุณสามารถสอบถามข้อมูลหรือขอคำแนะนำก่อนได้โดยไม่มีข้อผูกมัด
+            หากคุยแล้วเห็นว่ายังไม่เหมาะ หรือยังไม่ถึงจังหวะที่พร้อม เราก็ยินดีให้คุณตัดสินใจในเวลาที่เหมาะสมของคุณเอง
+          </div>
+        </details>
+
+        <details class="faqItem">
+          <summary class="faqQ">ติดต่อช่องทางไหนสะดวกที่สุด?</summary>
+          <div class="faqA">
+            แนะนำให้ติดต่อผ่าน <b>LINE OA: @tapabnam.farm</b> เพื่อคุยรายละเอียดและเช็ครอบสินค้าได้สะดวกที่สุด
+            หรือโทร <b>082-932-4965</b> และ Facebook Page ได้เช่นกัน
+          </div>
+        </details>
+      </div>
+
+      <div class="productActions" style="margin-top:14px">
+        <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE เพื่อเช็ครอบสินค้า</a>
+        <a class="btn" href="#main">กลับไปด้านบน</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <div style="font-weight:980; color:var(--text); margin-bottom:6px;">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
+      <div>
+        LINE: <b>@tapabnam.farm</b> • โทร: <b><a href="tel:0829324965">082-932-4965</a></b>
+      </div>
+      <div style="margin-top:10px; color:var(--muted2); font-size:13px;">
+        © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม
+      </div>
+    </footer>
   </main>
 </div>
 
-<!-- Sticky CTA -->
-<div class="sticky" role="region" aria-label="แถบปุ่มลัด">
-  <div class="stickyInner">
-    <div class="stickyText">
+<!-- ✅ Bottom bar (ใช้ร่วมทุกหน้า) -->
+<div class="bottomBar" role="region" aria-label="แถบปุ่มลัดด้านล่าง">
+  <div class="bottomBarInner">
+    <div class="bottomBarText">
       <div class="t1">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      <div class="t2">ดูสินค้าแล้วทักไลน์เพื่อสอบถามรายละเอียด</div>
+      <div class="t2">เช็ครอบสินค้า + เงื่อนไขการส่ง ทัก LINE ได้เลย</div>
     </div>
-    <div class="stickyBtns">
-      <a class="miniBtn" href="products.html">ดูสินค้า</a>
-      <a class="miniBtn primary" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
+    <div class="bottomBarBtns">
+      <a class="btn" href="index.html">หน้าแรก</a>
+      <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
     </div>
   </div>
 </div>
 
-<script>
-  // ปีลิขสิทธิ์
-  document.getElementById("y").textContent = new Date().getFullYear();
-
-  // ===== Drawer open/close =====
-  const openBtn = document.getElementById("drawerOpen");
-  const closeBtn = document.getElementById("drawerClose");
-  const overlay = document.getElementById("drawerOverlay");
-  const drawerLinks = document.querySelectorAll("[data-drawer-link]");
-
-  function openDrawer(){
-    document.body.classList.add("drawerOpen");
-    openBtn?.setAttribute("aria-expanded", "true");
-    setTimeout(() => closeBtn?.focus(), 50);
-  }
-  function closeDrawer(){
-    document.body.classList.remove("drawerOpen");
-    openBtn?.setAttribute("aria-expanded", "false");
-    setTimeout(() => openBtn?.focus(), 50);
-  }
-
-  openBtn?.addEventListener("click", openDrawer);
-  closeBtn?.addEventListener("click", closeDrawer);
-  overlay?.addEventListener("click", closeDrawer);
-
-  drawerLinks.forEach(a => {
-    a.addEventListener("click", () => closeDrawer());
-  });
-
-  // ESC ปิด drawer
-  document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape" && document.body.classList.contains("drawerOpen")){
-      closeDrawer();
-    }
-  });
-
-  // ===== Scroll Reveal (IntersectionObserver) =====
-  (function(){
-    const items = document.querySelectorAll(".reveal");
-    if(!items.length) return;
-
-    if(!("IntersectionObserver" in window)){
-      items.forEach(el => el.classList.add("is-in"));
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add("is-in");
-          obs.unobserve(entry.target);
-        }
-      });
-    },{
-      threshold: 0.12,
-      rootMargin: "0px 0px -10% 0px"
-    });
-
-    items.forEach(el => observer.observe(el));
-  })();
-</script>
-
-<!-- ✅ เหลือไว้ "อันเดียว" พอ -->
+<!-- ✅ Shared JS (ใช้ทุกหน้า) -->
 <script src="assets/app.js" defer></script>
+
+<!-- ✅ Page JS (เฉพาะหน้านี้) -->
+<script>
+  // ปีลิขสิทธิ์ (เผื่อ app.js ยังไม่ได้ใส่)
+  const y = document.getElementById("y");
+  if (y) y.textContent = new Date().getFullYear();
+
+  // FAQ: เปิดได้ทีละข้อ (Accordion)
+  document.querySelectorAll("#faq details").forEach((d) => {
+    d.addEventListener("toggle", () => {
+      if (d.open) {
+        document.querySelectorAll("#faq details").forEach((other) => {
+          if (other !== d) other.removeAttribute("open");
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>

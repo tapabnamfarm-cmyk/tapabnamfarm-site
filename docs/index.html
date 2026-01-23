@@ -3,271 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>หน้าแรก | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
-  <meta name="description" content="ตะพาบน้ำไต้หวัน ฟาร์ม — แหล่งรวมสินค้าและความรู้สำหรับคนเลี้ยงและผู้ที่ต้องการวัตถุดิบจากฟาร์ม คุยตรง ให้ข้อมูลครบ" />
+  <title>ตะพาบน้ำไต้หวัน ฟาร์ม</title>
 
-  <!-- ✅ Shared CSS -->
   <link rel="stylesheet" href="assets/app.css" />
-
-  <style>
-    /* (คงสไตล์เดิมของคุณไว้) */
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Noto Sans Thai", "Segoe UI", sans-serif;
-      background:
-        radial-gradient(900px 550px at 18% 10%, rgba(24,195,126,.20), transparent 60%),
-        radial-gradient(700px 500px at 88% 22%, rgba(30,98,255,.12), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      line-height:1.65;
-    }
-    img{ max-width:100%; display:block; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding: 22px 18px 120px; }
-
-    .section{
-      margin-top: 18px;
-      padding: 22px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
-      box-shadow: var(--shadow);
-    }
-    .kicker{
-      color: var(--muted2);
-      font-weight:950;
-      letter-spacing:.22px;
-      font-size:13px;
-      text-transform: uppercase;
-    }
-    h1{
-      margin: 10px 0 10px;
-      font-size: clamp(28px, 4.5vw, 46px);
-      line-height:1.12;
-      letter-spacing:.2px;
-    }
-    .sub{ margin:0; color: var(--muted); max-width: 72ch; }
-
-    .heroGrid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-    .heroLeft{ grid-column: span 12; }
-    .heroRight{ grid-column: span 12; }
-    @media(min-width:920px){
-      .heroLeft{ grid-column: span 7; }
-      .heroRight{ grid-column: span 5; }
-    }
-
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px; }
-    .chip{
-      padding:8px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.10);
-      color: rgba(233,237,246,.78);
-      font-size:12px;
-      font-weight: 900;
-    }
-
-    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
-    .btn{ text-decoration:none; }
-
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-    .card{
-      grid-column: span 12;
-      border-radius: 20px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 18px 50px rgba(0,0,0,.30);
-      padding: 16px;
-    }
-    @media(min-width:820px){ .card{ grid-column: span 4; } }
-
-    .cardTitle{ font-weight:980; font-size:18px; margin:0 0 6px; }
-    .cardDesc{ margin:0; color: var(--muted); font-size:14px; }
-
-    .quickLinks{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
-
-    .footer{
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-    }
-    .footer a{ text-decoration:none; }
-  </style>
 </head>
 
 <body>
-<a class="skip" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
 
-<!-- ✅ Overlay + Menu (ใช้ id เดิม) -->
-<div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
+  <!-- Topbar (hamburger left) -->
+  <header class="topbar" aria-label="แถบนำทางด้านบน">
+    <button
+      class="burgerBtn"
+      id="drawerOpen"
+      type="button"
+      aria-label="เปิดเมนู"
+      aria-expanded="false"
+      aria-controls="drawer">
+      <span class="burgerIcon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
 
-<aside class="drawer" id="drawer" aria-label="เมนู">
-  <!-- ปุ่มปิด (มุมขวาบน) -->
-  <div class="drawerHead">
-    <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
-  </div>
-
-  <!-- เมนูหลัก: ตาม Hierarchy ที่คุณกำหนด -->
-  <nav class="drawerBody" aria-label="เมนูหลัก">
-    <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
-    <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
-    <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
-    <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
-  </nav>
-
-  <!-- สินค้า: แยกโซน ล่างสุด เน้นตัวเดียว -->
-  <div class="drawerCtas" aria-label="ปุ่มสินค้า">
-    <a class="btn btnGreen" href="products.html" data-drawer-link>สินค้า</a>
-  </div>
-</aside>
-
-<div class="wrap">
-
-  <!-- ✅ Topbar -->
-  <header class="topbar" aria-label="แถบนำทาง">
-    <div class="leftBar">
-      <button class="burgerBtn" id="drawerOpen" type="button" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="drawer">
-        <span class="burgerIcon" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-      </button>
-
-      <div class="brand">
-        <div class="dot" aria-hidden="true"></div>
-        <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      </div>
-    </div>
-
-    <!-- (คุณบอกว่าไม่ต้องเน้นเมนูด้านบน ผมไม่ยุ่ง) -->
-    <div class="topActions" aria-label="ปุ่มลัด">
-      <a class="pill" href="knowledge.html">ความรู้</a>
-      <a class="pill" href="contact.html">ติดต่อ</a>
-    </div>
+    <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
   </header>
 
-  <main id="main">
+  <!-- Overlay -->
+  <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
 
-    <!-- HERO -->
-    <section class="section">
-      <div class="kicker">HOME</div>
-
-      <div class="heroGrid">
-        <div class="heroLeft">
-          <h1>ของจริงจากฟาร์ม<br/>คุยตรง ให้ข้อมูลครบ</h1>
-          <p class="sub">
-            ตะพาบน้ำไต้หวัน ฟาร์ม — รวมสินค้าและความรู้สำหรับคนที่อยากเริ่มเลี้ยงเชิงเศรษฐกิจ
-            และผู้ที่ต้องการวัตถุดิบตามรอบสินค้า<br/>
-            ถ้ายังไม่แน่ใจ ทักมาถามก่อนได้เสมอ
-          </p>
-
-          <div class="chips" aria-label="จุดเด่น">
-            <span class="chip">คุยตรง ไม่ขายเกินจริง</span>
-            <span class="chip">เช็ครอบสินค้าได้</span>
-            <span class="chip">แนะนำก่อน–หลังรับของ</span>
-            <span class="chip">ส่งทั่วประเทศ (ตามเงื่อนไขสินค้า)</span>
-          </div>
-
-          <div class="ctaRow" aria-label="ปุ่มหลัก">
-            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE เช็ครอบสินค้า</a>
-            <a class="btn" href="products.html">ดูหน้าสินค้า</a>
-            <a class="btn" href="knowledge.html">อ่านความรู้</a>
-          </div>
-        </div>
-
-        <div class="heroRight">
-          <div class="card">
-            <div class="cardTitle">เริ่มต้นเร็ว (แนะนำ)</div>
-            <p class="cardDesc">
-              ถ้าคุณเป็นมือใหม่ ให้เริ่มจาก “อ่านความรู้” แล้วค่อยดู “สินค้า” จะตัดสินใจง่ายขึ้นมาก
-            </p>
-            <div class="quickLinks" style="margin-top:12px;">
-              <a class="btn" href="knowledge.html">ไปหน้า ความรู้</a>
-              <a class="btn" href="products.html">ไปหน้า สินค้า</a>
-              <a class="btn" href="about.html">เกี่ยวกับเรา</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3 CARDS -->
-    <section class="section" aria-label="ทางลัด">
-      <div class="kicker">QUICK START</div>
-      <div style="margin-top:10px; font-weight:980; font-size:clamp(20px, 3.2vw, 30px);">เริ่มจากตรงไหนได้บ้าง</div>
-      <p class="sub" style="margin-top:10px;">เลือกเส้นทางที่ใช่สำหรับคุณ แล้วค่อยทักมาคุยรายละเอียด</p>
-
-      <div class="grid3">
-        <div class="card">
-          <div class="cardTitle">อยากเลี้ยง (เริ่มศึกษา)</div>
-          <p class="cardDesc">อ่านพื้นฐาน/ข้อควรรู้/คำถามพบบ่อย เพื่อหลีกเลี่ยงความผิดพลาดของมือใหม่</p>
-          <div class="quickLinks">
-            <a class="btn" href="knowledge.html">เปิดหน้า ความรู้</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="cardTitle">อยากดูสินค้า (เช็ครอบ)</div>
-          <p class="cardDesc">รวมสินค้า: ลูกตะพาบ / เนื้อ / ตะพาบเป็นยกลอต พร้อม FAQ และแนวทางการจัดส่ง</p>
-          <div class="quickLinks">
-            <a class="btn" href="products.html">เปิดหน้า สินค้า</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="cardTitle">อยากคุยรายละเอียด</div>
-          <p class="cardDesc">ถามได้ก่อนตัดสินใจ—ขอให้คุยจาก “ข้อมูลจริง + เงื่อนไขจริง” ของรอบนั้น ๆ</p>
-          <div class="quickLinks">
-            <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">ทัก LINE</a>
-            <a class="btn" href="contact.html">ช่องทางติดต่อ</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer" id="contact">
-      <div style="font-weight:980; color:var(--text); margin-bottom:6px;">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      <div>
-        LINE: <b>@tapabnam.farm</b> • โทร: <b><a href="tel:0829324965">082-932-4965</a></b>
-      </div>
-      <div style="margin-top:10px; color:var(--muted2); font-size:13px;">
-        © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม
-      </div>
-    </footer>
-
-  </main>
-</div>
-
-<!-- ✅ Bottom bar -->
-<div class="bottomBar" role="region" aria-label="แถบปุ่มลัดด้านล่าง">
-  <div class="bottomBarInner">
-    <div class="bottomBarText">
-      <div class="t1">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      <div class="t2">เช็ครอบสินค้า + เงื่อนไขการส่ง ทัก LINE ได้เลย</div>
+  <!-- Drawer -->
+  <aside class="drawer" id="drawer" aria-label="เมนู">
+    <div class="drawerHead">
+      <div class="drawerHeadTitle">เมนู</div>
+      <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
     </div>
-    <div class="bottomBarBtns">
-      <a class="btn" href="products.html">สินค้า</a>
-      <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank" rel="noopener">แอดไลน์</a>
-    </div>
-  </div>
-</div>
 
-<!-- ✅ Shared JS -->
-<script src="assets/app.js" defer></script>
+    <!-- Main hierarchy (ตามที่คุณกำหนด) -->
+    <nav class="drawerNav" aria-label="ลิงก์หลัก">
+      <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
+      <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
+      <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
+      <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
+    </nav>
+
+    <!-- Separate zone bottom: Products (เน้นตัวนี้) -->
+    <div class="drawerBottom" aria-label="โซนสินค้า">
+      <a class="drawerProduct" href="products.html" data-drawer-link>สินค้า</a>
+    </div>
+  </aside>
+
+  <script src="assets/app.js" defer></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 /* assets/app.js
-   ใช้ร่วมทั้งเว็บ: Drawer (เมนู 3 ขีด) + Scroll Reveal + ปีลิขสิทธิ์ + ไฮไลต์เมนูหน้าปัจจุบัน
+   ใช้ร่วมทั้งเว็บ: Menu Overlay (3 ขีด) + ปีลิขสิทธิ์ + ไฮไลต์เมนูหน้าปัจจุบัน
 */
-
 (function () {
   "use strict";
 
@@ -10,69 +9,44 @@
     const y = document.getElementById("y");
     if (y) y.textContent = new Date().getFullYear();
 
-    // ===== 2) Drawer open/close =====
+    // ===== 2) Menu open/close =====
     const openBtn = document.getElementById("drawerOpen");
     const closeBtn = document.getElementById("drawerClose");
     const overlay = document.getElementById("drawerOverlay");
     const drawer = document.getElementById("drawer");
     const drawerLinks = document.querySelectorAll("[data-drawer-link]");
 
-    const canUseDrawer = !!(openBtn && closeBtn && overlay && drawer);
+    const canUse = !!(openBtn && closeBtn && overlay && drawer);
 
-    function openDrawer() {
-      if (!canUseDrawer) return;
+    function openMenu() {
+      if (!canUse) return;
       document.body.classList.add("drawerOpen");
       openBtn.setAttribute("aria-expanded", "true");
-      setTimeout(() => closeBtn.focus(), 50);
+      setTimeout(() => closeBtn.focus(), 30);
     }
 
-    function closeDrawer() {
-      if (!canUseDrawer) return;
+    function closeMenu() {
+      if (!canUse) return;
       document.body.classList.remove("drawerOpen");
       openBtn.setAttribute("aria-expanded", "false");
-      setTimeout(() => openBtn.focus(), 50);
+      setTimeout(() => openBtn.focus(), 30);
     }
 
-    if (canUseDrawer) {
-      openBtn.addEventListener("click", openDrawer);
-      closeBtn.addEventListener("click", closeDrawer);
-      overlay.addEventListener("click", closeDrawer);
+    if (canUse) {
+      openBtn.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
 
-      drawerLinks.forEach((a) => {
-        a.addEventListener("click", () => closeDrawer());
-      });
+      drawerLinks.forEach((a) => a.addEventListener("click", () => closeMenu()));
 
-      // ESC ปิด drawer
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && document.body.classList.contains("drawerOpen")) {
-          closeDrawer();
+          closeMenu();
         }
       });
     }
 
-    // ===== 3) Scroll Reveal (IntersectionObserver) =====
-    const items = document.querySelectorAll(".reveal");
-    if (items.length) {
-      if (!("IntersectionObserver" in window)) {
-        items.forEach((el) => el.classList.add("is-in"));
-      } else {
-        const observer = new IntersectionObserver(
-          (entries, obs) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-in");
-                obs.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
-        );
-
-        items.forEach((el) => observer.observe(el));
-      }
-    }
-
-    // ===== 4) ไฮไลต์เมนูหน้าปัจจุบัน =====
+    // ===== 3) ไฮไลต์เมนูหน้าปัจจุบัน =====
     const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
     document.querySelectorAll("a[href]").forEach((a) => {

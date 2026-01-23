@@ -32,24 +32,37 @@
 
   <!-- Drawer -->
   <aside class="drawer" id="drawer" aria-label="เมนู">
-    <div class="drawerHead">
-      <div class="drawerHeadTitle">เมนู</div>
-      <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
-    </div>
 
-    <!-- Main hierarchy (ตามที่คุณกำหนด) -->
-    <nav class="drawerNav" aria-label="ลิงก์หลัก">
-      <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
-      <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
-      <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
-      <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
-    </nav>
+  <!-- ปุ่มปิด (ไม่มีคำว่า เมนู แล้ว) -->
+  <div class="drawerHead">
+    <button
+      class="closeBtn"
+      id="drawerClose"
+      type="button"
+      aria-label="ปิดเมนู">
+      ✕
+    </button>
+  </div>
 
-    <!-- Separate zone bottom: Products (เน้นตัวนี้) -->
-    <div class="drawerBottom" aria-label="โซนสินค้า">
-      <a class="drawerProduct" href="products.html" data-drawer-link>สินค้า</a>
-    </div>
-  </aside>
+  <!-- เมนูหลัก (Hierarchy สำคัญ) -->
+  <nav class="drawerNav" aria-label="ลิงก์หลัก">
+    <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
+    <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
+    <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
+    <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
+  </nav>
+
+  <!-- โซนล่าง: สินค้า (เน้นตัวเดียว) -->
+  <div class="drawerBottom">
+    <a
+      class="drawerProductBtn"
+      href="products.html"
+      data-drawer-link>
+      สินค้า
+    </a>
+  </div>
+
+</aside>
 
   <script src="assets/app.js" defer></script>
 </body>

@@ -4,129 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>สินค้า | ตะพาบน้ำไต้หวัน ฟาร์ม</title>
-  <meta name="description" content="สินค้าจากตะพาบน้ำไต้หวัน ฟาร์ม — ลูกตะพาบ เนื้อ และตะพาบเป็น (ยกลอต) คุยตรง ให้ข้อมูลครบก่อนตัดสินใจ" />
 
-  <!-- Shared CSS -->
   <link rel="stylesheet" href="assets/app.css" />
 </head>
 
 <body>
-<a class="skip" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
-
-<!-- Overlay -->
-<div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
-
-<!-- ================= Drawer ================= -->
-<aside class="drawer" id="drawer" aria-label="เมนูด้านข้าง">
-
-  <div class="drawerHead">
-    <div class="drawerBrand">
-      <div class="dot"></div>
-      <div class="drawerTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-    </div>
-    <button class="closeBtn" id="drawerClose" aria-label="ปิดเมนู">✕</button>
-  </div>
-
-  <!-- เมนูหลัก -->
-  <nav class="drawerBody" aria-label="เมนูหลัก">
-    <a class="drawerLink" href="index.html" data-drawer-link>
-      หน้าแรก <small>Home</small>
-    </a>
-    <a class="drawerLink" href="knowledge.html" data-drawer-link>
-      ความรู้ <small>Knowledge</small>
-    </a>
-    <a class="drawerLink" href="about.html" data-drawer-link>
-      เกี่ยวกับเรา <small>About</small>
-    </a>
-    <a class="drawerLink" href="contact.html" data-drawer-link>
-      ติดต่อ <small>Contact</small>
-    </a>
-  </nav>
-
-  <!-- โซนสินค้า (แยก / เน้น) -->
-  <div class="drawerCtas">
-    <div class="drawerNote">
-      ต้องการดูสินค้าหรือเช็ครอบล่าสุด
-    </div>
-    <a class="btn btnGreen" href="products.html" data-drawer-link>
-      ดูสินค้า
-    </a>
-  </div>
-</aside>
-<!-- =============== End Drawer =============== -->
-
-<div class="wrap">
 
   <!-- Topbar -->
-  <header class="topbar">
-    <div class="leftBar">
-      <button class="burgerBtn" id="drawerOpen" aria-label="เปิดเมนู" aria-expanded="false">
-        <span class="burgerIcon">
-          <span></span><span></span><span></span>
-        </span>
-      </button>
-      <div class="brand">
-        <div class="dot"></div>
-        <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      </div>
-    </div>
+  <header class="topbar" aria-label="แถบนำทางด้านบน">
+    <button
+      class="burgerBtn"
+      id="drawerOpen"
+      type="button"
+      aria-label="เปิดเมนู"
+      aria-expanded="false"
+      aria-controls="drawer">
+      <span class="burgerIcon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+
+    <div class="brandTitle">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
   </header>
 
-  <!-- ================= Main ================= -->
-  <main id="main">
+  <!-- Overlay -->
+  <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
 
-    <section class="section">
-      <div class="kicker">PRODUCTS</div>
-      <h1>สินค้า</h1>
-      <p class="sub">
-        ของจริงจากฟาร์ม คุยตรง ให้ข้อมูลครบ  
-        สนใจรายละเอียด สอบถามได้ก่อนตัดสินใจ
-      </p>
-    </section>
-
-    <section class="section">
-      <h2 style="font-weight:980;">รายการสินค้า</h2>
-
-      <ul style="margin-top:12px; padding-left:18px; color:var(--muted);">
-        <li>ลูกตะพาบน้ำไต้หวัน (ขั้นต่ำตามรอบ)</li>
-        <li>เนื้อตะพาบน้ำไต้หวัน (ขายตามรอบสินค้า)</li>
-        <li>ตะพาบน้ำเป็น (จำหน่ายเฉพาะยกลอต)</li>
-      </ul>
-
-      <div style="margin-top:16px;">
-        <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank">
-          ทัก LINE เช็ครอบสินค้า
-        </a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div style="font-weight:980; color:var(--text);">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      <div style="margin-top:6px;">
-        LINE: <b>@tapabnam.farm</b> • โทร: <b>082-932-4965</b>
-      </div>
-      <div style="margin-top:10px; font-size:13px; color:var(--muted2);">
-        © <span id="y"></span> ตะพาบน้ำไต้หวัน ฟาร์ม
-      </div>
-    </footer>
-
-  </main>
-</div>
-
-<!-- Bottom Bar -->
-<div class="bottomBar">
-  <div class="bottomBarInner">
-    <div class="bottomBarText">
-      <div class="t1">ตะพาบน้ำไต้หวัน ฟาร์ม</div>
-      <div class="t2">เช็ครอบสินค้า + เงื่อนไขการส่ง</div>
+  <!-- Drawer -->
+  <aside class="drawer" id="drawer" aria-label="เมนู">
+    <div class="drawerHead">
+      <div class="drawerHeadTitle">เมนู</div>
+      <button class="closeBtn" id="drawerClose" type="button" aria-label="ปิดเมนู">✕</button>
     </div>
-    <div class="bottomBarBtns">
-      <a class="btn" href="index.html">หน้าแรก</a>
-      <a class="btn btnGreen" href="https://lin.ee/cBeZNSB" target="_blank">แอด LINE</a>
-    </div>
-  </div>
-</div>
 
-<script src="assets/app.js" defer></script>
+    <!-- Main hierarchy -->
+    <nav class="drawerNav" aria-label="ลิงก์หลัก">
+      <a class="drawerLink" href="index.html" data-drawer-link>หน้าแรก</a>
+      <a class="drawerLink" href="knowledge.html" data-drawer-link>ความรู้</a>
+      <a class="drawerLink" href="about.html" data-drawer-link>เกี่ยวกับเรา</a>
+      <a class="drawerLink" href="contact.html" data-drawer-link>ติดต่อ</a>
+    </nav>
+
+    <!-- Separate zone bottom: Products -->
+    <div class="drawerBottom" aria-label="โซนสินค้า">
+      <a class="drawerProduct" href="products.html" data-drawer-link>สินค้า</a>
+    </div>
+  </aside>
+
+  <script src="assets/app.js" defer></script>
 </body>
 </html>
